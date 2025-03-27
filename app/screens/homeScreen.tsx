@@ -1,13 +1,11 @@
-import { View, Text, StyleSheet, FlatList , Image} from 'react-native'
+import { View, Text, StyleSheet, FlatList} from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { Searchbar } from 'react-native-paper';
 import  mealServices  from '../services/mealServices';
-
-type Meal = {
-  id: number,
-  name: string | undefined,
-  image_url : string | undefined,
-}
+import { Meal } from '../types/Meal';
+import MealItem from '../components/mealItem';
+import globalStyles from '@/styles/global';
+import CategoryList from '../components/categoryList';
 
 const HomeScreen = () => {
     const [search, setSearch] = useState("");
@@ -30,29 +28,26 @@ const HomeScreen = () => {
     <View>
 
       <View style={styles.title}>
-        <Text style={styles.text}>Welcome back Mia!</Text>
+        <Text style={globalStyles.TitleText}>Welcome back Mia!</Text>
       </View>
 
-      <Searchbar placeholder="Type Here..."
+      <Searchbar placeholder="Search any recipies"
                  value={search}
                  onChangeText={setSearch}
                  style={styles.search} />
 
+      <CategoryList />
+
       <View style={styles.recommend}>
-        <Text style={styles.text}>Recommended</Text>
+        <Text style={globalStyles.TitleText}>Recommended</Text>
       </View>
       <FlatList data={meals}
                 keyExtractor={(meal) => meal.id.toString()}
                 horizontal={true}
                 showsHorizontalScrollIndicator={false}
                 renderItem={({ item }) => (
-                  <View style={styles.box}>
-                    <Image source={{ uri: item.image_url }} style={styles.image} />
-                    <Text style={styles.text}>{item.name}</Text>
-                    <Text>Preparation time</Text>
-                  </View>
-                )}
-                style={styles.content}/>
+                  <MealItem meal={item} />
+                )} />
     </View>
   )
 }
@@ -60,13 +55,8 @@ const HomeScreen = () => {
 export default HomeScreen
 
 const styles = StyleSheet.create({
-    text:{
-        color: 'rgba(5, 41, 29, 0.83)',
-        fontSize: 22,
-        fontWeight: 'bold',
-      },
     title: {
-      height: 110,
+      height: 80,
       justifyContent: 'center',
       margin: 10,
     },
@@ -74,25 +64,12 @@ const styles = StyleSheet.create({
       width: '90%',
       alignSelf: 'center',
       backgroundColor:'rgba(226, 226, 226, 0.89)',
-    },
-    image:{
-      width: 170,
-      height: 220,
-      resizeMode: 'cover',
-      borderRadius: 5,
-      elevation: 8,
-    },
-    box: {
-      margin: 20,
-      width: 170,
-    },
-    content: {
-      /*backgroundColor: 'rgba(192, 212, 206, 0.83)',*/
+      marginBottom: 40,
     },
     recommend: {
       marginBottom: 5,
-      marginLeft:20,
-      marginTop: 50,
-    }
+      marginLeft:15,
+      marginTop: 30,
+    },
 
 })

@@ -1,12 +1,12 @@
 import { View, Text, StyleSheet, ImageBackground } from 'react-native'
-import backgroundImg from '@/assets/images/PestoPasta.jpg'
+import backgroundImg from '@/assets/images/background2.jpg'
 import React, { useEffect } from 'react';
 import { useNavigation } from 'expo-router';
 
 const WelcomeScreen = () => {
     const navigation = useNavigation();
     useEffect(() => {
-        setTimeout(() => navigation.navigate('Home'), 3000);
+        setTimeout(() => navigation.navigate('Home' as never), 3000);
     },[]);
 
   return (

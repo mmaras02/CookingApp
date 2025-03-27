@@ -11,5 +11,18 @@ const getMeals = async () => {
   return data;
 };
 
-export default { getMeals };
+const getMealById = async (id : number) => {
+  const { data, error } = await supabase
+    .from('meals')
+    .select()
+    .eq('id', id)
+    .single();
+
+  if (error) {
+    throw new Error("Error fetching meal by id");
+  }
+  return data;
+}
+
+export default { getMeals, getMealById };
     
