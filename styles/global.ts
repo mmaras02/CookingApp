@@ -5,10 +5,13 @@ const globalStyles = StyleSheet.create({
         color: 'rgba(5, 41, 29, 0.83)',
         fontSize: 22,
         fontWeight: 'bold',
+        margin: 5,
     },
     text: {
         fontSize: 20,
-        color: '#f6f6f6'
+        color: 'rgba(5, 41, 29, 0.83)',
+        marginRight: 5,
+        fontWeight: 500
       }
 })
 

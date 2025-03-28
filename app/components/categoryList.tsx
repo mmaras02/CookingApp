@@ -13,7 +13,7 @@ const CategoryList = () => {
                 horizontal={true}
                 renderItem={({ item }) => (
                     <View style={styles.categoryBox} >
-                    <Text style={globalStyles.text}>{item}</Text>
+                    <Text style={styles.text}>{item}</Text>
                     </View>
                 )} />
       </View>
@@ -26,11 +26,15 @@ const styles = StyleSheet.create({
         marginLeft: 15,
     },
     categoryBox: {
-    margin: 8,
-    flex: 1,
-    justifyContent: 'center',
-    backgroundColor: '#7f9481',
-    padding: 12,
-    borderRadius: 5,
+        margin: 8,
+        flex: 1,
+        justifyContent: 'center',
+        backgroundColor: '#7f9481',
+        padding: 12,
+        borderRadius: 5,
     },
+    text: {
+        fontSize: 20,
+        color: '#f6f6f6'
+      }
   });
