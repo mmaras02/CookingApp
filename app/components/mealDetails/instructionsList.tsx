@@ -23,6 +23,7 @@ const styles = StyleSheet.create({
     instructionBox: {
         flexDirection: 'row',
         margin: 10,
+        paddingHorizontal: 10,
     },
     stepNumber: {
         backgroundColor: 'rgb(189, 201, 191)',

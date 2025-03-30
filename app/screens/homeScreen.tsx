@@ -1,28 +1,14 @@
 import { View, Text, StyleSheet, FlatList} from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { Searchbar } from 'react-native-paper';
-import  mealServices  from '../services/mealServices';
-import { Meal } from '../types/Meal';
 import MealItem from '../components/mealItem';
 import globalStyles from '@/styles/global';
 import CategoryList from '../components/categoryList';
+import useMeals from '../hook/useMeals';
 
 const HomeScreen = () => {
     const [search, setSearch] = useState("");
-    const [meals, setMeals] = useState<Meal[]>([]);
-
-    useEffect(() => {
-        const fetchMeals = async () => {
-          try {
-            const response = await mealServices.getMeals();
-            setMeals(response);
-          }catch (error) {
-            console.error('Error fetching meals:', error);
-          }
-        };
-    
-        fetchMeals();
-      }, []);
+    const { meals } = useMeals();
     
   return (
     <View>

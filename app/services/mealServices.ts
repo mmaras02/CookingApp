@@ -24,38 +24,19 @@ const getMealById = async (id : number) => {
   return data;
 }
 
-const getIngredientsByMealId = async (mealId: number) => {
-  const { data, error } = await supabase
-   .from('meal_ingredients')
-   .select(`quantity, ingredients:ingredient_id (id, name, image_url)`)
-   .eq('meal_id', mealId)
-   .throwOnError();
+const getMealsByIds = async (mealIds: number[]) => {
+  const { data: meals, error: mealError } = await supabase
+    .from("meals")
+    .select("*")
+    .in("id", mealIds);
 
-  if (error) {
-    throw new Error(`Error fetching ingredients for meal with id ${mealId}`);
+  if (mealError) {
+    throw new Error("Error fetching meals");
   }
-  const ingredients = data.flatMap((item) => ({
-    quantity: item.quantity,
-    ...item.ingredients,
-  }));
 
-  return ingredients;
+  return meals;
 };
 
-const getRecipeByMealId = async (mealId: number) => {
-  const { data, error } = await supabase
-    .from('recipes')
-    .select('instructions, step_number')
-    .eq('meal_id', mealId)
-    .order('step_number', { ascending: true })
-    .throwOnError();
 
- if (error) {
-   throw new Error(`Error fetching reciper for meal with id ${mealId}`);
- }
-
- return data;
-}
-
-export default { getMeals, getMealById, getIngredientsByMealId, getRecipeByMealId };
+export default { getMeals, getMealById, getMealsByIds };
     

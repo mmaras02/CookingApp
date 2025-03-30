@@ -11,12 +11,12 @@ export type Ingredient = {
   quantity?: number | undefined;
 };
 
-export type IngredientResponse = {
-  quantity: any;  // Update with the correct type if needed
-  ingredients: Ingredient[];
-};
-
 export type Recipe = {
   step_number: number;
   instructions: string;
+}
+
+export type Category = {
+  id: number;
+  name: string | undefined;
 }

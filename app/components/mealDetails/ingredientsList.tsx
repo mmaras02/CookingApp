@@ -7,6 +7,7 @@ const IngredientsList = ({ingredients} : {ingredients:Ingredient[]}) => {
   return (
     <View style={styles.ingredientSection}>
         <Text style={globalStyles.TitleText}>Ingredients</Text>
+        
         {ingredients && ingredients.map((ingredient) => (
             <View key={ingredient.id} style={styles.ingredientBox}>
                 <View style={styles.leftSection}>

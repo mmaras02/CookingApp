@@ -3,12 +3,12 @@ import { StyleSheet } from 'react-native';
 const globalStyles = StyleSheet.create({
     TitleText:{
         color: 'rgba(5, 41, 29, 0.83)',
-        fontSize: 22,
+        fontSize: 25,
         fontWeight: 'bold',
         margin: 5,
     },
     text: {
-        fontSize: 20,
+        fontSize: 18,
         color: 'rgba(5, 41, 29, 0.83)',
         marginRight: 5,
         fontWeight: 500

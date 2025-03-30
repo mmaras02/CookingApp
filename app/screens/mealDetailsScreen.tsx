@@ -1,41 +1,16 @@
 import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
 import { View, Text, Image, StyleSheet, TouchableOpacity, ScrollView } from "react-native";
 import { ParamsList } from "../types/ParamsList";
-import { useEffect, useState } from "react";
-import mealServices from "../services/mealServices";
-import { Ingredient, Recipe, Meal } from "../types/Meal";
 import globalStyles from "@/styles/global";
 import IngredientsList from "../components/mealDetails/ingredientsList";
 import InstructionsList from "../components/mealDetails/instructionsList";
+import useMealDetails from "../hook/useMealDetails";
 
 const MealDetailsScreen = () => {
     const route = useRoute<RouteProp<ParamsList, 'MealDetails'>>();
     const navigation = useNavigation();
-    const { mealId: mealId } = route.params;
-
-    const [meal, setMeal] = useState<Meal | null>(null);
-    const [ingredients, setIngredients] = useState<Ingredient[]>([]);
-    const [recipe, setRecipe] = useState<Recipe[]>([]);
-
-    useEffect(() => {
-        const fetchMeal = async () => {
-            try {
-                const response = await mealServices.getMealById(mealId);
-                setMeal(response);
-
-                const fechedIngredients = await mealServices.getIngredientsByMealId(mealId);
-                setIngredients(fechedIngredients);
-
-                const fechedRecipe = await mealServices.getRecipeByMealId(mealId);
-                setRecipe(fechedRecipe);
-
-            }catch (error) {
-                console.error('Error fetching meal:', error);
-            }
-        };
-    
-        fetchMeal();
-    }, [mealId]);
+    const { mealId } = route.params;
+    const { meal, ingredients, recipe, category} = useMealDetails(mealId);
 
     if (!meal) {
         return <Text>Meal not found</Text>;
@@ -51,6 +26,11 @@ const MealDetailsScreen = () => {
             
             <View style={styles.title}> 
                 <Text style={globalStyles.TitleText}>{meal.name}</Text>
+                <View style={styles.categorySection}>
+                    {category && category.map((category, index) => (
+                            <Text key={index} style={globalStyles.text}>{category}, </Text>
+                    ))}
+                </View>
             </View>
             
             <IngredientsList ingredients={ingredients} />
@@ -82,6 +62,10 @@ const styles = StyleSheet.create({
         backgroundColor: '#f6f6f6',
         borderRadius: 10,
     },
+    categorySection: {
+        flexDirection: 'row',
+        marginLeft: 5,
+    }
 
 })
 
