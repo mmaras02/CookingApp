@@ -1,6 +1,6 @@
 import globalStyles from '@/styles/global';
 import { View, Text, FlatList, StyleSheet, TouchableOpacity } from 'react-native';
-import useCategories from '../hook/useCategories';
+import useCategories from '../hooks/useCategories';
 import { useNavigation } from 'expo-router';
 import { ParamsList } from '../types/ParamsList';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';

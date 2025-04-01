@@ -5,4 +5,5 @@ export type ParamsList = {
     Home: undefined;
     MealDetails: { mealId: number };
     Category: { categories?: Category[]; categoryId?: number };
+    Generate : undefined;
 };

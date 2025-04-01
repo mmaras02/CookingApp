@@ -4,7 +4,8 @@ import { ParamsList } from "../types/ParamsList";
 import globalStyles from "@/styles/global";
 import IngredientsList from "../components/mealDetails/ingredientsList";
 import InstructionsList from "../components/mealDetails/instructionsList";
-import useMealDetails from "../hook/useMealDetails";
+import useMealDetails from "../hooks/useMealDetails";
+import ReturnPage from "../components/navigation/returnPage";
 
 const MealDetailsScreen = () => {
     const route = useRoute<RouteProp<ParamsList, 'MealDetails'>>();
@@ -18,9 +19,7 @@ const MealDetailsScreen = () => {
 
     return (
         <ScrollView>
-            <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
-                <Text>❮</Text>
-            </TouchableOpacity>
+            <ReturnPage />
             
             <Image source={{ uri: meal.image_url }} style={styles.header} />
             

@@ -15,6 +15,8 @@ const useMealDetails = (mealId: number) => {
 
     useEffect(() => {
         const fetchMeal = async () => {
+        if (!mealId) return { meal: null };
+
             try {
                 const response = await mealServices.getMealById(mealId);
                 setMeal(response);

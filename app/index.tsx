@@ -5,6 +5,7 @@ import HomeScreen from './screens/homeScreen';
 import MealDetailsScreen from './screens/mealDetailsScreen';
 import { ParamsList } from './types/ParamsList';
 import CategoryScreen from './screens/categoryScreen';
+import GenerateMealScreen from './screens/generateMealScreen';
 
 const Stack = createNativeStackNavigator<ParamsList>();
 
@@ -16,6 +17,7 @@ function App() {
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="MealDetails" component={MealDetailsScreen} />
         <Stack.Screen name="Category" component={CategoryScreen} />
+        <Stack.Screen name="Generate" component={GenerateMealScreen} />
       </Stack.Navigator>
   );
 }

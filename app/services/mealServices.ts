@@ -33,7 +33,7 @@ const getMealsByIds = async (mealIds: number[]) => {
   if (mealError) {
     throw new Error("Error fetching meals");
   }
-
+  
   return meals;
 };
 

@@ -1,14 +1,20 @@
-import { View, Text, StyleSheet, FlatList} from 'react-native'
+import { View, Text, StyleSheet, FlatList, TouchableOpacity} from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { Searchbar } from 'react-native-paper';
 import MealItem from '../components/mealItem';
 import globalStyles from '@/styles/global';
 import CategoryList from '../components/categoryList';
-import useMeals from '../hook/useMeals';
+import useMeals from '../hooks/useMeals';
+
+import { useNavigation } from '@react-navigation/native';
+import { ParamsList } from '../types/ParamsList';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 const HomeScreen = () => {
     const [search, setSearch] = useState("");
     const { meals } = useMeals();
+
+    const navigation = useNavigation<NativeStackNavigationProp<ParamsList>>();
     
   return (
     <View>
@@ -34,6 +40,10 @@ const HomeScreen = () => {
                 renderItem={({ item }) => (
                   <MealItem meal={item} />
                 )} />
+
+      <TouchableOpacity  onPress={() => navigation.navigate('Generate')}> 
+        <Text>generate meals</Text>
+      </TouchableOpacity >
     </View>
   )
 }

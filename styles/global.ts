@@ -12,7 +12,14 @@ const globalStyles = StyleSheet.create({
         color: 'rgba(5, 41, 29, 0.83)',
         marginRight: 5,
         fontWeight: 500
-      }
+      },
+      image: {
+        width: 170,
+        height: 220,
+        resizeMode: 'cover',
+        borderRadius: 5,
+        elevation: 8,
+      },
 })
 
 export default globalStyles;

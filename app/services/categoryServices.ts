@@ -23,7 +23,7 @@ const getMealsByCategory = async (categoryId: number) => {
     }
 
     const mealIds = data.map((mc) => mc.meal_id);
-    const meals = await mealServices.getMealsByIds(mealIds); // Call mealApi to get meal details
+    const meals = await mealServices.getMealsByIds(mealIds);
     return meals;
   
 }

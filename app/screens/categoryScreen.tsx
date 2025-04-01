@@ -1,24 +1,30 @@
-import { View, Text, FlatList } from 'react-native'
+import { View, Text, FlatList, Image, StyleSheet } from 'react-native'
 import React, { useEffect } from 'react'
 import globalStyles from '@/styles/global';
-import useCategoryMelas from '../hook/useCategoryMeals';
+import useCategoryMelas from '../hooks/useCategoryMeals';
+import MealItem from '../components/mealItem';
+import ReturnPage from '../components/navigation/returnPage';
 
 const CategoryScreen = ({ route } : { route : any}) => {
     const { categoryId } = route.params || {};
-    console.log("Route params received:", route.params);
-    console.log("give me", categoryId);
     const { meals } = useCategoryMelas(categoryId);
 
   return (
     <View>
-      <View>
+      <ReturnPage />
+      <View style={styles.mealDisplay}>
         <FlatList data={meals}
                   keyExtractor={(item) => item.id.toString()}
-                  renderItem={({item}) => (
-                    <View>
+                  renderItem={({ item }) => (
+                      <MealItem meal={item} />
+                  )} 
+                  numColumns={2}/>
+                    {/*<View>
+                      <Image source={{uri: item.image_url}} style={globalStyles.image}/>
                       <Text>{item.name}</Text>
+                      <Text>{item.id}</Text>
                     </View>
-  )} />
+  )} />*/}
           <Text style={globalStyles.text}></Text>
       </View>
     </View>
@@ -26,3 +32,11 @@ const CategoryScreen = ({ route } : { route : any}) => {
 }
 
 export default CategoryScreen
+
+const styles = StyleSheet.create({
+  mealDisplay: {
+    flexDirection: 'row',
+    margin: 10,
+    marginTop: 70,
+  }
+})
