@@ -1,14 +1,16 @@
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
-import App from '@/app/index';
 import { StatusBar } from "expo-status-bar";
+import StackNavigator from "./navigation/stackNavigation";
 
-export default function RootLayout() {
+const Layout = () => {
   return (
     <SafeAreaProvider>
       <SafeAreaView style={{flex:1}}>
-        <App />
+        <StackNavigator />
       </SafeAreaView>
       <StatusBar style="auto" />
     </SafeAreaProvider> 
   );
-}
+};
+
+export default Layout;

@@ -25,7 +25,7 @@ const GenerateMealScreen = () => {
           Animated.spring(scale, { toValue: 1.2, friction: 3, useNativeDriver: true }),
         ]).start();
 
-      const newRandomId = Math.floor(Math.random() * 6) + 1;
+      const newRandomId = Math.floor(Math.random() * 13) + 1;
       setRandomId(newRandomId);
 
     },[scale]);
@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
   animatedImageContainer: {
     justifyContent: 'center',
     alignItems: 'center',
-    zIndex: 10,
+    zIndex: 1000,
   },
   button: {
     height: 50,
@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
   },
   lottie: {
     position: 'absolute',
-    top: -200,
+    top: 0,
     left: 0,
     right: 0,
     bottom: 0,

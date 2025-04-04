@@ -1,17 +1,18 @@
 import { View, Text, StyleSheet, ImageBackground } from 'react-native'
-import backgroundImg from '@/assets/images/background2.jpg'
 import React, { useEffect } from 'react';
-import { useNavigation } from 'expo-router';
+import { useNavigation } from '@react-navigation/native';
+import images from '@/assets/images';
+
 
 const WelcomeScreen = () => {
     const navigation = useNavigation();
     useEffect(() => {
-        setTimeout(() => navigation.navigate('Home' as never), 3000);
+        setTimeout(() => navigation.navigate('HomeTabs' as never), 3000);
     },[]);
 
   return (
         <View style={styles.container}>
-            <ImageBackground source={backgroundImg}
+            <ImageBackground source={images.Background}
                     resizeMode='cover'
                     style={styles.image} >
                 <Text style={styles.text}>Let's get cooking!</Text>

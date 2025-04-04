@@ -9,7 +9,6 @@ import ReturnPage from "../components/navigation/returnPage";
 
 const MealDetailsScreen = () => {
     const route = useRoute<RouteProp<ParamsList, 'MealDetails'>>();
-    const navigation = useNavigation();
     const { mealId } = route.params;
     const { meal, ingredients, recipe, category} = useMealDetails(mealId);
 
@@ -67,5 +66,3 @@ const styles = StyleSheet.create({
     }
 
 })
-
-/**tite odvojit u global vj */

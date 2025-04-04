@@ -1,9 +1,8 @@
-import { Category } from "./Meal";
+import { Category, Meal } from "./Meal";
 
 export type ParamsList = {
     Welcome: undefined;
-    Home: undefined;
     MealDetails: { mealId: number };
     Category: { categories?: Category[]; categoryId?: number };
-    Generate : undefined;
+    Found: {meals: Meal[]};
 };

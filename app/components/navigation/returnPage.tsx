@@ -5,7 +5,7 @@ const ReturnPage = () => {
     const navigation = useNavigation();
 
   return(
-      <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
+    <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
         <Text>❮</Text>
     </TouchableOpacity>
     )

@@ -4,6 +4,7 @@ import useCategories from '../hooks/useCategories';
 import { useNavigation } from 'expo-router';
 import { ParamsList } from '../types/ParamsList';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import COLORS from '@/styles/colors';
 
 const CategoryList = () => {
     const { categories } = useCategories();
@@ -49,13 +50,13 @@ const styles = StyleSheet.create({
         margin: 8,
         flex: 1,
         justifyContent: 'center',
-        backgroundColor: '#7f9481',
+        backgroundColor: COLORS.light_green,
         padding: 12,
         borderRadius: 5,
     },
     text: {
         fontSize: 20,
-        color: '#f6f6f6'
+        color: COLORS.light
     },
     titleSection: {
         flexDirection: 'row',
@@ -64,7 +65,7 @@ const styles = StyleSheet.create({
     },
     moreText: {
         fontSize: 16,
-        color: 'rgba(252, 167, 109, 0.83)',
+        color: COLORS.orange,
         fontWeight: 700,
         marginRight: 10,
     }
