@@ -1,16 +1,25 @@
-import { View, Text, FlatList, StyleSheet, ImageBackground, ScrollView } from 'react-native'
+import { View, Text, StyleSheet, ImageBackground, ScrollView } from 'react-native'
 import React from 'react'
 import { RouteProp, useRoute } from '@react-navigation/native';
 import { ParamsList } from '../types/ParamsList';
-import MealItem from '../components/mealItem';
-import ReturnPage from '../components/navigation/returnPage';
+import ReturnPage from '../navigation/returnPage';
 import globalStyles from '@/styles/global';
 import COLORS from '@/styles/colors';
+import { MealItem } from '../components/index';
 
 const FoundMealsScreen = () => {
     const route = useRoute<RouteProp<ParamsList, 'Found'>>();
     const { meals } = route.params;
 
+    if (!meals || meals.length === 0) {
+        return (
+            <View>
+                <ReturnPage />
+                <Text style={globalStyles.TitleText}>No meals found</Text>
+                <Text style={globalStyles.text}>Please try different ingredients</Text>
+            </View>
+        );
+    }
     const firstMeal = meals[0];
     const remainingMeals = meals.slice(1);
 
@@ -29,18 +38,15 @@ const FoundMealsScreen = () => {
                 </ImageBackground>
             </View>
 
-            <Text style={globalStyles.TitleText}>I drugi recepti koji sadrže odgovarajuće sastojke</Text>
-            <FlatList 
-                data={remainingMeals}
-                keyExtractor={(item) => item.name || Math.random().toString()}
-                numColumns={2}
-                renderItem={({ item }) => (
-                    <View>
+            <Text style={globalStyles.TitleText}> I drugi recepti koji sadrže odgovarajuće sastojke</Text>
+            <View style={styles.mealsGrid}>
+                {remainingMeals.map((item) => (
+                    <View key={item.id || Math.random()}>
                         <MealItem meal={item} />
                     </View>
-                  )} />
+                ))}
+            </View>
         </View>
-        
     </ScrollView>
   )
 }
@@ -49,7 +55,6 @@ export default FoundMealsScreen
 
 const styles = StyleSheet.create({
     container: {
-        marginTop: 60,
         marginBottom: 130,
         margin: 'auto',
     },
@@ -74,7 +79,8 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         padding: 10, 
     },
+    mealsGrid: {
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+    }
 })
-
-/**
-                    <Text style={styles.TitleText}>{firstMeal.name}</Text> */

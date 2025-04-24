@@ -7,12 +7,14 @@ const globalStyles = StyleSheet.create({
       fontSize: 25,
       fontWeight: 'bold',
       margin: 5,
+      fontFamily: 'Quicksand_700Bold',
     },
     text: {
       fontSize: 18,
       color: COLORS.text,
       marginRight: 5,
-      fontWeight: 500
+      fontWeight: 500,
+      fontFamily: 'Quicksand_700Bold',
     },
     image: {
       width: 170,

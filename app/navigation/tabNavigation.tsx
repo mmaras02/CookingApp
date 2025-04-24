@@ -2,7 +2,7 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Image } from 'react-native';
 import images from '@/assets/images';
-import { HomeScreen, GenerateMealScreen, SearchScreen, SavedScreen }from '../screens/index';
+import { HomeScreen, GenerateMealScreen, SearchScreen, FavoriteScreen }from '../screens/index';
 import TabParamList from '../types/TabPramsLis';
 import COLORS from '@/styles/colors';
 
@@ -73,7 +73,7 @@ const TabNavigator = () => {
 
       <Tab.Screen
         name="Saved"
-        component={SavedScreen}
+        component={FavoriteScreen}
         options={{
           tabBarIcon: ({focused}) => (
             <Image 

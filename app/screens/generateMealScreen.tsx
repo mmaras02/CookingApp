@@ -2,9 +2,8 @@ import { View, Text, StyleSheet, Animated } from 'react-native'
 import useMealDetails from '../hooks/useMealDetails';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import globalStyles from '@/styles/global';
-import ReturnPage from '../components/navigation/returnPage';
-import MealItem from '../components/mealItem';
-
+import ReturnPage from '../navigation/returnPage';
+import { MealItem } from '../components/index';
 import LottieView from 'lottie-react-native';
 import { Button } from 'react-native-paper';
 
@@ -13,7 +12,8 @@ const GenerateMealScreen = () => {
     const [scale] = useState(new Animated.Value(1.2));
     const confettiRef = useRef<LottieView>(null);
 
-    const { meal: randomMeal } = useMealDetails(randomId  ?? 0);
+    const { data } = useMealDetails(randomId  ?? 0);
+    const randomMeal = data?.meal;
 
     const handlePress = useCallback(() => {
         if(confettiRef.current){
@@ -71,7 +71,6 @@ export default GenerateMealScreen
 const styles = StyleSheet.create({
   generateSection: {
     flex: 1,
-    marginTop: 60,
     alignItems: 'center', 
   },
   imageContainer: {

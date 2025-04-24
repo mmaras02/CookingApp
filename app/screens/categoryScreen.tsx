@@ -1,13 +1,12 @@
-import { View, Text, FlatList, Image, StyleSheet } from 'react-native'
-import React, { useEffect } from 'react'
+import { View, Text, FlatList, StyleSheet } from 'react-native'
 import globalStyles from '@/styles/global';
-import useCategoryMelas from '../hooks/useCategoryMeals';
-import MealItem from '../components/mealItem';
-import ReturnPage from '../components/navigation/returnPage';
+import useMealsByCategory from '../hooks/useMealsByCategory';
+import ReturnPage from '../navigation/returnPage';
+import { MealItem } from '../components/index';
 
 const CategoryScreen = ({ route } : { route : any}) => {
     const { categoryId } = route.params || {};
-    const { meals } = useCategoryMelas(categoryId);
+    const { data: meals } = useMealsByCategory(categoryId);
 
   return (
     <View>
@@ -37,6 +36,5 @@ const styles = StyleSheet.create({
   mealDisplay: {
     flexDirection: 'row',
     margin: 10,
-    marginTop: 70,
   }
 })

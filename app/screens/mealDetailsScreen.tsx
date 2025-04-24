@@ -1,16 +1,24 @@
-import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
-import { View, Text, Image, StyleSheet, TouchableOpacity, ScrollView } from "react-native";
+import { RouteProp, useRoute } from "@react-navigation/native";
+import { View, Text, Image, StyleSheet, ScrollView, TouchableOpacity } from "react-native";
 import { ParamsList } from "../types/ParamsList";
 import globalStyles from "@/styles/global";
-import IngredientsList from "../components/mealDetails/ingredientsList";
-import InstructionsList from "../components/mealDetails/instructionsList";
 import useMealDetails from "../hooks/useMealDetails";
-import ReturnPage from "../components/navigation/returnPage";
+import ReturnPage from "../navigation/returnPage";
+import { IngredientsList, InstructionsList } from "../components/index";
+import { AntDesign } from "@expo/vector-icons"; 
+import COLORS from "@/styles/colors";
+import useFavoriteStatus from "../hooks/useFavoritesStatus";
 
 const MealDetailsScreen = () => {
     const route = useRoute<RouteProp<ParamsList, 'MealDetails'>>();
     const { mealId } = route.params;
-    const { meal, ingredients, recipe, category} = useMealDetails(mealId);
+    const { data } = useMealDetails(mealId);
+    const meal = data?.meal;
+    const ingredients = data?.ingredients || [];
+    const recipe = data?.recipe || [];
+    const category = data?.category || [];
+
+    const { isFavorited, toggleFavorite, isLoading } = useFavoriteStatus(mealId);
 
     if (!meal) {
         return <Text>Meal not found</Text>;
@@ -18,9 +26,20 @@ const MealDetailsScreen = () => {
 
     return (
         <ScrollView>
-            <ReturnPage />
+            <ReturnPage isOverImage={true} />
             
+        <View style={styles.imageContainer}>
             <Image source={{ uri: meal.image_url }} style={styles.header} />
+            <TouchableOpacity style={styles.heartIcon}
+                              onPress={toggleFavorite}
+                              disabled={isLoading}>
+                <AntDesign
+                    name={ isFavorited ? "heart" : "hearto"}
+                    size={32}
+                    color= {isFavorited ? COLORS.orange : COLORS.light}
+                />
+            </TouchableOpacity>
+      </View>
             
             <View style={styles.title}> 
                 <Text style={globalStyles.TitleText}>{meal.name}</Text>
@@ -42,8 +61,10 @@ export default MealDetailsScreen;
 
 const styles = StyleSheet.create({
     header: {
-        width: '100%',
+        width: "100%",
         height: 350,
+        borderBottomLeftRadius: 15,
+        borderBottomRightRadius: 15,
     },
     title: {
         height: 80,
@@ -63,6 +84,17 @@ const styles = StyleSheet.create({
     categorySection: {
         flexDirection: 'row',
         marginLeft: 5,
-    }
+    },
+    imageContainer: {
+        position: "relative",
+    },
+
+      heartIcon: {
+        position: "absolute",
+        borderColor: COLORS.text,
+        top: 25,
+        right: 20,
+        zIndex: 10,
+      },
 
 })

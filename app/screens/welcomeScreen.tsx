@@ -2,13 +2,18 @@ import { View, Text, StyleSheet, ImageBackground } from 'react-native'
 import React, { useEffect } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import images from '@/assets/images';
-
+import { useUser } from '../context/userSessionContext';
 
 const WelcomeScreen = () => {
     const navigation = useNavigation();
+    const { user } = useUser();
+
     useEffect(() => {
-        setTimeout(() => navigation.navigate('HomeTabs' as never), 3000);
-    },[]);
+        if(user)
+          setTimeout(() => navigation.navigate('HomeTabs' as never), 3000);
+        else
+          setTimeout(() => navigation.navigate('Signin' as never), 3000);
+    },[user]);
 
   return (
         <View style={styles.container}>
@@ -19,7 +24,6 @@ const WelcomeScreen = () => {
             </ImageBackground>
             
         </View>
-    
   )
 }
 

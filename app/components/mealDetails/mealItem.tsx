@@ -1,8 +1,8 @@
 import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
-import { Meal } from "../types/Meal";
+import { Meal } from "../../types/Meal";
 import globalStyles from '@/styles/global';
 import { useNavigation } from '@react-navigation/native';
-import { ParamsList } from '../types/ParamsList';
+import { ParamsList } from '../../types/ParamsList';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 const MealItem = ({meal} : {meal: Meal}) => {

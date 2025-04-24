@@ -2,7 +2,7 @@ import { View, Text, Image, FlatList, StyleSheet, TouchableOpacity, Button } fro
 import React, { useCallback, useState } from 'react'
 import useIngredientsList from '../hooks/useIngredientsList'
 import globalStyles from '@/styles/global';
-import ReturnPage from '../components/navigation/returnPage';
+import ReturnPage from '../navigation/returnPage';
 import COLORS from '@/styles/colors';
 import ingredientServices from '../services/ingredientServices';
 import { Meal } from '../types/Meal';
@@ -35,6 +35,9 @@ const SearchScreen = () => {
 
   const handleUserChoice = () => {
     const fetchCategories = async () => {
+      if(!ingredients){
+        <View>No ingredients selected</View>
+      }
         try {
             const response: Meal[] = await ingredientServices.getMealsByIngredients(selectedIngredients);
             navigation.navigate('Found', { meals: response});
@@ -60,15 +63,15 @@ const SearchScreen = () => {
             const isSelected = selectedIngredients.includes(item.id);
 
             return(
-            <TouchableOpacity 
-              style={[styles.ingredientBox, isSelected && styles.selected]} 
-              onPress={() => handleSelected(item.id)}>
-              <Image source={{ uri: item.image_url }} style={styles.image} />
-              <Text style={globalStyles.text}>{item.name}</Text>
-            </TouchableOpacity>
-            )}}
+              <TouchableOpacity 
+                style={[styles.ingredientBox, isSelected && styles.selected]} 
+                onPress={() => handleSelected(item.id)}>
+                <Image source={{ uri: item.image_url }} style={styles.image} />
+                <Text style={globalStyles.text}>{item.name}</Text>
+              </TouchableOpacity>
+              )}}
         />
-        <Button title="Find a meal" onPress={() => handleUserChoice()}/>
+        <Button title="Find a meal" onPress={() => handleUserChoice()} color={COLORS.orange}/>
       </View>
       
     </View>
@@ -89,8 +92,7 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
     },
     container: {
-      marginTop: 60,
-      paddingBottom: 250,
+      paddingBottom: 350,
     },
     selected: {
       opacity: 0.2,
