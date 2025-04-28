@@ -1,12 +1,14 @@
 import { View, Text, FlatList, StyleSheet } from 'react-native'
 import ReturnPage from '../navigation/returnPage';
-import { MealItem } from '@/app/components';
+import { LoadingSpinner, MealItem } from '@/app/components';
 import { useMealsByCategory } from '@/app/hooks';
 import { globalStyles } from '@/styles';
 
 const CategoryScreen = ({ route } : { route : any}) => {
     const { categoryId, categoryName } = route.params || {};
-    const { data: meals } = useMealsByCategory(categoryId);
+    const { data: meals, isLoading } = useMealsByCategory(categoryId);
+
+    if (isLoading) return <LoadingSpinner />
 
   return (
     <View>

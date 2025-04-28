@@ -7,13 +7,15 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { ParamsList } from '@/app/types';
 import { Ionicons } from '@expo/vector-icons';
 import { useDeleteList, useLists } from '@/app/hooks';
-import { NewListModal } from '@/app/components';
+import { LoadingSpinner, NewListModal } from '@/app/components';
 
 function ListsScreen() {
     const { lists, isLoading, createList } = useLists();
     const [modalVisible, setModalVisible] = useState(false);
     const navigation = useNavigation<NativeStackNavigationProp<ParamsList>>();
     const { deleteList } = useDeleteList();
+
+    if (isLoading) return <LoadingSpinner />
     
     const handleDelete = (itemId: number) => {
         Alert.alert(

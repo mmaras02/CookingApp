@@ -53,7 +53,7 @@ const ListItemScreen = () => {
                 <Text style={globalStyles.TitleText}>{title}</Text>
 
                 {listItems?.map((item: any) => (
-                    <View style={styles.notes}>
+                    <View key={item.id} style={styles.notes}>
                         {item.is_checkbox && (
                             <Checkbox value={item.is_checked || false}
                                       style={styles.checkbox}

@@ -1,15 +1,9 @@
 import { useState } from "react"
 import { Modal, Pressable, View, Text, StyleSheet, TextInput } from "react-native";
 import { globalStyles, COLORS } from '@/styles';
+import { ModalProps } from "@/app/types";
 
-interface NewListModalProps {
-    visible: boolean;
-    onClose: () => void;
-    createList: (title: string) => void;
-    isLoading?: boolean;
-}
-
-const NewListModal =  ({ visible, onClose, createList, isLoading }: NewListModalProps) => {
+const NewListModal =  ({ visible, onClose, createList, isLoading }: ModalProps) => {
     const [listTitle, setListTitle] = useState("");
 
     const handleCreateList = () => {

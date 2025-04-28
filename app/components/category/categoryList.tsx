@@ -39,8 +39,6 @@ const CategoryList = () => {
 }
 export default CategoryList;
 
-/**so when i click on one of those it needs to navigate mi to the next page where only those filter is true */
-
 const styles = StyleSheet.create({
     categoriesSection: {
         marginLeft: 15,

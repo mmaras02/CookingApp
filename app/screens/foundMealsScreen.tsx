@@ -1,5 +1,4 @@
-import { View, Text, StyleSheet, ImageBackground, ScrollView } from 'react-native'
-import React from 'react'
+import { View, Text, StyleSheet, ImageBackground, ScrollView } from 'react-native';
 import { RouteProp, useRoute } from '@react-navigation/native';
 import { ParamsList } from '@/app/types';
 import ReturnPage from '../navigation/returnPage';

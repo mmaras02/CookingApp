@@ -1,16 +1,16 @@
 import { RouteProp, useRoute } from "@react-navigation/native";
-import { View, Text, Image, StyleSheet, ScrollView, TouchableOpacity, Alert } from "react-native";
+import { View, Text, Image, StyleSheet, ScrollView, TouchableOpacity, Alert, ActivityIndicator } from "react-native";
 import { Ingredient, ParamsList } from "@/app/types";
 import { globalStyles, COLORS } from '@/styles';
 import ReturnPage from "../navigation/returnPage";
-import { IngredientsList, InstructionsList } from "@/app/components";
+import { IngredientsList, InstructionsList, LoadingSpinner } from "@/app/components";
 import { AntDesign } from "@expo/vector-icons";
 import { useCreateListItems, useFavoriteStatus, useLists, useMealDetails } from "@/app/hooks";
 
 const MealDetailsScreen = () => {
     const route = useRoute<RouteProp<ParamsList, 'MealDetails'>>();
     const { mealId } = route.params;
-    const { data: mealDetails } = useMealDetails(mealId);
+    const { data: mealDetails, isLoading } = useMealDetails(mealId);
     const meal = mealDetails?.meal;
     const ingredients : Ingredient[] = mealDetails?.ingredients || [];
     const recipe = mealDetails?.recipe || [];
@@ -18,12 +18,11 @@ const MealDetailsScreen = () => {
     const { mutate: createListItem } = useCreateListItems();
     const { createList } = useLists();
 
-    const { isFavorited, toggleFavorite, isLoading } = useFavoriteStatus(mealId);
+    const { isFavorited, toggleFavorite } = useFavoriteStatus(mealId);
 
-    if (!meal) {
-        return <Text>Meal not found</Text>;
-    }
+    if (isLoading) return <LoadingSpinner />
 
+    if (!meal) return <Text>Meal not found</Text>;
 
     const handleAddToList = async() => {
         const newList = await createList(meal.name);
@@ -132,6 +131,6 @@ const styles = StyleSheet.create({
         backgroundColor: COLORS.orange,
         marginBottom: 30,
         borderRadius: 20,
-    }
+    },
 
 })

@@ -6,12 +6,15 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useFavorites } from '@/app/hooks';
 import { COLORS, globalStyles } from '@/styles';
 import { ParamsList } from '@/app/types';
+import { LoadingSpinner } from '../components';
 
 
 const FavoriteScreen = () => {
-  const { data: favorites, refetch, isRefetching } = useFavorites();
+  const { data: favorites, refetch, isRefetching, isLoading } = useFavorites();
   const navigation = useNavigation<NativeStackNavigationProp<ParamsList>>();
 
+  if (isLoading) return <LoadingSpinner />
+  
   const handleRefresh = () => {
     refetch();
   };

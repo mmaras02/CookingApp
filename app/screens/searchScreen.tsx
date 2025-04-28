@@ -8,9 +8,10 @@ import { Meal, ParamsList } from '@/app/types';
 import { useFocusEffect } from '@react-navigation/native';
 import { useIngredientsList } from '@/app/hooks';
 import { ingredientServices } from '@/app/services';
+import { LoadingSpinner } from '../components';
 
 const SearchScreen = () => {
-  const { data: ingredients } = useIngredientsList();
+  const { data: ingredients, isLoading } = useIngredientsList();
   const [selectedIngredients, setSelectedIngredients] = useState<number[]>([]);
   const navigation = useNavigation<NativeStackNavigationProp<ParamsList>>();
 
@@ -19,6 +20,8 @@ const SearchScreen = () => {
       setSelectedIngredients([]);
     }, [])
   );
+
+  if (isLoading) return <LoadingSpinner />
   
   const handleSelected = (item: number) => {
     setSelectedIngredients((prev) => {
