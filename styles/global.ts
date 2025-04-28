@@ -1,19 +1,17 @@
 import { StyleSheet } from 'react-native';
-import COLORS from './colors';
+import { COLORS } from '.';
 
-const globalStyles = StyleSheet.create({
+export const globalStyles = StyleSheet.create({
     TitleText:{
-      color: COLORS.text,
+      color: COLORS.title_text,
       fontSize: 25,
       fontWeight: 'bold',
-      fontFamily: 'Quicksand_700Bold',
     },
     text: {
       fontSize: 18,
       color: COLORS.text,
       marginRight: 5,
       fontWeight: 500,
-      fontFamily: 'Quicksand_700Bold',
     },
     image: {
       width: 170,
@@ -32,7 +30,6 @@ const globalStyles = StyleSheet.create({
     }
 })
 
-export default globalStyles;
 /*orange: #f2a76d
 green: #7f9481
 neutral: #f6f6f6*/

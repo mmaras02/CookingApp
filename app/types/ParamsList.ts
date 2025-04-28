@@ -3,7 +3,7 @@ import { Category, Meal } from "./Meal";
 export type ParamsList = {
     Welcome: undefined;
     MealDetails: { mealId: number };
-    Category: { categories?: Category[]; categoryId?: number };
+    Category: { categories?: Category[]; categoryId?: number, categoryName?: string };
     Found: { meals: Meal[]};
     ListItem: { listId: number, title: string}
 };

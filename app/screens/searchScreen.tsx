@@ -1,15 +1,13 @@
 import { View, Text, Image, FlatList, StyleSheet, TouchableOpacity, Button } from 'react-native'
 import React, { useCallback, useState } from 'react'
-import { useIngredientsList } from '../hooks/useIngredientsList'
-import globalStyles from '@/styles/global';
+import { globalStyles, COLORS } from '@/styles';
 import ReturnPage from '../navigation/returnPage';
-import COLORS from '@/styles/colors';
-import ingredientServices from '../services/ingredientServices';
-import { Meal } from '../types/Meal';
 import { useNavigation } from 'expo-router';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { ParamsList } from '../types/ParamsList';
+import { Meal, ParamsList } from '@/app/types';
 import { useFocusEffect } from '@react-navigation/native';
+import { useIngredientsList } from '@/app/hooks';
+import { ingredientServices } from '@/app/services';
 
 const SearchScreen = () => {
   const { data: ingredients } = useIngredientsList();
@@ -51,9 +49,9 @@ const SearchScreen = () => {
 
   return (
     <View>
-      <ReturnPage />
+      <ReturnPage title='Choose by ingredients'/>
       <View style={styles.container}>
-        <Text style={globalStyles.TitleText}>Choose the ingredients you have at home!</Text>
+        {/*<Text style={globalStyles.TitleText}>Choose the ingredients you have at home!</Text>*/}
 
         <FlatList
           data={ingredients ?? []}
@@ -92,7 +90,7 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
     },
     container: {
-      paddingBottom: 350,
+      paddingBottom: 210,
     },
     selected: {
       opacity: 0.2,

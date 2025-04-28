@@ -1,6 +1,6 @@
+import { useUser } from "@/app/context/userSessionContext";
+import { listsServices } from "@/app/services";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
-import listsServices from "../services/listsServices"
-import { useUser } from "../context/userSessionContext";
 
 export const useLists = () => {
     const queryClient = useQueryClient();
@@ -12,7 +12,7 @@ export const useLists = () => {
         queryFn: () => listsServices.getLists(userId),
     });
 
-    const { mutate: createList }  = useMutation({
+    const { mutateAsync: createList }  = useMutation({
         mutationFn: (title: string) => listsServices.createList(userId, title),
         
         onMutate: async (newTitle) => {

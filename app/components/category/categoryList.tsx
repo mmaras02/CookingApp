@@ -1,10 +1,9 @@
-import globalStyles from '@/styles/global';
 import { View, Text, FlatList, StyleSheet, TouchableOpacity } from 'react-native';
-import { useCategories } from '../../hooks/useCategories';
-import { useNavigation } from 'expo-router';
-import { ParamsList } from '../../types/ParamsList';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import COLORS from '@/styles/colors';
+import { useNavigation } from 'expo-router';
+import { COLORS, globalStyles } from '@/styles';
+import { useCategories } from '@/app/hooks';
+import { ParamsList } from '@/app/types';
 
 const CategoryList = () => {
     const { data: categories } = useCategories();
@@ -28,7 +27,7 @@ const CategoryList = () => {
                     <View style={styles.categoryBox}>
                         <TouchableOpacity 
                             activeOpacity={0.7}
-                            onPress={() => navigation.navigate('Category', { categoryId: item.id })}>
+                            onPress={() => navigation.navigate('Category', { categoryId: item.id, categoryName: item.name })}>
 
                             <Text style={styles.text}>{item.name}</Text>
                         </TouchableOpacity>

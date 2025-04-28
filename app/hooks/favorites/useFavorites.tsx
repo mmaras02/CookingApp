@@ -1,6 +1,6 @@
+import { useUser } from '@/app/context/userSessionContext';
+import { favoriteServices } from '@/app/services';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import favoriteServices from '../services/favoriteServices';
-import { useUser } from '../context/userSessionContext';
 
 export const useFavorites = () => {
   const { user } = useUser();

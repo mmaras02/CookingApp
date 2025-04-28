@@ -1,7 +1,4 @@
-import mealServices from "../services/mealServices";
-import ingredientServices from "../services/ingredientServices";
-import recipeServices from "../services/recipeServices";
-import categoryServices from "../services/categoryServices";
+import { categoryServices, ingredientServices, mealServices, recipeServices } from "@/app/services";
 import { useQuery } from "@tanstack/react-query";
 
 export const useMealDetails = (mealId: number) => {

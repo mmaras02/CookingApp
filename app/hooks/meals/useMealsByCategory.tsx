@@ -1,4 +1,4 @@
-import categoryServices from "../services/categoryServices";
+import { categoryServices } from "@/app/services";
 import { useQuery } from "@tanstack/react-query";
 
 export const useMealsByCategory = (categoryId : number) => {

@@ -1,7 +1,6 @@
-import COLORS from "@/styles/colors";
-import globalStyles from "@/styles/global";
 import { useState } from "react"
-import { Modal, Pressable, View, Text, StyleSheet, Alert, TextInput } from "react-native";
+import { Modal, Pressable, View, Text, StyleSheet, TextInput } from "react-native";
+import { globalStyles, COLORS } from '@/styles';
 
 interface NewListModalProps {
     visible: boolean;
@@ -10,7 +9,7 @@ interface NewListModalProps {
     isLoading?: boolean;
 }
 
-export const NewListModal =  ({ visible, onClose, createList, isLoading }: NewListModalProps) => {
+const NewListModal =  ({ visible, onClose, createList, isLoading }: NewListModalProps) => {
     const [listTitle, setListTitle] = useState("");
 
     const handleCreateList = () => {
@@ -48,6 +47,7 @@ export const NewListModal =  ({ visible, onClose, createList, isLoading }: NewLi
     )
 
 }
+export default NewListModal;
 
 const styles = StyleSheet.create({
     centeredView: {

@@ -1,8 +1,8 @@
 import { createContext, useEffect, useState } from "react";
-import authServices from "../services/authServices";
-import { UserState } from "../types/User";
 import React from "react";
 import { supabase } from "@/lib/supabase";
+import { UserState } from "../types";
+import { authServices } from "@/app/services";
 
 type UserContextType = {
     user: UserState | null;

@@ -23,4 +23,3 @@ const Layout = () => {
 };
 
 export default Layout;
-/**mia.marasovic09@gmail.com */

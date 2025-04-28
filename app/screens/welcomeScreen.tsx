@@ -27,7 +27,7 @@ const WelcomeScreen = () => {
   )
 }
 
-export default WelcomeScreen
+export default WelcomeScreen;
 
 const styles = StyleSheet.create({
   container:{

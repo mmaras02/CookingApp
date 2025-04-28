@@ -1,11 +1,11 @@
 import { View, Text, StyleSheet, Animated } from 'react-native'
-import { useMealDetails } from '../hooks/useMealDetails';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import globalStyles from '@/styles/global';
 import ReturnPage from '../navigation/returnPage';
-import { MealItem } from '../components/index';
 import LottieView from 'lottie-react-native';
 import { Button } from 'react-native-paper';
+import { useMealDetails } from '@/app/hooks';
+import { globalStyles } from '@/styles';
+import { MealItem } from '@/app/components';
 
 const GenerateMealScreen = () => {
     const [randomId, setRandomId] = useState<number | null>(null);
@@ -38,9 +38,9 @@ const GenerateMealScreen = () => {
 
   return (
     <View style={styles.container}>
-      <ReturnPage />
+      <ReturnPage title='Generate random meal'/>
       <View style={styles.generateSection}>
-        <Text style={globalStyles.TitleText}>Generate random meal</Text>
+        {/*<Text style={globalStyles.TitleText}>Generate random meal</Text>*/}
         <Button onPress={handlePress} style={styles.button}>
           <Text style={globalStyles.text}>Generate</Text>
         </Button >

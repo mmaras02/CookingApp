@@ -1,5 +1,5 @@
-import favoriteServices from "../services/favoriteServices";
-import { useUser } from "../context/userSessionContext";
+import { favoriteServices } from "@/app/services";
+import { useUser } from "../../context/userSessionContext";
 import { useQuery } from "@tanstack/react-query";
 import { useFavoriteActions } from "./useFavorites";
 

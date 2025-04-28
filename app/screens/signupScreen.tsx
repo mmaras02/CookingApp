@@ -1,12 +1,10 @@
 import { View, Text, TextInput, StyleSheet, TouchableOpacity, Image } from 'react-native'
 import React, { useState } from 'react'
 import { Ionicons } from '@expo/vector-icons';
-import COLORS from '@/styles/colors';
-import ReturnPage from '../navigation/returnPage';
-import globalStyles from '@/styles/global';
+import { globalStyles, COLORS } from '@/styles';
 import images from '@/assets/images';
 import { useNavigation } from 'expo-router';
-import authServices from '../services/authServices';
+import { authServices } from '@/app/services';
 
 const SignupScreen = () => {
     const navigation = useNavigation();

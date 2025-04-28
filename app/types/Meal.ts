@@ -1,14 +1,14 @@
 export type Meal = {
     id: number,
-    name: string | undefined,
-    image_url : string | undefined,
+    name: string,
+    image_url : string,
 }
 
 export type Ingredient = {
   id: number;
-  name: string | undefined;
-  image_url: string | undefined;
-  quantity?: number | undefined;
+  name: string ;
+  image_url: string;
+  quantity?: number;
 };
 
 export type Recipe = {
@@ -18,5 +18,5 @@ export type Recipe = {
 
 export type Category = {
   id: number;
-  name: string | undefined;
+  name: string;
 }

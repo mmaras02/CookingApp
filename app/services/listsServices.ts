@@ -1,5 +1,5 @@
 import { supabase } from "@/lib/supabase";
-import { ListItem } from "../types/ListParams";
+import { ListItem } from "@/app/types";
 
 const getLists = async (userId: string) => {
   const { data, error } = await supabase
@@ -24,13 +24,21 @@ const createList = async (userId: string, title: string) => {
 }
 
 const deleteList = async(listId: number) => {
-  const { data, error } = await supabase
+  const { error: listItemsError } = await supabase
+    .from('list_items') // your table name for items
+    .delete()
+    .eq('list_id', listId);
+
+  if (listItemsError) throw listItemsError;
+
+  const { data, error: listError } = await supabase
     .from('lists')
     .delete()
     .eq('id', listId)
     .single();
 
-    if(error) throw error;
+    if(listError) throw listError;
+    
     return data;
 }
 
@@ -76,4 +84,14 @@ const updateListItemChecked = async (itemId: number, isChecked: boolean) => {
       return data?.[0];
 };
 
-export default { getLists, createList, deleteList, getListItems, updateListItem, insertListItems, updateListItemChecked, }
+const deleteListItems = async (listId: number) => {
+  const { data, error } = await supabase
+    .from('list_items')
+    .delete()
+    .eq('list_id', listId);
+
+    if(error) throw error;
+    return data;
+}
+
+export default { getLists, createList, deleteList, getListItems, updateListItem, insertListItems, updateListItemChecked, deleteListItems }

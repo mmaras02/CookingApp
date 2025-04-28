@@ -1,11 +1,11 @@
 import { View, Text, StyleSheet } from 'react-native'
 import React from 'react'
 import { Recipe } from '@/app/types/Meal'
-import globalStyles from '@/styles/global'
+import { globalStyles } from '@/styles';
 
 const InstructionsList = ({recipe} : {recipe : Recipe[]}) => {
   return (
-    <View>
+    <View style={styles.container}>
         <Text style={globalStyles.TitleText}>Recipe Instructions</Text>
         {recipe.map((step) => (
             <View style={styles.instructionBox} key={step.step_number}>
@@ -20,9 +20,13 @@ const InstructionsList = ({recipe} : {recipe : Recipe[]}) => {
 export default InstructionsList
 
 const styles = StyleSheet.create({
+    container: {
+        margin: 10,
+    },
     instructionBox: {
         flexDirection: 'row',
-        margin: 10,
+        padding: 10,
+        marginRight: 10,
         paddingHorizontal: 10,
     },
     stepNumber: {

@@ -1,10 +1,10 @@
 import { View, Text, StyleSheet, FlatList } from 'react-native'
 import React, { useState } from 'react'
-import { CategoryList, MealItem } from '../components/index';
 import { Searchbar } from 'react-native-paper';
-import globalStyles from '@/styles/global';
-import  { useMeals } from '../hooks/useMeals';
 import { useUser } from '../context/userSessionContext';
+import { useMeals } from '@/app/hooks';
+import { globalStyles } from '@/styles';
+import { CategoryList, MealItem } from '@/app/components';
 
 const HomeScreen = () => {
     const [search, setSearch] = useState("");

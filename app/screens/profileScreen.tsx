@@ -1,11 +1,10 @@
 import { Text, View, Image, StyleSheet, TouchableOpacity, Alert } from 'react-native'
 import { useUser } from '../context/userSessionContext';
-import globalStyles from '@/styles/global';
-import COLORS from '@/styles/colors';
+import { globalStyles, COLORS } from '@/styles';
 import images from '@/assets/images';
-import authServices from '../services/authServices';
 import { useNavigation } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
+import { authServices } from '@/app/services';
 
 const ProfileScreen = () => {
   const { user, setUser } = useUser();
@@ -59,6 +58,11 @@ const ProfileScreen = () => {
         <TouchableOpacity style={styles.profileHeader} onPress={() => navigation.navigate('Lists' as never)}>
           <Ionicons name="cart" style={styles.iconImage} />
           <Text style={globalStyles.text}>Your shopping cart</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.profileHeader} onPress={() => navigation.navigate('Lists' as never)}>
+          <Ionicons name="restaurant" style={styles.iconImage} />
+          <Text style={globalStyles.text}>Custom meals</Text>
         </TouchableOpacity>
    
         <TouchableOpacity onPress={()=>handleLogout()} style={styles.profileHeader}>

@@ -1,7 +1,7 @@
-import { View, Text, Image, StyleSheet } from 'react-native'
-import React from 'react'
-import { Ingredient } from '@/app/types/Meal'
-import globalStyles from '@/styles/global'
+import { View, Text, Image, StyleSheet } from 'react-native';
+import React from 'react';
+import { Ingredient } from '@/app/types/Meal';
+import { globalStyles } from '@/styles';
 
 const IngredientsList = ({ingredients} : {ingredients:Ingredient[]}) => {
   return (
@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     },
     ingredientSection: {
         margin: 15,
-        marginBottom: 50
+        marginBottom: 20
     },
     leftSection: {
         flexDirection: 'row',

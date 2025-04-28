@@ -1,12 +1,16 @@
 import React from 'react';
-import { View, Text, FlatList, Image, StyleSheet, RefreshControl } from 'react-native';
-import { useFavorites } from '../hooks/useFavorites';
+import { View, Text, FlatList, Image, StyleSheet, RefreshControl, TouchableOpacity } from 'react-native';
 import ReturnPage from '../navigation/returnPage';
-import globalStyles from '@/styles/global';
-import COLORS from '@/styles/colors';
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { useFavorites } from '@/app/hooks';
+import { COLORS, globalStyles } from '@/styles';
+import { ParamsList } from '@/app/types';
+
 
 const FavoriteScreen = () => {
   const { data: favorites, refetch, isRefetching } = useFavorites();
+  const navigation = useNavigation<NativeStackNavigationProp<ParamsList>>();
 
   const handleRefresh = () => {
     refetch();
@@ -14,7 +18,7 @@ const FavoriteScreen = () => {
 
   return (
     <View style={styles.container}>
-      <ReturnPage />
+      <ReturnPage title='Your favorites'/>
       <FlatList
         data={favorites}
         keyExtractor={(item) => item.id.toString()}
@@ -25,7 +29,8 @@ const FavoriteScreen = () => {
           />
         }
         renderItem={({ item }) => (
-          <View style={styles.mealCard}>
+          <TouchableOpacity style={styles.mealCard}
+          onPress={() => navigation.navigate('MealDetails', { mealId: item.id })}>
             <Image 
               source={{ uri: item.image_url }} 
               style={styles.image} 
@@ -36,7 +41,7 @@ const FavoriteScreen = () => {
                 {item.name}
               </Text>
             </View>
-          </View>
+          </TouchableOpacity>
         )}
       />
     </View>

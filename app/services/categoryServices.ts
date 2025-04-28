@@ -1,5 +1,5 @@
 import { supabase } from "@/lib/supabase";
-import mealServices from "./mealServices";
+import { mealServices } from ".";
 
 const getCategories = async () => {
     const { data, error } = await supabase

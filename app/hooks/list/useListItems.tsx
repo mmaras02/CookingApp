@@ -1,6 +1,6 @@
-import listsServices from "../services/listsServices";
-import { QueryClient, useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { ListItem } from "../types/ListParams";
+import { listsServices } from "@/app/services";
+import { ListItem } from "@/app/types";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 export const useListItems = (listId: number) => {
   return useQuery({

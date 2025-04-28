@@ -2,9 +2,9 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Image } from 'react-native';
 import images from '@/assets/images';
-import { HomeScreen, GenerateMealScreen, SearchScreen, FavoriteScreen, ProfileScreen }from '../screens/index';
-import TabParamList from '../types/TabPramsLis';
-import COLORS from '@/styles/colors';
+import { TabParamList } from '../types';
+import { COLORS } from '@/styles';
+import { HomeScreen, GenerateMealScreen, SearchScreen, FavoriteScreen, ProfileScreen } from '@/app/screens';
 
 const Tab = createBottomTabNavigator<TabParamList>();
 

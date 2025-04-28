@@ -1,4 +1,4 @@
-import ingredientServices from "../services/ingredientServices";
+import { ingredientServices } from "@/app/services";
 import { useQuery } from "@tanstack/react-query";
 
 export const useIngredientsList = () => {

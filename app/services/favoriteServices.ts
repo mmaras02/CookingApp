@@ -1,6 +1,6 @@
 // services/favoriteServices.ts
 import { supabase } from "@/lib/supabase";
-import { Meal } from "../types/Meal";
+import { Meal } from "@/app/types";
 
 const checkIfFavorite = async (userId: string, mealId: number): Promise<boolean> => {
     const { data, error } = await supabase

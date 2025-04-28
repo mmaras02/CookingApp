@@ -1,11 +1,10 @@
 import { View, Text, StyleSheet, TextInput, Pressable, ScrollView } from 'react-native'
 import { useRoute } from '@react-navigation/native';
 import ReturnPage from '../navigation/returnPage';
-import globalStyles from '@/styles/global';
-import { useCreateListItems, useListItems, useUpdateCheckbox } from '../hooks/useListItems';
+import { globalStyles, COLORS } from '@/styles';
 import { useState } from 'react';
-import COLORS from '@/styles/colors';
 import Checkbox from 'expo-checkbox';
+import { useCreateListItems, useListItems, useUpdateCheckbox } from '@/app/hooks';
 
 const ListItemScreen = () => {
     const route = useRoute();

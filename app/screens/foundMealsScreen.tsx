@@ -1,11 +1,10 @@
 import { View, Text, StyleSheet, ImageBackground, ScrollView } from 'react-native'
 import React from 'react'
 import { RouteProp, useRoute } from '@react-navigation/native';
-import { ParamsList } from '../types/ParamsList';
+import { ParamsList } from '@/app/types';
 import ReturnPage from '../navigation/returnPage';
-import globalStyles from '@/styles/global';
-import COLORS from '@/styles/colors';
-import { MealItem } from '../components/index';
+import { MealItem } from '@/app/components';
+import { globalStyles, COLORS } from '@/styles';
 
 const FoundMealsScreen = () => {
     const route = useRoute<RouteProp<ParamsList, 'Found'>>();
@@ -23,32 +22,32 @@ const FoundMealsScreen = () => {
     const firstMeal = meals[0];
     const remainingMeals = meals.slice(1);
 
-  return (
-    <ScrollView>
-        <ReturnPage />
-        <View style={styles.container}>
-            <Text style={globalStyles.TitleText}>Recepti s odabranim sastojcima</Text>
-            <Text style={globalStyles.text}>Najbolje se slaže:</Text>
-            <View style={styles.firstMealContainer}>
-                <ImageBackground
-                    source={{ uri: firstMeal.image_url }}
-                    style={styles.firstMealImage}
-                    resizeMode="cover">
-                    <Text style={styles.TitleText}>{firstMeal.name}</Text> 
-                </ImageBackground>
-            </View>
+    return (
+        <ScrollView>
+            <ReturnPage title='Found meals'/>
+            <View style={styles.container}>
+                <Text style={globalStyles.TitleText}>Recepti s odabranim sastojcima</Text>
+                <Text style={globalStyles.text}>Najbolje se slaže:</Text>
+                <View style={styles.firstMealContainer}>
+                    <ImageBackground
+                        source={{ uri: firstMeal.image_url }}
+                        style={styles.firstMealImage}
+                        resizeMode="cover">
+                        <Text style={styles.TitleText}>{firstMeal.name}</Text> 
+                    </ImageBackground>
+                </View>
 
-            <Text style={globalStyles.TitleText}> I drugi recepti koji sadrže odgovarajuće sastojke</Text>
-            <View style={styles.mealsGrid}>
-                {remainingMeals.map((item) => (
-                    <View key={item.id || Math.random()}>
-                        <MealItem meal={item} />
-                    </View>
-                ))}
+                <Text style={globalStyles.TitleText}> I drugi recepti koji sadrže odgovarajuće sastojke</Text>
+                <View style={styles.mealsGrid}>
+                    {remainingMeals.map((item) => (
+                        <View key={item.id || Math.random()}>
+                            <MealItem meal={item} width={180}/>
+                        </View>
+                    ))}
+                </View>
             </View>
-        </View>
-    </ScrollView>
-  )
+        </ScrollView>
+    )
 }
 
 export default FoundMealsScreen
