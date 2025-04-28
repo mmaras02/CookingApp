@@ -3,6 +3,7 @@ import { View, Text, FlatList, Image, StyleSheet, RefreshControl } from 'react-n
 import { useFavorites } from '../hooks/useFavorites';
 import ReturnPage from '../navigation/returnPage';
 import globalStyles from '@/styles/global';
+import COLORS from '@/styles/colors';
 
 const FavoriteScreen = () => {
   const { data: favorites, refetch, isRefetching } = useFavorites();
@@ -52,6 +53,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     padding: 10,
     alignItems: 'center',
+    backgroundColor: COLORS.light,
+    margin: 5,
   },
   image: {
     width: 90,

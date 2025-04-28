@@ -2,12 +2,12 @@ import { RouteProp, useRoute } from "@react-navigation/native";
 import { View, Text, Image, StyleSheet, ScrollView, TouchableOpacity } from "react-native";
 import { ParamsList } from "../types/ParamsList";
 import globalStyles from "@/styles/global";
-import useMealDetails from "../hooks/useMealDetails";
+import { useMealDetails } from "../hooks/useMealDetails";
 import ReturnPage from "../navigation/returnPage";
 import { IngredientsList, InstructionsList } from "../components/index";
 import { AntDesign } from "@expo/vector-icons"; 
 import COLORS from "@/styles/colors";
-import useFavoriteStatus from "../hooks/useFavoritesStatus";
+import { useFavoriteStatus } from "../hooks/useFavoritesStatus";
 
 const MealDetailsScreen = () => {
     const route = useRoute<RouteProp<ParamsList, 'MealDetails'>>();

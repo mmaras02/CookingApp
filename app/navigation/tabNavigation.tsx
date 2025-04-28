@@ -2,7 +2,7 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Image } from 'react-native';
 import images from '@/assets/images';
-import { HomeScreen, GenerateMealScreen, SearchScreen, FavoriteScreen }from '../screens/index';
+import { HomeScreen, GenerateMealScreen, SearchScreen, FavoriteScreen, ProfileScreen }from '../screens/index';
 import TabParamList from '../types/TabPramsLis';
 import COLORS from '@/styles/colors';
 
@@ -72,7 +72,7 @@ const TabNavigator = () => {
       />
 
       <Tab.Screen
-        name="Saved"
+        name="Favorites"
         component={FavoriteScreen}
         options={{
           tabBarIcon: ({focused}) => (
@@ -87,6 +87,24 @@ const TabNavigator = () => {
             tabBarInactiveTintColor: COLORS.light_green,
         }}
       />
+
+    <Tab.Screen
+        name="Profile"
+        component={ProfileScreen}
+        options={{
+          tabBarIcon: ({focused}) => (
+            <Image 
+                source={images.Profile}
+                style={{ 
+                  height: 30,
+                  width: 30,
+                  tintColor: focused ? COLORS.orange : COLORS.light_green}} />
+            ),
+            tabBarActiveTintColor: COLORS.orange,
+            tabBarInactiveTintColor: COLORS.light_green,
+        }}
+      />
+
     </Tab.Navigator>
   );
 };

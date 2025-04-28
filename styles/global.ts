@@ -6,7 +6,6 @@ const globalStyles = StyleSheet.create({
       color: COLORS.text,
       fontSize: 25,
       fontWeight: 'bold',
-      margin: 5,
       fontFamily: 'Quicksand_700Bold',
     },
     text: {

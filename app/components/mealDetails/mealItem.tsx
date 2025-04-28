@@ -4,16 +4,20 @@ import globalStyles from '@/styles/global';
 import { useNavigation } from '@react-navigation/native';
 import { ParamsList } from '../../types/ParamsList';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import COLORS from '@/styles/colors';
 
-const MealItem = ({meal} : {meal: Meal}) => {
+const MealItem = ({meal, width = 220} : {meal: Meal, width?: number}) => {
   const navigation = useNavigation<NativeStackNavigationProp<ParamsList>>();
 
   return(
     <TouchableOpacity onPress={() => navigation.navigate('MealDetails', { mealId: meal.id })}>
-      <View style={styles.box}>
+       <View style={[styles.box, { width }]}>
           <Image source={{ uri: meal.image_url }} style={styles.image} />
-          <Text style={globalStyles.TitleText}>{meal.name}</Text>
-          <Text>Preparation time</Text>
+          <View style={styles.textBox}>
+            <Text style={globalStyles.TitleText}  numberOfLines={2} 
+              ellipsizeMode="tail">{meal.name}</Text>
+            <Text>Preparation time</Text>
+          </View>         
       </View>
     </TouchableOpacity>
     
@@ -21,16 +25,22 @@ const MealItem = ({meal} : {meal: Meal}) => {
 
 const styles = StyleSheet.create({
     box: {
-      margin: 12,
-      width: 170,
+      backgroundColor: COLORS.grey,
+      paddingTop: 0,
+      margin: 10,
+      height: 300,
+      borderRadius: 5,
+      elevation: 4,
     },
     image: {
-      width: 170,
-      height: 220,
+      width: '100%',
+      height: 200,
       resizeMode: 'cover',
-      borderRadius: 5,
-      elevation: 8,
     },
+    textBox: {
+      height: 100,
+      justifyContent: 'space-around',
+    }
   });
   
 export default MealItem;

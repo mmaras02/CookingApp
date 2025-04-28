@@ -1,6 +1,6 @@
 import { View, Text, Image, FlatList, StyleSheet, TouchableOpacity, Button } from 'react-native'
 import React, { useCallback, useState } from 'react'
-import useIngredientsList from '../hooks/useIngredientsList'
+import { useIngredientsList } from '../hooks/useIngredientsList'
 import globalStyles from '@/styles/global';
 import ReturnPage from '../navigation/returnPage';
 import COLORS from '@/styles/colors';
@@ -12,7 +12,7 @@ import { ParamsList } from '../types/ParamsList';
 import { useFocusEffect } from '@react-navigation/native';
 
 const SearchScreen = () => {
-  const { ingredients } = useIngredientsList();
+  const { data: ingredients } = useIngredientsList();
   const [selectedIngredients, setSelectedIngredients] = useState<number[]>([]);
   const navigation = useNavigation<NativeStackNavigationProp<ParamsList>>();
 

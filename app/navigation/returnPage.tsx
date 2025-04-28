@@ -1,4 +1,4 @@
-import { Text, TouchableOpacity, StyleSheet } from 'react-native'
+import { TouchableOpacity, StyleSheet } from 'react-native'
 import { useNavigation } from '@react-navigation/native';
 import COLORS from '@/styles/colors';
 import { Ionicons } from '@expo/vector-icons';
@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
         marginVertical: 10,
         padding: 12,
         alignItems: 'center',
-        backgroundColor: COLORS.transparent_green,
+        backgroundColor: COLORS.transparent_orange,
         borderRadius: 40,
     },
     overlay: {

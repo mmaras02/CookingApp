@@ -3,7 +3,7 @@ import { useUser } from "../context/userSessionContext";
 import { useQuery } from "@tanstack/react-query";
 import { useFavoriteActions } from "./useFavorites";
 
-const useFavoriteStatus = (mealId: number) => {
+export const useFavoriteStatus = (mealId: number) => {
     const { user } = useUser();
 
     const { data: isFavorited, isLoading } = useQuery({
@@ -27,6 +27,4 @@ const useFavoriteStatus = (mealId: number) => {
       toggleFavorite: handleToggleFavorite, 
       isLoading 
     };
-  };
-  
-export default useFavoriteStatus;
+};

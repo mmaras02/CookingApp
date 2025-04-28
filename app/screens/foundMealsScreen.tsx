@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     TitleText: {
-        backgroundColor: COLORS.transparent_green,
+        backgroundColor: COLORS.transparent_orange,
         fontSize: 30,
         fontWeight: 600,
         color: COLORS.light,

@@ -1,6 +1,6 @@
 import { View, Text, FlatList, StyleSheet } from 'react-native'
 import globalStyles from '@/styles/global';
-import useMealsByCategory from '../hooks/useMealsByCategory';
+import { useMealsByCategory } from '../hooks/useMealsByCategory';
 import ReturnPage from '../navigation/returnPage';
 import { MealItem } from '../components/index';
 
@@ -15,7 +15,7 @@ const CategoryScreen = ({ route } : { route : any}) => {
         <FlatList data={meals}
                   keyExtractor={(item) => item.id.toString()}
                   renderItem={({ item }) => (
-                      <MealItem meal={item} />
+                      <MealItem meal={item} width={180}/>
                   )} 
                   numColumns={2}/>
                     {/*<View>

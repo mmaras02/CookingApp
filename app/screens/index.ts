@@ -8,3 +8,6 @@ export { default as SearchScreen } from './searchScreen';
 export { default as FoundMealsScreen } from './foundMealsScreen';
 export { default as SigninScreen } from './signinScreen';
 export { default as SignupScreen } from './signupScreen';
+export { default as ProfileScreen } from './profileScreen';
+export { default as ListsScreen } from './listsScreen';
+export { default as ListItemScreen } from './listItemScreen';

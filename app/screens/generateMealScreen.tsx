@@ -1,5 +1,5 @@
 import { View, Text, StyleSheet, Animated } from 'react-native'
-import useMealDetails from '../hooks/useMealDetails';
+import { useMealDetails } from '../hooks/useMealDetails';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import globalStyles from '@/styles/global';
 import ReturnPage from '../navigation/returnPage';

@@ -4,7 +4,7 @@ import recipeServices from "../services/recipeServices";
 import categoryServices from "../services/categoryServices";
 import { useQuery } from "@tanstack/react-query";
 
-const useMealDetails = (mealId: number) => {
+export const useMealDetails = (mealId: number) => {
     return useQuery({
         queryKey: ['mealDetails', mealId],
         queryFn: async () => {
@@ -19,5 +19,3 @@ const useMealDetails = (mealId: number) => {
         enabled: !!mealId
     });
 }
-
-export default useMealDetails;
