@@ -60,7 +60,12 @@ const ProfileScreen = () => {
           <Text style={globalStyles.text}>Your shopping cart</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.profileHeader} onPress={() => navigation.navigate('Lists' as never)}>
+        <TouchableOpacity style={styles.profileHeader} onPress={() => navigation.navigate('CreateRecipe' as never)}>
+          <Ionicons name="create" style={styles.iconImage} />
+          <Text style={globalStyles.text}>Create recipes</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.profileHeader}>
           <Ionicons name="restaurant" style={styles.iconImage} />
           <Text style={globalStyles.text}>Custom meals</Text>
         </TouchableOpacity>

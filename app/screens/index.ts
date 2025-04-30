@@ -11,3 +11,4 @@ export { default as SignupScreen } from './signupScreen';
 export { default as ProfileScreen } from './profileScreen';
 export { default as ListsScreen } from './listsScreen';
 export { default as ListItemScreen } from './listItemScreen';
+export { default as CreateRecipeScreen } from './createRecipeScreen';

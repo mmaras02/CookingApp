@@ -5,10 +5,10 @@ export type Meal = {
 }
 
 export type Ingredient = {
-  id: number;
+  id?: number;
   name: string ;
-  image_url: string;
-  quantity?: number;
+  image_url?: string;
+  quantity?: string;
 };
 
 export type Recipe = {

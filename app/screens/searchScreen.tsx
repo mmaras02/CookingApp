@@ -72,7 +72,9 @@ const SearchScreen = () => {
               </TouchableOpacity>
               )}}
         />
-        <Button title="Find a meal" onPress={() => handleUserChoice()} color={COLORS.orange}/>
+        <Button title="Find a meal" 
+                onPress={() => handleUserChoice()}
+                color={COLORS.orange}/>
       </View>
       
     </View>
@@ -82,26 +84,21 @@ const SearchScreen = () => {
 export default SearchScreen
 
 const styles = StyleSheet.create({
-    image: {
-        width: 100,
-        height: 100,
-        borderRadius: 10,
-    },
-    ingredientBox: {
-      margin: 10,
-      flex: 1,
-      justifyContent: 'center',
-    },
-    container: {
-      paddingBottom: 210,
-    },
-    selected: {
-      opacity: 0.2,
-    },
-    button: {
-      backgroundColor: COLORS.light_green,
-      alignSelf: 'center',
+  image: {
       width: 100,
-    }
+      height: 100,
+      borderRadius: 10,
+  },
+  ingredientBox: {
+    margin: 10,
+    flex: 1,
+    justifyContent: 'center',
+  },
+  container: {
+    paddingBottom: 210,
+  },
+  selected: {
+    opacity: 0.2,
+  },
 
 })

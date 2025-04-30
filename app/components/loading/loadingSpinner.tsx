@@ -3,7 +3,6 @@ import { ActivityIndicator, View, StyleSheet } from "react-native";
 import { COLORS } from "@/styles";
 
 const LoadingSpinner = () => {
-    console.log('hi');
     return (
         <View style={styles.container}>
             <ActivityIndicator size="large" color={COLORS.orange} />

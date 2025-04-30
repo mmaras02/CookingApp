@@ -1,6 +1,6 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { WelcomeScreen, MealDetailsScreen, CategoryScreen, FoundMealsScreen, SigninScreen, SignupScreen, ListsScreen, ListItemScreen}from '@/app/screens';
+import { WelcomeScreen, MealDetailsScreen, CategoryScreen, FoundMealsScreen, SigninScreen, SignupScreen, ListsScreen, ListItemScreen, CreateRecipeScreen}from '@/app/screens';
 import TabNavigator from './tabNavigation';
 
 const Stack = createNativeStackNavigator();
@@ -17,6 +17,7 @@ const StackNavigator = () => {
       <Stack.Screen name="Found" component={FoundMealsScreen} />
       <Stack.Screen name="Lists" component={ListsScreen} />
       <Stack.Screen name="ListItem" component={ListItemScreen} />
+      <Stack.Screen name="CreateRecipe" component={CreateRecipeScreen} />
     </Stack.Navigator>
   );
 };

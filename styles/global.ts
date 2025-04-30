@@ -13,6 +13,12 @@ export const globalStyles = StyleSheet.create({
       marginRight: 5,
       fontWeight: 500,
     },
+    whiteText: {
+      fontSize: 18,
+      color: COLORS.light,
+      marginRight: 5,
+      fontWeight: 600,
+    },
     image: {
       width: 170,
       height: 220,
@@ -24,10 +30,20 @@ export const globalStyles = StyleSheet.create({
       margin: 8,
       flex: 1,
       justifyContent: 'center',
+      alignItems: 'center',
       backgroundColor: COLORS.light_green,
       padding: 12,
       borderRadius: 5,
-    }
+    },
+    orangeButton: {
+      height: 50,
+      width: 140,
+      margin: 20,
+      justifyContent: 'center',
+      alignItems: 'center',
+      borderRadius: 10,
+      backgroundColor: '#f2a76d',
+    },
 })
 
 /*orange: #f2a76d

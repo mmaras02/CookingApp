@@ -6,6 +6,7 @@ export const COLORS = {
     transparent_orange: 'rgba(236, 163, 114, 0.8)', //vidi sta s ovim
     light: 'rgba(246, 246, 246, 1)',
     grey: 'rgba(235, 235, 235, 0.89)',
+    dark_grey: 'rgb(225, 225, 225)',
     
 }
 //'rgb(81, 116, 84)', lijepa zelena

@@ -41,8 +41,8 @@ const GenerateMealScreen = () => {
       <ReturnPage title='Generate random meal'/>
       <View style={styles.generateSection}>
         {/*<Text style={globalStyles.TitleText}>Generate random meal</Text>*/}
-        <Button onPress={handlePress} style={styles.button}>
-          <Text style={globalStyles.text}>Generate</Text>
+        <Button onPress={handlePress} style={globalStyles.orangeButton}>
+          <Text style={globalStyles.whiteText}>Generate</Text>
         </Button >
 
         {randomMeal && (
