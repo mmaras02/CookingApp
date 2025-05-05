@@ -5,3 +5,5 @@ export { default as ingredientServices } from './ingredientServices';
 export { default as listsServices} from './listsServices';
 export { default as mealServices } from './mealServices';
 export { default as recipeServices } from './recipeServices';
+export { default as createMealServices } from './createMealServices';
+export { default as imageUploadServices } from './imageUploadServices';

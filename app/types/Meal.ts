@@ -1,7 +1,8 @@
 export type Meal = {
-    id: number,
+    id?: number,
     name: string,
-    image_url : string,
+    image_url? : string | null,
+    user_id: string,
 }
 
 export type Ingredient = {

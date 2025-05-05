@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, FlatList } from 'react-native'
+import { View, Text, StyleSheet, FlatList, ScrollView } from 'react-native'
 import React, { useState } from 'react'
 import { Searchbar } from 'react-native-paper';
 import { useUser } from '../context/userSessionContext';
@@ -7,13 +7,13 @@ import { globalStyles } from '@/styles';
 import { CategoryList, MealItem } from '@/app/components';
 
 const HomeScreen = () => {
-    const [search, setSearch] = useState("");
-    const { data: meals } = useMeals();
-    const { user, setUser } = useUser();
-    const userProfile = user?.profile;
+  const [search, setSearch] = useState("");
+  const { data: meals } = useMeals();
+  const { user, setUser } = useUser();
+  const userProfile = user?.profile;    
 
   return (
-    <View>
+    <ScrollView>
       <View style={styles.title}>
         <Text style={globalStyles.TitleText}>Welcome back </Text>
         <Text style={globalStyles.TitleText}>{userProfile?.username}!</Text>
@@ -37,7 +37,7 @@ const HomeScreen = () => {
                   <MealItem meal={item} />
                 )} />
 
-    </View>
+    </ScrollView>
   )
 }
 
