@@ -58,7 +58,7 @@ const SigninScreen = () => {
         <View style={styles.footerContainer}>
             <Text style={styles.continueText}>Don't have an account? </Text>
             <TouchableOpacity onPress={() => navigation.navigate('Signup' as never)}>
-                <Text style={{'fontWeight': 800}}> Sign up!</Text></TouchableOpacity>
+                <Text style={{'fontWeight': 800, color: COLORS.text}}> Sign up!</Text></TouchableOpacity>
         </View>
       </View>
       
@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
     headingText: {
         fontSize: 32,
         fontWeight: 700,
-        color: COLORS.text,
+        color: COLORS.light_green,
     },
     formContainer: {
     },
@@ -96,7 +96,7 @@ const styles = StyleSheet.create({
         height: 50,
     },
     signupButton: {
-        backgroundColor: COLORS.text,
+        backgroundColor: COLORS.light_green,
         height: 50,
         borderRadius: 100,
         alignItems: 'center',

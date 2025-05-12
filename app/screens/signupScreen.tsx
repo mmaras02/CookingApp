@@ -82,17 +82,21 @@ const SignupScreen = () => {
         <TouchableOpacity style={styles.signupButton} onPress={() => handleSignup()}>
             <Text style={styles.signupText}>Sign up</Text>
         </TouchableOpacity>
+
         <Text style={styles.continueText}>or continue with</Text>
+
         <TouchableOpacity style={styles.googleContainer}>
             <Image source={images.Google} style={styles.googleImg}/>
             <Text style={globalStyles.text}>Google</Text>
         </TouchableOpacity>
+
         <View style={styles.footerContainer}>
             <Text style={styles.continueText}>Already have an account? </Text>
             <TouchableOpacity onPress={() => navigation.navigate('Signin' as never)}>
-                <Text style={{'fontWeight': 800}}> Sign in!</Text>
+                <Text style={{'fontWeight': 800, color: COLORS.text}}> Sign in!</Text>
             </TouchableOpacity>
         </View>
+
       </View>
       
     </View>
@@ -113,7 +117,7 @@ const styles = StyleSheet.create({
     headingText: {
         fontSize: 32,
         fontWeight: 700,
-        color: COLORS.text,
+        color: COLORS.light_green,
     },
     formContainer: {
     },
@@ -129,7 +133,7 @@ const styles = StyleSheet.create({
         height: 50,
     },
     signupButton: {
-        backgroundColor: COLORS.text,
+        backgroundColor: COLORS.light_green,
         height: 50,
         borderRadius: 100,
         alignItems: 'center',

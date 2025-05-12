@@ -1,50 +1,41 @@
 import { RouteProp, useRoute } from "@react-navigation/native";
-import { View, Text, Image, StyleSheet, ScrollView, TouchableOpacity, Alert, ActivityIndicator } from "react-native";
-import { Ingredient, ParamsList } from "@/app/types";
+import { View, Text, Image, StyleSheet, ScrollView, TouchableOpacity } from "react-native";
+import { Ingredient, Meal, RootParamList, Recipe } from "@/app/types";
 import { globalStyles, COLORS } from '@/styles';
 import ReturnPage from "../navigation/returnPage";
-import { IngredientsList, InstructionsList, LoadingSpinner } from "@/app/components";
-import { AntDesign } from "@expo/vector-icons";
-import { useCreateListItems, useFavoriteStatus, useLists, useMealDetails } from "@/app/hooks";
+import { IngredientsList, InstructionsList, LoadingSpinner, MealReviews } from "@/app/components";
+import { AntDesign, Ionicons } from "@expo/vector-icons";
+import { useFavoriteStatus, useMealDetails, useUser } from "@/app/hooks";
+import images from "@/assets/images";
+import { useNavigation } from "expo-router";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
 const MealDetailsScreen = () => {
-    const route = useRoute<RouteProp<ParamsList, 'MealDetails'>>();
+    const route = useRoute<RouteProp<RootParamList, 'MealDetails'>>();
     const { mealId } = route.params;
-    const { data: mealDetails, isLoading } = useMealDetails(mealId);
-    const meal = mealDetails?.meal;
+    const { data: mealDetails, isLoading } = useMealDetails(mealId!);
+    const meal : Meal = mealDetails?.meal;
     const ingredients : Ingredient[] = mealDetails?.ingredients || [];
-    const recipe = mealDetails?.recipe || [];
-    const category  = mealDetails?.category || [];
-    const { mutate: createListItem } = useCreateListItems();
-    const { createList } = useLists();
+    const recipe : Recipe[] = mealDetails?.recipe || [];
+    const categories : string[] = mealDetails?.category || [];
+    const { isFavorited, toggleFavorite } = useFavoriteStatus(mealId!);
+      const navigation = useNavigation<NativeStackNavigationProp<RootParamList>>();
+    const { data: user } = useUser(meal?.user_id ?? "");
 
-    const { isFavorited, toggleFavorite } = useFavoriteStatus(mealId);
-
+    const imageSource = user?.profile_img 
+                        ? { uri: user.profile_img } 
+                        : images.ProfileIcon;
+      
     if (isLoading) return <LoadingSpinner />
 
     if (!meal) return <Text>Meal not found</Text>;
-
-    const handleAddToList = async() => {
-        const newList = await createList(meal.name);
-        const listId = newList?.id; 
-
-        ingredients.forEach(ingredient => {
-            createListItem({
-                list_id: listId,
-                content: ingredient.name,
-                is_checked: false,
-                is_checkbox: true,
-            });
-        });
-        Alert.alert("Added to the shopping list!");
-    }
 
     return (
         <ScrollView>
             <ReturnPage isOverImage={true} />
             
             <View style={styles.imageContainer}>
-                <Image source={{ uri: meal.image_url }} style={styles.header} />
+                <Image source={{ uri: meal.image_url! }} style={styles.header} />
                 <TouchableOpacity style={styles.heartIcon}
                                 onPress={toggleFavorite}
                                 disabled={isLoading}>
@@ -59,19 +50,51 @@ const MealDetailsScreen = () => {
             <View style={styles.container}>
                 <View style={styles.title}> 
                     <Text style={globalStyles.TitleText}>{meal.name}</Text>
+
+                    {user && (
+                        <TouchableOpacity style={styles.authorSection}
+                                          onPress={() => navigation.navigate('UserProfile', { userId: user?.id })}>
+                            <Image source={imageSource} style={styles.image} />
+                            <Text style={globalStyles.text}>By: {user.username}</Text>
+                        </TouchableOpacity>
+                    )}
+
+                    {/** prep and difficulty*/}
                     <View style={styles.categorySection}>
-                        {category && category.map((category, index) => (
-                                <Text key={index} style={globalStyles.text}>{category}, </Text>
+                        {categories && categories.map((category, index) => (
+                            <View key={index} style={styles.categoryContent}>
+                                <Text style={globalStyles.text}>{category} </Text>
+                            </View>
                         ))}
+                    </View>
+
+                </View>
+
+                {/** prep and difficulty*/}
+                <View style={{flexDirection: 'row', justifyContent: 'space-around'}}>
+                    <View style={styles.dataContent}>
+                        <Ionicons name="time-outline" style={styles.iconImage} />
+                        <Text style={globalStyles.text}>{meal.prep_time} min</Text>
+                    </View>
+
+                    <View style={styles.dataContent}>
+                        <Ionicons name="stats-chart" style={styles.iconImage} />
+                        <Text style={globalStyles.text}>{meal.difficulty}</Text>
+                    </View>
+
+                    <View style={styles.dataContent}>
+                        <Ionicons name="star" style={styles.iconImage} />
+                        <Text style={globalStyles.text}>4.9</Text>
                     </View>
                 </View>
                 
-                <IngredientsList ingredients={ingredients} />
-                <TouchableOpacity style={styles.listButton}
-                           onPress={handleAddToList}>
-                    <Text>Add to shopping list</Text>
-                </TouchableOpacity>
+                <IngredientsList ingredients={ingredients}
+                                 mealName={meal.name} />
+
                 <InstructionsList recipe={recipe} />
+
+                <MealReviews mealId={meal?.id ?? 0}/>
+                {/** */}
             </View>
             
        
@@ -92,7 +115,6 @@ const styles = StyleSheet.create({
         borderBottomRightRadius: 15,
     },
     title: {
-        height: 80,
         justifyContent: 'center',
         margin: 10,
       },
@@ -125,12 +147,37 @@ const styles = StyleSheet.create({
         borderRadius: 50,
 
     },
-    listButton: {
-        alignSelf: 'flex-end',
-        padding: 10,
-        backgroundColor: COLORS.orange,
-        marginBottom: 30,
+  
+    categoryContent: {
+        backgroundColor: COLORS.dark_grey,
+        margin: 10,
+        padding: 5,
+        justifyContent: 'center',
         borderRadius: 20,
     },
 
+    dataContent: {
+        flexDirection: 'row',
+        margin: 10,
+        alignItems: 'center',
+    },
+
+    iconImage: {
+        color: COLORS.text,
+        fontSize: 30,
+        marginRight: 5,
+      },
+
+    authorSection: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        margin: 10,
+        marginBottom: 25,
+    },
+    image: {
+        width: 40,
+        height: 40,
+        borderRadius: 30,
+        marginRight: 10,
+    }
 })

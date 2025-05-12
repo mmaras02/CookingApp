@@ -13,7 +13,6 @@ const ReturnPage = ({isOverImage = false, title} : {isOverImage?: boolean, title
         </TouchableOpacity>
         <Text style={styles.text}>{title}</Text>
     </View>
-    
     )
 }
 

@@ -1,26 +1,31 @@
-import { Ingredient } from "./Meal";
+import { Ingredient } from ".";
+
+export type SetState<T> = React.Dispatch<React.SetStateAction<T>>;
 
 export type CategoriesProps = {
-    selectedCategories: string[];
-    setSelectedCategories: (value: string[]) => void;
+  selectedCategories: string[];
+  setSelectedCategories: SetState<string[]>;
 };
 
 export type ImageInputProps = {
-    imageUrl: string | null;
-    setImageUrl: (url: string | null) => void;
+  imageUrl: string | null;
+  setImageUrl: SetState<string | null>;
+  bucketName: string;
+  imageHeight?: number;
+  imageWidth?: number;
 };
 
 export type IngredientInputProps = {
-    ingredients: Ingredient[];
-    setIngredients: (ingredients: Ingredient[]) => void;
+  ingredients: Ingredient[];
+  setIngredients: SetState<Ingredient[]>;
 };
 
 export type StepInputProps = {
-    steps: string[];
-    setSteps: (steps: string[]) => void;
+  steps: string[];
+  setSteps: SetState<string[]>;
 };
 
 export type TitleInputProps = {
-    title: string;
-    setTitle: (title: string) => void;
+  title: string;
+  setTitle: SetState<string>;
 };

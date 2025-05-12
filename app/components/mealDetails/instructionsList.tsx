@@ -1,7 +1,7 @@
 import { View, Text, StyleSheet } from 'react-native'
 import React from 'react'
-import { Recipe } from '@/app/types/Meal'
 import { globalStyles } from '@/styles';
+import { Recipe } from '@/app/types';
 
 const InstructionsList = ({recipe} : {recipe : Recipe[]}) => {
   return (

@@ -2,17 +2,13 @@ import { View, Text, TouchableOpacity, StyleSheet, ScrollView, Alert } from 'rea
 import React, { useState } from 'react'
 import ReturnPage from '../navigation/returnPage'
 import { globalStyles } from '@/styles'
-import { Ingredient } from '../types'
+import { Ingredient } from '@/app/types'
 import { createMealServices } from '../services'
-import { useUser } from '../context/userSessionContext'
-import TitleInput from '../components/createRecipe/titleInput'
-import CategorySelector from '../components/createRecipe/categorySelector'
-import IngredientInput from '../components/createRecipe/ingredientsInput'
-import StepInput from '../components/createRecipe/stepInput'
-import ImageInput from '../components/createRecipe/imageInput'
+import { useAuth } from '../context/userSessionContext'
+import { CategorySelector, ImageInput, IngredientInput, StepInput, TitleInput } from '../components'
 
 const CreateRecipeScreen = () => {
-    const { user } = useUser();
+    const { user } = useAuth();
     const userProfile = user?.profile;
     const [title, setTitle] = useState("");
     const [ingredients, setIngredients] = useState<Ingredient[]>([{ name: '', quantity: '' }]);
@@ -23,16 +19,17 @@ const CreateRecipeScreen = () => {
 
 
     const handleCreateMeal = async() => {
-        if(!title || !imageUrl || !selectedCategories || !ingredients || !steps){
+        if(!title || !imageUrl || !selectedCategories || !ingredients || !steps || !userProfile?.id){
             throw Error("All fields must be filled!");
         }
       
         setIsSubmitting(true);
         try {
             const meal = await createMealServices.createMeal({
-              name: title, 
-              user_id: userProfile.id,
-              image_url: imageUrl || null,
+                name: title,
+                user_id: userProfile?.id,
+                image_url: imageUrl || null,
+                prep_time: 30,
             });
         
             await createMealServices.addMealCategories(meal.id, selectedCategories);
@@ -68,7 +65,8 @@ const CreateRecipeScreen = () => {
                         setTitle={setTitle} />
 
             <ImageInput imageUrl={imageUrl}
-                        setImageUrl={setImageUrl} />
+                        setImageUrl={setImageUrl}
+                        bucketName='meal-images' />
                         
 
             <CategorySelector selectedCategories={selectedCategories}

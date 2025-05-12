@@ -2,7 +2,7 @@ import { supabase } from '@/lib/supabase';
 import * as ImagePicker from 'expo-image-picker';
 import { Alert } from 'react-native';
 
-const pickImage = async () => {
+const pickImage = async (bucketName: string) => {
   try{
     const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
     if (status !== 'granted') {
@@ -10,7 +10,6 @@ const pickImage = async () => {
       return null;
     }
 
-    // 2. Pick image
     const result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ["images"],
       allowsEditing: true,
@@ -35,16 +34,17 @@ const pickImage = async () => {
 
     const {data, error} = await supabase
       .storage
-      .from('meal-images')
+      .from(bucketName)
       .upload(name, newFormData)
 
     const { data: { publicUrl } } = supabase.storage
-      .from('meal-images')
+      .from(bucketName)
       .getPublicUrl(name);
 
     return publicUrl;
+
   } catch(error){
-    console.error('Image upload error:', error);
+      console.error('Image upload error:', error);
       Alert.alert(
         'Upload failed', 
         error instanceof Error ? error.message : 'Failed to upload image'

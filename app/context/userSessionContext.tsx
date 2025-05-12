@@ -1,7 +1,7 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useMemo, useState } from "react";
 import React from "react";
 import { supabase } from "@/lib/supabase";
-import { UserState } from "../types";
+import { UserState } from "@/app/types";
 import { authServices } from "@/app/services";
 
 type UserContextType = {
@@ -43,17 +43,19 @@ export const UserProvider = ({ children } : { children: any}) => {
         };
     }, []);
 
+    const value = useMemo(() => ({ user, setUser }), [user]);
+    
     return (
-        <userContext.Provider value={{ user, setUser }}>
+        <userContext.Provider value={value}>
             {children}
         </userContext.Provider>
     );
 }
 
-export const useUser = () => {
+export const useAuth = () => {
     const context = React.useContext(userContext);
     if (!context) {
-      throw new Error("useUser must be used within a UserProvider");
+      throw new Error("useAuth must be used within a UserProvider");
     }
     return context;
   };

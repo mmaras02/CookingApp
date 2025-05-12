@@ -1,10 +1,10 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query"
-import { useUser } from "../../context/userSessionContext";
+import { useAuth } from "../../context/userSessionContext";
 import { listsServices } from "@/app/services";
 
 export const useDeleteList = () => {
     const queryClient = useQueryClient();
-    const { user } = useUser();
+    const { user } = useAuth();
     const userId = user?.user?.id;
 
     const { mutateAsync: deleteList }  = useMutation({

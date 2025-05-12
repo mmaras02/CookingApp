@@ -1,16 +1,20 @@
-import { View, Text, StyleSheet, FlatList, ScrollView } from 'react-native'
-import React, { useState } from 'react'
-import { Searchbar } from 'react-native-paper';
-import { useUser } from '../context/userSessionContext';
+import { View, Text, StyleSheet, ScrollView } from 'react-native'
+import { useAuth } from '../context/userSessionContext';
 import { useMeals } from '@/app/hooks';
 import { globalStyles } from '@/styles';
-import { CategoryList, MealItem } from '@/app/components';
+import { CategoryList, HorizontalMealList, SearchBar } from '@/app/components';
+import { Meal } from '@/app/types';
 
 const HomeScreen = () => {
-  const [search, setSearch] = useState("");
   const { data: meals } = useMeals();
-  const { user, setUser } = useUser();
-  const userProfile = user?.profile;    
+  const { user } = useAuth();
+  const userProfile = user?.profile; 
+  const recommendedMeals: Meal[] = (meals?.filter(meal => !meal.user_id) || [])
+                                          .sort(() => 0.5 - Math.random());
+                                          
+  const quickAndEasyMeals : Meal[] = meals?.filter(meal => meal.prep_time <= 20) || [];
+  const otherUsersMeals : Meal[] = meals?.filter(meal => meal.user_id && meal.user_id !== userProfile?.id) || [];
+
 
   return (
     <ScrollView>
@@ -19,24 +23,23 @@ const HomeScreen = () => {
         <Text style={globalStyles.TitleText}>{userProfile?.username}!</Text>
       </View>
       
-      <Searchbar placeholder="Search any recipies"
-                 value={search}
-                 onChangeText={setSearch}
-                 style={styles.search} />
-
+      <SearchBar meals={meals!} />
       <CategoryList />
 
-      <View style={styles.recommend}>
-        <Text style={globalStyles.TitleText}>Recommended</Text>
-      </View>
-      <FlatList data={meals}
-                keyExtractor={(meal) => meal.id.toString()}
-                horizontal={true}
-                showsHorizontalScrollIndicator={false}
-                renderItem={({ item }) => (
-                  <MealItem meal={item} />
-                )} />
+      {/**recommended at least 8 meals*/}
+      <HorizontalMealList meals={recommendedMeals.slice(0,8)!}
+                          title='Recommended' />
 
+      {/**quick and easy */}
+      <HorizontalMealList meals={quickAndEasyMeals}
+                          title='Quick and easy' />
+
+      {/**see other users recipes */}
+      {(otherUsersMeals || []).length > 0 && (
+        <HorizontalMealList meals={otherUsersMeals}
+                            title='Other users recipes' />
+      )}
+       
     </ScrollView>
   )
 }
@@ -48,17 +51,6 @@ const styles = StyleSheet.create({
       height: 80,
       justifyContent: 'center',
       margin: 20,
-    },
-    search: {
-      width: '90%',
-      alignSelf: 'center',
-      backgroundColor:'rgba(226, 226, 226, 0.89)',
-      marginBottom: 40,
-    },
-    recommend: {
-      marginBottom: 5,
-      marginLeft:15,
-      marginTop: 30,
     },
 
 })

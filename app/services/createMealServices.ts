@@ -1,7 +1,7 @@
 import { supabase } from "@/lib/supabase";
-import { Ingredient, Meal } from "../types";
+import { Ingredient, Meal, MealCreate } from "@/app/types";
 
-const createMeal = async(mealData: Meal) => {
+const createMeal = async(mealData: MealCreate) => {
     const { data, error } = await supabase
         .from('meals')
         .insert(mealData)

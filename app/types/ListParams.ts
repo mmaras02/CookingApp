@@ -1,6 +1,8 @@
 export type List = {
+  id: number,
   user_id: string,
   title: string,
+  created_at: EpochTimeStamp,
 }
 
 export type ListItem = {

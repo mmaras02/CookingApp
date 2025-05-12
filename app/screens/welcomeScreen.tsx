@@ -1,12 +1,12 @@
-import { View, Text, StyleSheet, ImageBackground } from 'react-native'
+import { View, StyleSheet, ImageBackground } from 'react-native'
 import React, { useEffect } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import images from '@/assets/images';
-import { useUser } from '../context/userSessionContext';
+import { useAuth } from '../context/userSessionContext';
 
 const WelcomeScreen = () => {
     const navigation = useNavigation();
-    const { user } = useUser();
+    const { user } = useAuth();
 
     useEffect(() => {
         if(user)
@@ -17,10 +17,9 @@ const WelcomeScreen = () => {
 
   return (
         <View style={styles.container}>
-            <ImageBackground source={images.Background}
+            <ImageBackground source={images.WelcomePage4}
                     resizeMode='cover'
                     style={styles.image} >
-                <Text style={styles.text}>Let's get cooking!</Text>
             </ImageBackground>
             
         </View>

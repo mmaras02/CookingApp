@@ -1,12 +1,12 @@
 import { View, Text, StyleSheet, ImageBackground, ScrollView } from 'react-native';
 import { RouteProp, useRoute } from '@react-navigation/native';
-import { ParamsList } from '@/app/types';
+import { RootParamList } from '@/app/types';
 import ReturnPage from '../navigation/returnPage';
-import { MealItem } from '@/app/components';
+import { MealCard, MealItem } from '@/app/components';
 import { globalStyles, COLORS } from '@/styles';
 
 const FoundMealsScreen = () => {
-    const route = useRoute<RouteProp<ParamsList, 'Found'>>();
+    const route = useRoute<RouteProp<RootParamList, 'Found'>>();
     const { meals } = route.params;
 
     if (!meals || meals.length === 0) {
@@ -25,11 +25,11 @@ const FoundMealsScreen = () => {
         <ScrollView>
             <ReturnPage title='Found meals'/>
             <View style={styles.container}>
-                <Text style={globalStyles.TitleText}>Recepti s odabranim sastojcima</Text>
+               {/* <Text style={globalStyles.TitleText}>Recepti s odabranim sastojcima</Text>*/}
                 <Text style={globalStyles.text}>Najbolje se slaže:</Text>
                 <View style={styles.firstMealContainer}>
                     <ImageBackground
-                        source={{ uri: firstMeal.image_url }}
+                        source={{ uri: firstMeal.image_url! }}
                         style={styles.firstMealImage}
                         resizeMode="cover">
                         <Text style={styles.TitleText}>{firstMeal.name}</Text> 
@@ -40,7 +40,7 @@ const FoundMealsScreen = () => {
                 <View style={styles.mealsGrid}>
                     {remainingMeals.map((item) => (
                         <View key={item.id || Math.random()}>
-                            <MealItem meal={item} width={180}/>
+                            <MealCard meal={item} />
                         </View>
                     ))}
                 </View>
@@ -55,10 +55,11 @@ const styles = StyleSheet.create({
     container: {
         marginBottom: 130,
         margin: 'auto',
+        marginHorizontal: 10,
     },
     firstMealContainer: {
         marginBottom: 30,
-        margin: 10,
+        margin: 5,
         borderRadius: 20,
         overflow: 'hidden',
         

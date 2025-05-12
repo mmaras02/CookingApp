@@ -1,15 +1,15 @@
 import { favoriteServices } from "@/app/services";
-import { useUser } from "../../context/userSessionContext";
+import { useAuth } from "../../context/userSessionContext";
 import { useQuery } from "@tanstack/react-query";
 import { useFavoriteActions } from "./useFavorites";
 
 export const useFavoriteStatus = (mealId: number) => {
-    const { user } = useUser();
+    const { user } = useAuth();
 
     const { data: isFavorited, isLoading } = useQuery({
-        queryKey: ['favoriteStatus', user?.user?.id, mealId],
-        queryFn: () => favoriteServices.checkIfFavorite(user?.user.id, mealId),
-        enabled: !!user?.user?.id && !!mealId
+        queryKey: ['favoriteStatus', user?.profile?.id, mealId],
+        queryFn: () => favoriteServices.checkIfFavorite(user?.profile.id!, mealId),
+        enabled: !!user?.profile?.id && !!mealId
     });
 
     const { toggleFavorite } = useFavoriteActions();

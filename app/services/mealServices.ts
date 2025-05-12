@@ -37,6 +37,17 @@ const getMealsByIds = async (mealIds: number[]) => {
   return meals;
 };
 
+const getMealsByUserId = async(userId: string) => {
+  const { data, error } = await supabase
+    .from('meals')
+    .select('*')
+    .eq('user_id', userId)
+    .order('created_at', { ascending: false })
 
-export default { getMeals, getMealById, getMealsByIds };
+  if (error) throw error;
+  return data;
+}
+
+
+export default { getMeals, getMealById, getMealsByIds, getMealsByUserId };
     

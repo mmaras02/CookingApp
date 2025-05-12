@@ -43,7 +43,14 @@ export const globalStyles = StyleSheet.create({
       alignItems: 'center',
       borderRadius: 10,
       backgroundColor: '#f2a76d',
+      zIndex: 600,
     },
+
+    headingText: {
+      fontSize: 24,
+      fontWeight: 700,
+      color: COLORS.text,
+  },
 })
 
 /*orange: #f2a76d

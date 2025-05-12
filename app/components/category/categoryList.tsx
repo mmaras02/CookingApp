@@ -3,11 +3,11 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useNavigation } from 'expo-router';
 import { COLORS, globalStyles } from '@/styles';
 import { useCategories } from '@/app/hooks';
-import { ParamsList } from '@/app/types';
+import { RootParamList } from '@/app/types';
 
 const CategoryList = () => {
     const { data: categories } = useCategories();
-    const navigation = useNavigation<NativeStackNavigationProp<ParamsList>>();
+    const navigation = useNavigation<NativeStackNavigationProp<RootParamList>>();
     
     return (
         <View style={styles.categoriesSection}>

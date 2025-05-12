@@ -4,7 +4,7 @@ import { globalStyles, COLORS } from '@/styles';
 import ReturnPage from '../navigation/returnPage';
 import { useNavigation } from 'expo-router';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { Meal, ParamsList } from '@/app/types';
+import { Meal, RootParamList } from '@/app/types';
 import { useFocusEffect } from '@react-navigation/native';
 import { useIngredientsList } from '@/app/hooks';
 import { ingredientServices } from '@/app/services';
@@ -13,7 +13,7 @@ import { LoadingSpinner } from '../components';
 const SearchScreen = () => {
   const { data: ingredients, isLoading } = useIngredientsList();
   const [selectedIngredients, setSelectedIngredients] = useState<number[]>([]);
-  const navigation = useNavigation<NativeStackNavigationProp<ParamsList>>();
+  const navigation = useNavigation<NativeStackNavigationProp<RootParamList>>();
 
   useFocusEffect(
     useCallback(() => {

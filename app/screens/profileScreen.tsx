@@ -1,13 +1,13 @@
 import { Text, View, Image, StyleSheet, TouchableOpacity, Alert } from 'react-native'
-import { useUser } from '../context/userSessionContext';
+import { useAuth } from '../context/userSessionContext';
 import { globalStyles, COLORS } from '@/styles';
-import images from '@/assets/images';
 import { useNavigation } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import { authServices } from '@/app/services';
+import { ProfileOption } from '../components';
 
 const ProfileScreen = () => {
-  const { user, setUser } = useUser();
+  const { user, setUser } = useAuth();
   const userProfile = user?.profile;
   const navigation = useNavigation();
 
@@ -34,41 +34,12 @@ const ProfileScreen = () => {
 
       <View>
 
-        <View style={styles.profileHeader}>
-          <Image 
-            source={images.Profile}
-            style={styles.iconImage} />
-          <Text style={globalStyles.text}>Personal Data</Text>
-        </View>
-
-        <View style={styles.profileHeader}>
-          <TouchableOpacity>
-            <Ionicons name="settings-outline" style={styles.iconImage}/>
-          </TouchableOpacity>
-          <Text style={globalStyles.text}>Settings</Text>
-        </View>
-
-        <TouchableOpacity onPress={()=> navigation.navigate('Favorites' as never)} style={styles.profileHeader}>
-          <Image 
-            source={images.Saved}
-            style={styles.iconImage} />
-          <Text style={globalStyles.text}>Saved recipes</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.profileHeader} onPress={() => navigation.navigate('Lists' as never)}>
-          <Ionicons name="cart" style={styles.iconImage} />
-          <Text style={globalStyles.text}>Your shopping cart</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.profileHeader} onPress={() => navigation.navigate('CreateRecipe' as never)}>
-          <Ionicons name="create" style={styles.iconImage} />
-          <Text style={globalStyles.text}>Create recipes</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.profileHeader}>
-          <Ionicons name="restaurant" style={styles.iconImage} />
-          <Text style={globalStyles.text}>Custom meals</Text>
-        </TouchableOpacity>
+        <ProfileOption iconName='person' routeName='EditProfile' title='Personal data' />
+        <ProfileOption iconName='bookmark' routeName='Favorites' title='Saved recipes' />
+        <ProfileOption iconName='cart' routeName='Lists' title='Your shopping cart' />
+        <ProfileOption iconName='restaurant' routeName='UsersRecipes' title='Your meals' />
+        <ProfileOption iconName='create' routeName='CreateRecipe' title='CreateRecipe' />
+        <ProfileOption iconName='settings-outline' routeName='' title='Settings' />
    
         <TouchableOpacity onPress={()=>handleLogout()} style={styles.profileHeader}>
           <Ionicons name="log-out-outline" style={styles.iconImage} />
@@ -90,8 +61,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 25,
     marginVertical: 2,
-
   },
+  
   image: {
     width: 70,
     height: 70,

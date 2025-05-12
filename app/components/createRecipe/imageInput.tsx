@@ -1,14 +1,14 @@
-import { useUser } from "@/app/context/userSessionContext";
+import { useAuth } from "@/app/context/userSessionContext";
 import { imageUploadServices } from "@/app/services";
 import { COLORS } from "@/styles";
 import { Ionicons } from "@expo/vector-icons"
 import { useState } from "react";
 import { TouchableOpacity, View, Text, Image, StyleSheet, Alert } from "react-native"
-import LoadingSpinner from "../loading/loadingSpinner";
 import { ImageInputProps } from "@/app/types";
+import { LoadingSpinner } from "..";
 
-  const ImageInput = ({imageUrl, setImageUrl} : ImageInputProps) => {
-    const { user } = useUser();
+  const ImageInput = ({imageUrl, setImageUrl, bucketName, imageHeight = 200, imageWidth = 370} : ImageInputProps) => {
+    const { user } = useAuth();
     const userProfile = user?.profile;
     const [isUploading, setIsUploading] = useState(false);
     
@@ -20,7 +20,7 @@ import { ImageInputProps } from "@/app/types";
 
         setIsUploading(true);
         try {
-            const publicUrl = await imageUploadServices.pickImage();
+            const publicUrl = await imageUploadServices.pickImage(bucketName);
             if (publicUrl) {
               setImageUrl(publicUrl);
             }
@@ -30,54 +30,54 @@ import { ImageInputProps } from "@/app/types";
     };
 
     return (
-        <View>
-            {imageUrl ? (
-                <View style={styles.imageContainer}>
-                    {isUploading ? (
-                        <LoadingSpinner />
-                    ): (
-                    <Image 
-                        source={{ uri: imageUrl }}
-                        style={styles.image}
-                        resizeMode="cover" 
-                    />
-                    )}
-                    
+        <TouchableOpacity onPress={handleImageUpload}
+                        disabled={isUploading}
+                        style={[styles.imageContainer, { height: imageHeight, width: imageWidth }]} >
+            {isUploading ? (
+                <LoadingSpinner />
+            ) : imageUrl ? (
+                <View style={styles.imageWrapper}>
+                    <Image source={{ uri: imageUrl }} style={styles.image} />
+                    <View style={styles.overlay}>
+                        <Ionicons name="camera" size={24} color="white" />
+                    </View>
                 </View>
+                
             ) : (
-                <TouchableOpacity 
-                    style={styles.imageContainer}
-                    onPress={handleImageUpload}
-                    disabled={isUploading}
-                >
-                    {isUploading ? (
-                            <LoadingSpinner />
-                    ) : (
-                        <>
-                            <Ionicons name="camera" size={40} color="gray" />
-                            <Text>Tap to add image</Text>
-                        </>
-                    )}
-                    
-                </TouchableOpacity>
+                <View>
+                    <Ionicons name="camera" size={28} color={COLORS.dark_grey} />
+                    <Text>Add Photo</Text>
+                </View>
             )}
-        </View>
-    );
+        </TouchableOpacity>
+  );
 };
 export default ImageInput;
 
 const styles = StyleSheet.create({
     imageContainer: {
-        height: 200,
         backgroundColor: COLORS.dark_grey,
         borderRadius: 10,
         justifyContent: 'center',
         alignItems: 'center',
         marginVertical: 15,
         overflow: 'hidden',
+        alignSelf: 'center',
     },
     image: {
         width: '100%',
         height: '100%',
+    },
+
+    imageWrapper: {
+        flex: 1,
+        width: '100%',
+        height: '100%',
+    },
+    overlay: {
+        ...StyleSheet.absoluteFillObject,
+        backgroundColor: 'rgba(0, 0, 0, 0.3)',
+        justifyContent: 'center',
+        alignItems: 'center',
     },
 })

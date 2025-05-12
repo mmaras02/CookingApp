@@ -1,20 +1,20 @@
-import { useUser } from '@/app/context/userSessionContext';
+import { useAuth } from '@/app/context/userSessionContext';
 import { favoriteServices } from '@/app/services';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 
 export const useFavorites = () => {
-  const { user } = useUser();
+  const { user } = useAuth();
   return useQuery({
-    queryKey: ['favorites', user?.user?.id],
-    queryFn: () => favoriteServices.getUserFavorites(user?.user.id),
-    enabled: !!user?.user?.id
+    queryKey: ['favorites', user?.profile?.id],
+    queryFn: () => favoriteServices.getUserFavorites(user?.profile.id!),
+    enabled: !!user?.profile?.id
   });
 };
 
 export const useFavoriteActions = () => {
   const queryClient = useQueryClient();
-  const { user } = useUser();
-  const userId = user?.user?.id;
+  const { user } = useAuth();
+  const userId = user?.profile?.id!;
 
   const toggleFavorite = useMutation({
     mutationFn: ({ mealId, isFavorited }: { mealId: number; isFavorited: boolean }) =>

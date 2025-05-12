@@ -2,7 +2,7 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Image } from 'react-native';
 import images from '@/assets/images';
-import { TabParamList } from '../types';
+import { TabParamList } from '@/app/types';
 import { COLORS } from '@/styles';
 import { HomeScreen, GenerateMealScreen, SearchScreen, FavoriteScreen, ProfileScreen } from '@/app/screens';
 

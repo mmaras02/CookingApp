@@ -20,12 +20,6 @@ const CategoryScreen = ({ route } : { route : any}) => {
                       <MealItem meal={item} width={180}/>
                   )} 
                   numColumns={2}/>
-                    {/*<View>
-                      <Image source={{uri: item.image_url}} style={globalStyles.image}/>
-                      <Text>{item.name}</Text>
-                      <Text>{item.id}</Text>
-                    </View>
-  )} />*/}
           <Text style={globalStyles.text}></Text>
       </View>
     </View>

@@ -1,9 +1,13 @@
 export type Meal = {
-    id?: number,
+    id: number,
     name: string,
     image_url? : string | null,
     user_id: string,
+    difficulty?: string,
+    prep_time: number,
 }
+
+export type MealCreate = Omit<Meal, 'id'>;
 
 export type Ingredient = {
   id?: number;
@@ -18,6 +22,14 @@ export type Recipe = {
 }
 
 export type Category = {
-  id: number;
+  id?: number;
   name: string;
+}
+
+export type Review = {
+  id?: number,
+  user_id: string, 
+  meal_id: number,
+  rating: number,
+  comment: string,
 }

@@ -5,13 +5,13 @@ import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useFavorites } from '@/app/hooks';
 import { COLORS, globalStyles } from '@/styles';
-import { ParamsList } from '@/app/types';
+import { RootParamList } from '@/app/types';
 import { LoadingSpinner } from '../components';
 
 
 const FavoriteScreen = () => {
   const { data: favorites, refetch, isRefetching, isLoading } = useFavorites();
-  const navigation = useNavigation<NativeStackNavigationProp<ParamsList>>();
+  const navigation = useNavigation<NativeStackNavigationProp<RootParamList>>();
 
   if (isLoading) return <LoadingSpinner />
   
@@ -24,7 +24,7 @@ const FavoriteScreen = () => {
       <ReturnPage title='Your favorites'/>
       <FlatList
         data={favorites}
-        keyExtractor={(item) => item.id.toString()}
+        keyExtractor={(item) => item.id!.toString()}
         refreshControl={
           <RefreshControl
             refreshing={isRefetching}
@@ -35,7 +35,7 @@ const FavoriteScreen = () => {
           <TouchableOpacity style={styles.mealCard}
           onPress={() => navigation.navigate('MealDetails', { mealId: item.id })}>
             <Image 
-              source={{ uri: item.image_url }} 
+              source={{ uri: item.image_url! }} 
               style={styles.image} 
               resizeMode="cover"
             />

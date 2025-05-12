@@ -1,0 +1,94 @@
+import { useWriteReview } from "@/app/hooks";
+import { COLORS, globalStyles } from "@/styles";
+import { Ionicons } from "@expo/vector-icons";
+import { useState } from "react";
+import { View, StyleSheet, TouchableOpacity, Text, TextInput, Alert } from "react-native";
+
+interface ReviewProps {
+    mealId: number;
+    userId: string;
+}
+
+const WriteReview =  ({mealId, userId} : ReviewProps) => {
+    const [comment, setComment] = useState("");
+    const [rating, setRating] = useState(0); 
+    const { mutate: writeReview } = useWriteReview();
+
+    const handleSubmitReview = () => {
+        if (rating === 0) {
+            Alert.alert("Please select a rating");
+            return;
+        }
+        if (!comment.trim()) {
+            Alert.alert("Please write a review");
+            return;
+        }
+        writeReview({ mealId, rating, comment }, {
+            onSuccess: () => {
+              Alert.alert("Review submitted successfully!");
+              setComment("");
+              setRating(0);
+            },
+            onError: () => {
+                Alert.alert("Failed to submit review");
+              }
+            });
+    }
+
+    return(
+        <View>
+            <Text style={globalStyles.headingText}>Leave your review!</Text>
+            <View style={styles.starsContainer}>
+                {[1, 2, 3, 4, 5].map((star) => (
+                    <TouchableOpacity key={star} onPress={() => setRating(star)}>
+                        <Ionicons name={star <= rating ? "star" : "star-outline"}
+                                  size={30}
+                                  color={COLORS.orange}
+                                  style={styles.star} />
+                    </TouchableOpacity>
+                ))}
+            </View>
+
+            <View style={styles.inputContainer}>
+                <TextInput
+                    style={styles.input}
+                    placeholder="Write your review..."
+                    value={comment}
+                    onChangeText={setComment}
+                    multiline
+                />
+            </View>
+            
+            <TouchableOpacity style={globalStyles.orangeButton}
+                              onPress={handleSubmitReview} >
+
+                <Text style={globalStyles.whiteText}>Submit</Text>
+            </TouchableOpacity>
+
+        </View>
+    )
+
+}
+export default WriteReview;
+
+const styles = StyleSheet.create({
+
+    starsContainer: {
+        flexDirection: "row",
+        margin: 10,
+    },
+    star: {
+        marginHorizontal: 5,
+    },
+
+    inputContainer: {
+        backgroundColor: COLORS.dark_grey,
+        padding: 15,
+        marginHorizontal: 15,
+        borderRadius: 10,
+    },
+    input: {
+        fontSize: 16,
+        color: COLORS.text,
+    },
+})

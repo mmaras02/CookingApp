@@ -19,8 +19,6 @@ const checkIfFavorite = async (userId: string, mealId: number): Promise<boolean>
 };
 
 const toggleFavoriteMeal = async (userId: string, mealId: number, isFavorite: boolean) => {
-    //console.log(`Toggling favorite: user=${userId}, meal=${mealId}, current=${isFavorite}`);
-    
     if (isFavorite) {
         const { error } = await supabase
             .from("user_favorites")
