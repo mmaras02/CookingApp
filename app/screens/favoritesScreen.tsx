@@ -7,6 +7,7 @@ import { useFavorites } from '@/app/hooks';
 import { COLORS, globalStyles } from '@/styles';
 import { RootParamList } from '@/app/types';
 import { LoadingSpinner } from '../components';
+import { Ionicons } from '@expo/vector-icons';
 
 
 const FavoriteScreen = () => {
@@ -43,6 +44,18 @@ const FavoriteScreen = () => {
               <Text style={globalStyles.text}>
                 {item.name}
               </Text>
+              <View style={{flexDirection: 'row'}}>
+                <Text>Rating: </Text>
+                <Ionicons
+                  key={item.id}
+                  name="star"
+                  size={18}
+                  color={COLORS.orange}
+                  style={styles.stars}
+                />
+                <Text>4.9</Text>
+              </View>
+              
             </View>
           </TouchableOpacity>
         )}
@@ -73,4 +86,7 @@ const styles = StyleSheet.create({
   mealInfo: {
     flex: 1,
   },
+  stars: {
+    marginBottom: 10,
+  }
 });

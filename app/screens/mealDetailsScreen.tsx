@@ -63,7 +63,7 @@ const MealDetailsScreen = () => {
                     <View style={styles.categorySection}>
                         {categories && categories.map((category, index) => (
                             <View key={index} style={styles.categoryContent}>
-                                <Text style={globalStyles.text}>{category} </Text>
+                                <Text style={styles.text}>{category} </Text>
                             </View>
                         ))}
                     </View>
@@ -149,11 +149,10 @@ const styles = StyleSheet.create({
     },
   
     categoryContent: {
-        backgroundColor: COLORS.dark_grey,
+        backgroundColor: COLORS.light_green,
         margin: 10,
         padding: 5,
-        justifyContent: 'center',
-        borderRadius: 20,
+        borderRadius: 5,
     },
 
     dataContent: {
@@ -179,5 +178,11 @@ const styles = StyleSheet.create({
         height: 40,
         borderRadius: 30,
         marginRight: 10,
+    },
+    text: {
+        fontSize: 18,
+        alignSelf: 'center',
+        marginLeft: 5,
+        color: COLORS.light,
     }
 })

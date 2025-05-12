@@ -1,6 +1,5 @@
 import { useAuth } from "@/app/context/userSessionContext";
-import { View, Text, StyleSheet } from "react-native";
-import { globalStyles } from "@/styles";
+import { View, StyleSheet } from "react-native";
 import { ReviewList, WriteReview } from ".";
 
 const MealReviews =  ({mealId} : {mealId: number}) => {
@@ -11,7 +10,6 @@ const MealReviews =  ({mealId} : {mealId: number}) => {
         <View style={styles.container}>
             <WriteReview mealId={mealId} 
                          userId={userProfile?.id!}/>
-            <Text style={globalStyles.TitleText}>See what other people think!</Text>
             <ReviewList mealId={mealId} />
 
         </View>

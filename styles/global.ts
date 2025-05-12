@@ -4,14 +4,16 @@ import { COLORS } from '.';
 export const globalStyles = StyleSheet.create({
     TitleText:{
       color: COLORS.title_text,
-      fontSize: 25,
+      fontSize: 23,
       fontWeight: 'bold',
+      fontFamily: 'Montserrat-Regular',
     },
     text: {
-      fontSize: 18,
+      fontSize: 17,
       color: COLORS.text,
       marginRight: 5,
       fontWeight: 500,
+      fontFamily: 'Montserrat-Bold'
     },
     whiteText: {
       fontSize: 18,

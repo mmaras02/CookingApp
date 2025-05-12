@@ -1,6 +1,6 @@
 import { useAuth } from "@/app/context/userSessionContext";
 import { imageUploadServices } from "@/app/services";
-import { COLORS } from "@/styles";
+import { COLORS, globalStyles } from "@/styles";
 import { Ionicons } from "@expo/vector-icons"
 import { useState } from "react";
 import { TouchableOpacity, View, Text, Image, StyleSheet, Alert } from "react-native"
@@ -44,9 +44,9 @@ import { LoadingSpinner } from "..";
                 </View>
                 
             ) : (
-                <View>
-                    <Ionicons name="camera" size={28} color={COLORS.dark_grey} />
-                    <Text>Add Photo</Text>
+                <View style={{alignItems: 'center'}}>
+                    <Ionicons name="camera" size={28} color={COLORS.text} />
+                    <Text style={globalStyles.text}>Add Photo</Text>
                 </View>
             )}
         </TouchableOpacity>
