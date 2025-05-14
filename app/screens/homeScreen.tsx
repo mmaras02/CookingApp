@@ -1,9 +1,10 @@
-import { View, Text, StyleSheet, ScrollView } from 'react-native'
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native'
 import { useAuth } from '../context/userSessionContext';
 import { useMeals } from '@/app/hooks';
 import { globalStyles } from '@/styles';
 import { CategoryList, HorizontalMealList, SearchBar } from '@/app/components';
 import { Meal } from '@/app/types';
+import MealList from '../components/mealDetails/mealList';
 
 const HomeScreen = () => {
   const { data: meals } = useMeals();
@@ -27,7 +28,7 @@ const HomeScreen = () => {
       <CategoryList />
 
       {/**recommended at least 8 meals*/}
-      <HorizontalMealList meals={recommendedMeals.slice(0,8)!}
+      <HorizontalMealList meals={recommendedMeals!}
                           title='Preporučeno' />
 
       {/**quick and easy */}

@@ -11,4 +11,5 @@ export type RootParamList = {
     Found: { meals: Meal[]};
     ListItem: { listId: number, title: string}
     UserProfile: { userId: string} 
+    DisplayMeals: {meals : Meal[]}
 };

@@ -15,3 +15,6 @@ export { default as CreateRecipeScreen } from './createRecipeScreen';
 export { default as UsersRecipesScreen } from './usersRecipesScreen';
 export { default as UserProfileScreen } from './userProfileScreen';
 export { default as EditProfileScreen } from './editProfileScreen';
+export { default as DisplayMealsScreen } from './displayMealsScreen';
+
+
