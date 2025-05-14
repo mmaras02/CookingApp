@@ -1,5 +1,5 @@
 import { supabase } from "@/lib/supabase";
-import { Ingredient, Meal, MealCreate } from "@/app/types";
+import { Ingredient, MealCreate } from "@/app/types";
 import { standardizeName } from "../utils";
 
 const createMeal = async(mealData: MealCreate) => {
@@ -27,7 +27,6 @@ const addMealCategories = async(mealId: number, categoryIds: string[]) => {
 }
 
 const findOrAddIngredients = async(ingredients: Ingredient[]) => {
-    //dobivan listu ingredients 
     const standardizedIngredients = ingredients.map((ing) => ({
         ...ing,
         name: standardizeName(ing.name),

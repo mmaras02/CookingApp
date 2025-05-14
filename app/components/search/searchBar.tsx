@@ -19,7 +19,7 @@ const SearchBar = ({meals} : {meals: Meal[]}) => {
 
     return (
         <View>
-        <Searchbar placeholder="Search any recipies"
+        <Searchbar placeholder="Pretraži recepte"
                     value={search}
                     onChangeText={setSearch}
                     style={styles.search} />

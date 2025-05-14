@@ -46,19 +46,19 @@ const SigninScreen = () => {
                 onChangeText={setPassword}
             />
         </View>
-        <Text style={styles.passwordText}>Forgotten password?</Text>
+        <Text style={styles.passwordText}>Zaboravio/la si lozinku?</Text>
         <TouchableOpacity style={styles.signupButton} onPress={() => handleUserSignin()}>
-            <Text style={styles.signupText}>Sign in</Text>
+            <Text style={styles.signupText}>Logiraj se</Text>
         </TouchableOpacity>
-        <Text style={styles.continueText}>or continue with</Text>
+        <Text style={styles.continueText}>ili nastavi s</Text>
         <TouchableOpacity style={styles.googleContainer}>
             <Image source={images.Google} style={styles.googleImg}/>
             <Text style={globalStyles.text}>Google</Text>
         </TouchableOpacity>
         <View style={styles.footerContainer}>
-            <Text style={styles.continueText}>Don't have an account? </Text>
+            <Text style={styles.continueText}>Još nemaš račun ? </Text>
             <TouchableOpacity onPress={() => navigation.navigate('Signup' as never)}>
-                <Text style={{'fontWeight': 800, color: COLORS.text}}> Sign up!</Text></TouchableOpacity>
+                <Text style={{'fontWeight': 800, color: COLORS.text}}> Registriraj se!</Text></TouchableOpacity>
         </View>
       </View>
       

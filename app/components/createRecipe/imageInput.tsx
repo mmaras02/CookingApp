@@ -46,7 +46,7 @@ import { LoadingSpinner } from "..";
             ) : (
                 <View style={{alignItems: 'center'}}>
                     <Ionicons name="camera" size={28} color={COLORS.text} />
-                    <Text style={globalStyles.text}>Add Photo</Text>
+                    <Text style={globalStyles.text}>Dodaj sliku</Text>
                 </View>
             )}
         </TouchableOpacity>

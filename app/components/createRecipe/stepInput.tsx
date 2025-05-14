@@ -23,13 +23,13 @@ const StepInput = ({steps, setSteps} : StepInputProps) => {
 
     return(
         <>
-        <Text style={globalStyles.text}>Instructions</Text>
+        <Text style={globalStyles.text}>Priprema</Text>
             {steps.map((step, index) => (
                 <View key={index}
                       style={styles.stepContainer}>
                     <TextInput
                         style={[styles.input, styles.stepInput]}
-                        placeholder={`Step ${index + 1}`}
+                        placeholder={`Korak ${index + 1}`}
                         onChangeText={(text) => handleStepChange(index, text)}
                         multiline
                     />
@@ -43,7 +43,7 @@ const StepInput = ({steps, setSteps} : StepInputProps) => {
             
             <TouchableOpacity style={styles.addButton}
                               onPress={handleAddStep}>
-                <Text style={globalStyles.text}>+ Add step</Text>
+                <Text style={globalStyles.text}>+ Dodaj korak</Text>
             </TouchableOpacity>
         </>
     )

@@ -45,16 +45,14 @@ const GenerateMealScreen = () => {
 
   return (
       <View style={styles.container}>
-          <ReturnPage title='Generate random meal' />
+          <ReturnPage title='Generiraj nasumični obrok' />
           <View style={styles.generateSection}>
               <Button 
                   onPress={handlePress} 
                   style={globalStyles.orangeButton}
                   disabled={isLoading || !meals.length}
               >
-                  <Text style={globalStyles.whiteText}>
-                      {isLoading ? "Loading..." : "Generate"}
-                  </Text>
+                  <Text style={globalStyles.whiteText}>Generiraj</Text>
               </Button>
 
               {randomMeal && (

@@ -58,7 +58,7 @@ const CreateRecipeScreen = () => {
 
   return (
     <ScrollView>
-        <ReturnPage title='Create your recipe' />
+        <ReturnPage title='Stvori svoj recept' />
         <View style={styles.container}>
 
             <TitleInput title={title}

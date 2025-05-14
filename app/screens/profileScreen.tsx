@@ -34,12 +34,12 @@ const ProfileScreen = () => {
 
       <View>
 
-        <ProfileOption iconName='person' routeName='EditProfile' title='Personal data' />
-        <ProfileOption iconName='bookmark' routeName='Favorites' title='Saved recipes' />
-        <ProfileOption iconName='cart' routeName='Lists' title='Your shopping cart' />
-        <ProfileOption iconName='restaurant' routeName='UsersRecipes' title='Your meals' />
-        <ProfileOption iconName='create' routeName='CreateRecipe' title='CreateRecipe' />
-        <ProfileOption iconName='settings-outline' routeName='' title='Settings' />
+        <ProfileOption iconName='person' routeName='EditProfile' title='Osobne informacije' />
+        <ProfileOption iconName='bookmark' routeName='Favorites' title='Spremljeni recepti' />
+        <ProfileOption iconName='cart' routeName='Lists' title='Tvoja shopping košarica' />
+        <ProfileOption iconName='restaurant' routeName='UsersRecipes' title='Tvoji recepti' />
+        <ProfileOption iconName='create' routeName='CreateRecipe' title='Kreiraj recept' />
+        <ProfileOption iconName='settings-outline' routeName='' title='Postavke' />
    
         <TouchableOpacity onPress={()=>handleLogout()} style={styles.profileHeader}>
           <Ionicons name="log-out-outline" style={styles.iconImage} />

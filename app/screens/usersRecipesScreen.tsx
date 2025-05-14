@@ -39,9 +39,9 @@ const UsersRecipesScreen = () => {
 
   return (
     <View style={styles.container}>
-        <ReturnPage title='Your recipes' />
+        <ReturnPage title='Tvoji recepti' />
       {meals.length === 0 ? (
-        <Text style={globalStyles.text}>You haven't created any recipes yet</Text>
+        <Text style={globalStyles.text}>Još nemaš svojih recepata</Text>
       ) : (
         <FlatList
           data={meals}

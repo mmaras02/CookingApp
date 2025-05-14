@@ -32,4 +32,5 @@ export type Review = {
   meal_id: number,
   rating: number,
   comment: string,
+  profiles: any;
 }

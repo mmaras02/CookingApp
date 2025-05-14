@@ -14,7 +14,7 @@ const CategorySelector = ({ selectedCategories, setSelectedCategories } : Catego
     
     return(
         <View style={{ marginBottom: 20 }}>
-                <Text style={globalStyles.text}>Categories</Text>
+                <Text style={globalStyles.text}>Kategorije</Text>
                     <MultiSelect
                         style={styles.input}
                         selectedTextStyle={styles.selectedTextStyle}
@@ -22,7 +22,7 @@ const CategorySelector = ({ selectedCategories, setSelectedCategories } : Catego
                         data={categoryOptions}
                         labelField="label"
                         valueField="value"
-                        placeholder="Select categories"
+                        placeholder="Izaber kategorije"
                         value={selectedCategories}
                         onChange={item => {
                             setSelectedCategories(item);

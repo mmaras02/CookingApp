@@ -14,3 +14,10 @@ export type UserState = {
   user: User;
   profile: UserProfile;
 };
+
+export type UserInfo = {
+  email: string,
+  password: string;
+  username: string;
+  full_name: string;
+}

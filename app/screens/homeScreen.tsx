@@ -19,7 +19,7 @@ const HomeScreen = () => {
   return (
     <ScrollView>
       <View style={styles.title}>
-        <Text style={globalStyles.TitleText}>Welcome back </Text>
+        <Text style={globalStyles.TitleText}>Evo te nazad </Text>
         <Text style={globalStyles.TitleText}>{userProfile?.username}!</Text>
       </View>
       
@@ -28,16 +28,16 @@ const HomeScreen = () => {
 
       {/**recommended at least 8 meals*/}
       <HorizontalMealList meals={recommendedMeals.slice(0,8)!}
-                          title='Recommended' />
+                          title='Preporučeno' />
 
       {/**quick and easy */}
       <HorizontalMealList meals={quickAndEasyMeals}
-                          title='Quick and easy' />
+                          title='Brzo i jednostavno' />
 
       {/**see other users recipes */}
       {(otherUsersMeals || []).length > 0 && (
         <HorizontalMealList meals={otherUsersMeals}
-                            title='Other users recipes' />
+                            title='Recepti drugih korisnika' />
       )}
        
     </ScrollView>

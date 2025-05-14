@@ -52,7 +52,7 @@ const SearchScreen = () => {
 
   return (
     <View>
-      <ReturnPage title='Choose by ingredients'/>
+      <ReturnPage title='Odaberi željene sastojke'/>
       <View style={styles.container}>
         {/*<Text style={globalStyles.TitleText}>Choose the ingredients you have at home!</Text>*/}
 
@@ -72,7 +72,7 @@ const SearchScreen = () => {
               </TouchableOpacity>
               )}}
         />
-        <Button title="Find a meal" 
+        <Button title="Pronađi obrok" 
                 onPress={() => handleUserChoice()}
                 color={COLORS.orange}/>
       </View>

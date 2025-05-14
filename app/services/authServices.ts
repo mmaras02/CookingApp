@@ -1,8 +1,8 @@
 import { supabase } from "@/lib/supabase";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { User } from "@/app/types";
+import { UserInfo } from "@/app/types";
 
-const SignUpUser = async ({ email, password, username, full_name } : User) => {
+const SignUpUser = async ({ email, password, username, full_name } : UserInfo) => {
     const { data, error } = await supabase.auth.signUp({ email, password });
     if(error)
         alert(error.message);

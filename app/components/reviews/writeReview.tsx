@@ -37,7 +37,7 @@ const WriteReview =  ({mealId, userId} : ReviewProps) => {
 
     return(
         <View>
-            <Text style={globalStyles.headingText}>Leave your review!</Text>
+            <Text style={globalStyles.headingText}>Ostavi svoj komentar!</Text>
             <View style={styles.starsContainer}>
                 {[1, 2, 3, 4, 5].map((star) => (
                     <TouchableOpacity key={star} onPress={() => setRating(star)}>
@@ -52,7 +52,7 @@ const WriteReview =  ({mealId, userId} : ReviewProps) => {
             <View style={styles.inputContainer}>
                 <TextInput
                     style={styles.input}
-                    placeholder="Write your review..."
+                    placeholder="Napiši svoj komentar..."
                     value={comment}
                     onChangeText={setComment}
                     multiline
@@ -62,7 +62,7 @@ const WriteReview =  ({mealId, userId} : ReviewProps) => {
             <TouchableOpacity style={globalStyles.orangeButton}
                               onPress={handleSubmitReview} >
 
-                <Text style={globalStyles.whiteText}>Submit</Text>
+                <Text style={globalStyles.whiteText}>Objavi</Text>
             </TouchableOpacity>
 
         </View>

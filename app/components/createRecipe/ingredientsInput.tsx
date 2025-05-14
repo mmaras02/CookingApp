@@ -25,13 +25,13 @@ const IngredientInput = ({ingredients, setIngredients} : IngredientInputProps) =
 
     return(
         <>
-        <Text style={globalStyles.text}>Ingredients:</Text>
+        <Text style={globalStyles.text}>Sastojci:</Text>
             {ingredients?.map((ingredient, index) => (
                 <View style={styles.ingredientsContainer}
                       key={index}>
                     <TextInput
                         style={[styles.input, styles.ingredientInput]}
-                        placeholder="Ingredient"
+                        placeholder="Sastojak"
                         value={ingredient.name}
                         onChangeText={(text) => handleIngredientChange(index, 'name', text)}
                     />
@@ -52,7 +52,7 @@ const IngredientInput = ({ingredients, setIngredients} : IngredientInputProps) =
             
             <TouchableOpacity style={styles.addButton}
                               onPress={handleAddIngredient}>
-                <Text style={globalStyles.text}>+ Add Ingredient</Text>
+                <Text style={globalStyles.text}>+ Dodaj sastojak</Text>
             </TouchableOpacity>
     </>
     )

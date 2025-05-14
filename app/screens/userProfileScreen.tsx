@@ -31,7 +31,7 @@ const UserProfileScreen = () => {
 
                     
                     <View style={styles.content}>
-                        <Text style={globalStyles.headingText}>See {user.full_name}'s recipes!</Text>
+                        <Text style={globalStyles.headingText}>Vidi recepte od {user.full_name}!</Text>
                         <FlatList data={userMeals}
                         keyExtractor={(meal) => meal.id.toString()}
                         numColumns={2}

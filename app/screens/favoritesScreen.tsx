@@ -18,7 +18,7 @@ const FavoriteScreen = () => {
 
   return (
     <View style={styles.container}>
-      <ReturnPage title='Your favorites'/>
+      <ReturnPage title='Tvoji favoriti'/>
       <FlatList
         data={favorites}
         keyExtractor={(item) => item.id!.toString()}

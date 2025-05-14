@@ -39,8 +39,8 @@ const SignupScreen = () => {
 
         <View style={styles.textContainer}>
             <Text style={styles.headingText}>Hey,</Text>
-            <Text style={styles.headingText}>Let's get</Text>
-            <Text style={styles.headingText}>Started</Text>
+            <Text style={styles.headingText}>Krenimo</Text>
+            <Text style={styles.headingText}>U avanturu kuhanja!</Text>
         </View>
 
       <View style={styles.formContainer}>
@@ -80,10 +80,10 @@ const SignupScreen = () => {
             />
         </View>
         <TouchableOpacity style={styles.signupButton} onPress={() => handleSignup()}>
-            <Text style={styles.signupText}>Sign up</Text>
+            <Text style={styles.signupText}>Registriraj se</Text>
         </TouchableOpacity>
 
-        <Text style={styles.continueText}>or continue with</Text>
+        <Text style={styles.continueText}>ili nastavi s</Text>
 
         <TouchableOpacity style={styles.googleContainer}>
             <Image source={images.Google} style={styles.googleImg}/>
@@ -91,9 +91,9 @@ const SignupScreen = () => {
         </TouchableOpacity>
 
         <View style={styles.footerContainer}>
-            <Text style={styles.continueText}>Already have an account? </Text>
+            <Text style={styles.continueText}>Već imaš račun? </Text>
             <TouchableOpacity onPress={() => navigation.navigate('Signin' as never)}>
-                <Text style={{'fontWeight': 800, color: COLORS.text}}> Sign in!</Text>
+                <Text style={{'fontWeight': 800, color: COLORS.text}}> Logiraj se!</Text>
             </TouchableOpacity>
         </View>
 

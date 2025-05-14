@@ -13,13 +13,13 @@ function ListsScreen() {
     
     return (
         <View style={styles.container}>
-            <ReturnPage title={"Notes"}/>
+            <ReturnPage title={"Bilješke"}/>
             <View style={styles.content}>
             
                 <View style={styles.listContainer}>
                     {lists?.length === 0 ? (
                         <View>
-                            <Text>No lists yet</Text>
+                            <Text>Nemaš još bilješaka!</Text>
                         </View>
                     ) : (
                     <FlatList

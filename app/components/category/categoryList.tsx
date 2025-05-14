@@ -13,9 +13,9 @@ const CategoryList = () => {
         <View style={styles.categoriesSection}>
 
             <View style={styles.titleSection}>
-                <Text style={globalStyles.TitleText}>Categories</Text>
+                <Text style={globalStyles.TitleText}>Kategorije</Text>
                 <TouchableOpacity>
-                    <Text style={styles.moreText}>See more</Text>
+                    <Text style={styles.moreText}>Vidi više</Text>
                 </TouchableOpacity>
             </View>
 

@@ -26,17 +26,17 @@ const IngredientsList = ({ingredients, mealName} : IngredientsListProps) => {
                     is_checkbox: true,
                 });
             });
-            Alert.alert("Added to the shopping list!");
+            Alert.alert("Dodano u shopping listu!");
         }
         
   return (
     <View style={styles.ingredientSection}>
-        <Text style={globalStyles.TitleText}>Ingredients</Text>
+        <Text style={globalStyles.TitleText}>Sastojci</Text>
         
         <TouchableOpacity style={styles.addButton}
                           onPress={handleAddToList}>
             <Ionicons name="cart-outline" style={styles.iconImage} />
-            <Text style={styles.text}>Add to shopping list</Text>
+            <Text style={styles.text}>Dodaj u shopping listu!</Text>
         </TouchableOpacity>
                 
         {ingredients && ingredients.map((ingredient) => (

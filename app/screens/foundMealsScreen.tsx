@@ -23,7 +23,7 @@ const FoundMealsScreen = () => {
 
     return (
         <ScrollView>
-            <ReturnPage title='Found meals'/>
+            <ReturnPage title='Pronađeni recepti'/>
             <View style={styles.container}>
                 <Text style={globalStyles.text}>Najbolje se slaže:</Text>
                 <View style={styles.firstMealContainer}>
