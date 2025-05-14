@@ -2,8 +2,8 @@ import { View, Text, StyleSheet, ImageBackground, ScrollView } from 'react-nativ
 import { RouteProp, useRoute } from '@react-navigation/native';
 import { RootParamList } from '@/app/types';
 import ReturnPage from '../navigation/returnPage';
-import { MealCard, MealItem } from '@/app/components';
 import { globalStyles, COLORS } from '@/styles';
+import MealList from '../components/mealDetails/mealList';
 
 const FoundMealsScreen = () => {
     const route = useRoute<RouteProp<RootParamList, 'Found'>>();
@@ -25,7 +25,6 @@ const FoundMealsScreen = () => {
         <ScrollView>
             <ReturnPage title='Found meals'/>
             <View style={styles.container}>
-               {/* <Text style={globalStyles.TitleText}>Recepti s odabranim sastojcima</Text>*/}
                 <Text style={globalStyles.text}>Najbolje se slaže:</Text>
                 <View style={styles.firstMealContainer}>
                     <ImageBackground
@@ -37,10 +36,10 @@ const FoundMealsScreen = () => {
                 </View>
 
                 <Text style={globalStyles.TitleText}> I drugi recepti koji sadrže odgovarajuće sastojke</Text>
-                <View style={styles.mealsGrid}>
+                <View>
                     {remainingMeals.map((item) => (
                         <View key={item.id || Math.random()}>
-                            <MealCard meal={item} />
+                            <MealList meal={item} />
                         </View>
                     ))}
                 </View>
@@ -78,8 +77,4 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         padding: 10, 
     },
-    mealsGrid: {
-        flexDirection: 'row',
-        flexWrap: 'wrap',
-    }
 })

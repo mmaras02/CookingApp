@@ -42,13 +42,10 @@ const getMealsByIngredients = async (IngredientsIds: number[]) => {
     data?.forEach(item => {
       counter.set(item.meal_id, (counter.get(item.meal_id) || 0) + 1);
     });
-    console.log("data", counter);
 
     const sortedMeals = [...counter.entries()]
       .sort((a, b) => b[1] - a[1]) 
       .map(([meal_id]) => meal_id);
-
-    console.log("Sorted Meals by count:", sortedMeals);
 
     const meals = await mealServices.getMealsByIds(sortedMeals);
     const mealsMap = Object.fromEntries(meals.map(meal => [meal.id, meal]));

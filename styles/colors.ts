@@ -15,3 +15,5 @@ export const COLORS = {
 
 //light_green: 'rgba(116,156,132,1)',
  //'rgba(5, 41, 29, 0.83)'
+
+ //rgba(222,232,228,255)

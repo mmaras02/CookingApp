@@ -1,18 +1,14 @@
 import React from 'react';
-import { View, Text, FlatList, Image, StyleSheet, RefreshControl, TouchableOpacity } from 'react-native';
+import { View, FlatList, StyleSheet, RefreshControl } from 'react-native';
 import ReturnPage from '../navigation/returnPage';
-import { useNavigation } from '@react-navigation/native';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useFavorites } from '@/app/hooks';
-import { COLORS, globalStyles } from '@/styles';
-import { RootParamList } from '@/app/types';
+import { COLORS } from '@/styles';
 import { LoadingSpinner } from '../components';
-import { Ionicons } from '@expo/vector-icons';
+import MealList from '../components/mealDetails/mealList';
 
 
 const FavoriteScreen = () => {
   const { data: favorites, refetch, isRefetching, isLoading } = useFavorites();
-  const navigation = useNavigation<NativeStackNavigationProp<RootParamList>>();
 
   if (isLoading) return <LoadingSpinner />
   
@@ -33,31 +29,7 @@ const FavoriteScreen = () => {
           />
         }
         renderItem={({ item }) => (
-          <TouchableOpacity style={styles.mealCard}
-          onPress={() => navigation.navigate('MealDetails', { mealId: item.id })}>
-            <Image 
-              source={{ uri: item.image_url! }} 
-              style={styles.image} 
-              resizeMode="cover"
-            />
-            <View style={styles.mealInfo}>
-              <Text style={globalStyles.text}>
-                {item.name}
-              </Text>
-              <View style={{flexDirection: 'row'}}>
-                <Text>Rating: </Text>
-                <Ionicons
-                  key={item.id}
-                  name="star"
-                  size={18}
-                  color={COLORS.orange}
-                  style={styles.stars}
-                />
-                <Text>4.9</Text>
-              </View>
-              
-            </View>
-          </TouchableOpacity>
+          <MealList meal={item} />
         )}
       />
     </View>

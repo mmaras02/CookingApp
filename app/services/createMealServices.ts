@@ -1,5 +1,6 @@
 import { supabase } from "@/lib/supabase";
 import { Ingredient, Meal, MealCreate } from "@/app/types";
+import { standardizeName } from "../utils";
 
 const createMeal = async(mealData: MealCreate) => {
     const { data, error } = await supabase
@@ -26,16 +27,22 @@ const addMealCategories = async(mealId: number, categoryIds: string[]) => {
 }
 
 const findOrAddIngredients = async(ingredients: Ingredient[]) => {
+    //dobivan listu ingredients 
+    const standardizedIngredients = ingredients.map((ing) => ({
+        ...ing,
+        name: standardizeName(ing.name),
+    }));
+
     const { data: existingIngredients, error: findError } = await supabase
         .from('ingredients')
         .select('id, name')
-        .in('name', ingredients.map(i => i.name));
+        .in('name', standardizedIngredients.map(ing => ing.name));
 
     if (findError) throw findError;
 
-    const existingNames = existingIngredients?.map(i => i.name) || [];
-    const newIngredients = ingredients.filter(
-        i => !existingNames.includes(i.name)
+    const existingNames = existingIngredients?.map(ing => ing.name) || [];
+    const newIngredients = standardizedIngredients.filter(
+        ing => !existingNames.includes(ing.name)
     );
 
     let allIngredients = existingIngredients || [];
@@ -43,7 +50,7 @@ const findOrAddIngredients = async(ingredients: Ingredient[]) => {
     if (newIngredients.length > 0) {
         const { data: createdIngredients, error: createError } = await supabase
             .from('ingredients')
-            .insert(newIngredients.map(i => ({ name: i.name })))
+            .insert(newIngredients.map(ing => ({ name: ing.name })))
             .select();
 
         if (createError) throw createError;
@@ -51,12 +58,14 @@ const findOrAddIngredients = async(ingredients: Ingredient[]) => {
     }
 
     const ingredientsdWithQuantity = allIngredients.map(dbIng => {
-        const original = ingredients.find(i => i.name === dbIng.name);
+        const original = standardizedIngredients.find(ing => ing.name === dbIng.name);
         return {
             ...dbIng,
             quantity: original?.quantity ?? '',
         };
     });
+
+    console.log("Ingwqq", allIngredients);
 
     return ingredientsdWithQuantity;
 }

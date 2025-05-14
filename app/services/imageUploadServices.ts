@@ -53,8 +53,29 @@ const pickImage = async (bucketName: string) => {
   }
 }
 
-const uploadImageToSupabase = async(uri: string, userId: string) => {
+const deleteImageFromSupabase = async(imageUrl: string, bucketName: string) => {
 
+   try {
+    const urlParts = imageUrl.split('/');
+    const filename = urlParts[urlParts.length - 1];
+    
+    if (!filename) return;
+
+    const { error } = await supabase.storage
+      .from(bucketName)
+      .remove([filename]);
+
+    if (error) {
+      console.error("Failed to delete image:", error.message);
+      throw error;
+    }
+
+    console.log("Image deleted successfully:", filename);
+    return true;
+  } catch (err) {
+    console.error("Unexpected error deleting image:", err);
+    throw err;
+  }
 };
 
-export default { pickImage };
+export default { pickImage, deleteImageFromSupabase };

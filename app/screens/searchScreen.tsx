@@ -96,6 +96,7 @@ const styles = StyleSheet.create({
   },
   container: {
     paddingBottom: 210,
+    margin: 15,
   },
   selected: {
     opacity: 0.2,

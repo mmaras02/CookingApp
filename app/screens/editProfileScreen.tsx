@@ -5,6 +5,7 @@ import { useAuth } from '../context/userSessionContext';
 import ReturnPage from '../navigation/returnPage';
 import { ImageInput } from '../components';
 import { useEditProfile } from '../hooks';
+import { imageUploadServices } from '../services';
 
 const EditProfileScreen = () => {
   const { user } = useAuth();
@@ -17,17 +18,23 @@ const EditProfileScreen = () => {
   const { mutate: editProfile } = useEditProfile();
   
   const handleEditProfile = async() => {
-      if (!userProfile?.id) return;
-      setIsSubmitting(true);
+    if (!userProfile?.id) return;
+    setIsSubmitting(true);
 
-      editProfile({
-        userId: userProfile.id,
-        user: {
-          full_name: name,
-          username,
-          profile_img: profilePhoto || null,
-        },
-      });
+    const oldImage = userProfile.profile_img;
+    const newImage = profilePhoto;
+
+    if(oldImage)
+      await imageUploadServices.deleteImageFromSupabase(oldImage, 'user-images');
+
+    editProfile({
+      userId: userProfile.id,
+      user: {
+        full_name: name,
+        username,
+        profile_img: newImage || null,
+      },
+    });
   }
 
   return (

@@ -3,7 +3,7 @@ import { View, Text, Image, StyleSheet, ScrollView, TouchableOpacity } from "rea
 import { Ingredient, Meal, RootParamList, Recipe } from "@/app/types";
 import { globalStyles, COLORS } from '@/styles';
 import ReturnPage from "../navigation/returnPage";
-import { IngredientsList, InstructionsList, LoadingSpinner, MealReviews } from "@/app/components";
+import { IngredientsList, InstructionsList, LoadingSpinner, MealRating, MealReviews } from "@/app/components";
 import { AntDesign, Ionicons } from "@expo/vector-icons";
 import { useFavoriteStatus, useMealDetails, useUser } from "@/app/hooks";
 import images from "@/assets/images";
@@ -59,7 +59,7 @@ const MealDetailsScreen = () => {
                         </TouchableOpacity>
                     )}
 
-                    {/** prep and difficulty*/}
+                    {/** category*/}
                     <View style={styles.categorySection}>
                         {categories && categories.map((category, index) => (
                             <View key={index} style={styles.categoryContent}>
@@ -83,8 +83,7 @@ const MealDetailsScreen = () => {
                     </View>
 
                     <View style={styles.dataContent}>
-                        <Ionicons name="star" style={styles.iconImage} />
-                        <Text style={globalStyles.text}>4.9</Text>
+                        <MealRating meal={meal} isRating={true} />
                     </View>
                 </View>
                 
