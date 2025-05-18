@@ -4,23 +4,24 @@ import { LoadingSpinner, MealItem } from '@/app/components';
 import { useMealsByCategory } from '@/app/hooks';
 import { globalStyles } from '@/styles';
 
-const CategoryScreen = ({ route } : { route : any}) => {
-    const { categoryId, categoryName } = route.params || {};
-    const { data: meals, isLoading } = useMealsByCategory(categoryId);
+const CategoryScreen = ({ route }: { route: any }) => {
+  const { categoryId, categoryName } = route.params || {};
+  const { data: meals, isLoading } = useMealsByCategory(categoryId);
 
-    if (isLoading) return <LoadingSpinner />
+  if (isLoading) return <LoadingSpinner />
 
   return (
     <View>
-      <ReturnPage title={categoryName}/>
+      <ReturnPage title={categoryName} />
       <View style={styles.mealDisplay}>
         <FlatList data={meals}
-                  keyExtractor={(item) => item.id.toString()}
-                  renderItem={({ item }) => (
-                      <MealItem meal={item} width={180}/>
-                  )} 
-                  numColumns={2}/>
-          <Text style={globalStyles.text}></Text>
+          keyExtractor={(item) => item.id.toString()}
+          renderItem={({ item }) => (
+            <MealItem meal={item} width={180} />
+          )}
+          numColumns={2}
+        />
+        <Text style={globalStyles.text}></Text>
       </View>
     </View>
   )
@@ -30,7 +31,7 @@ export default CategoryScreen
 
 const styles = StyleSheet.create({
   mealDisplay: {
-    flexDirection: 'row',
     margin: 10,
+    marginBottom: 180,
   }
 })
