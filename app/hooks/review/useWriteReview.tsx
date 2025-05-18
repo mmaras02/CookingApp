@@ -15,12 +15,12 @@ export const useWriteReview = () => {
 
   return useMutation({
     mutationFn: ({ mealId, rating, comment }: ReviewData) => {
-      
+
       return reviewServices.writeReview({
         user_id: userId!,
         meal_id: mealId,
         rating,
-        comment
+        comment,
       });
     },
     onMutate: async ({ mealId, rating, comment }: ReviewData) => {

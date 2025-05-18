@@ -5,17 +5,19 @@ import images from '@/assets/images';
 import { TabParamList } from '@/app/types';
 import { COLORS } from '@/styles';
 import { HomeScreen, GenerateMealScreen, SearchScreen, FavoriteScreen, ProfileScreen } from '@/app/screens';
+import { Ionicons } from '@expo/vector-icons';
 
 const Tab = createBottomTabNavigator<TabParamList>();
 
 const TabNavigator = () => {
   return (
-    <Tab.Navigator initialRouteName="Home" 
-      screenOptions={{ 
+    <Tab.Navigator initialRouteName="Home"
+      screenOptions={{
         headerShown: false,
         tabBarStyle: {
-          height: 60, 
-          backgroundColor: COLORS.light,      },
+          height: 60,
+          backgroundColor: COLORS.light,
+        },
         tabBarLabelStyle: {
           fontSize: 14,
         },
@@ -24,16 +26,15 @@ const TabNavigator = () => {
         name="Home"
         component={HomeScreen}
         options={{
-          tabBarIcon: ({focused}) => (
-            <Image 
-                source={images.Home}
-                style={{ 
-                  height: 30,
-                  width: 30,
-                  tintColor: focused ? COLORS.orange : COLORS.light_green}} />
-            ),
-            tabBarActiveTintColor: COLORS.orange,
-            tabBarInactiveTintColor: COLORS.light_green,
+          tabBarIcon: ({ focused }) => (
+            <Ionicons
+              name='home'
+              size={30}
+              color={focused ? COLORS.orange : COLORS.light_green}
+            />
+          ),
+          tabBarActiveTintColor: COLORS.orange,
+          tabBarInactiveTintColor: COLORS.light_green,
         }}
       />
 
@@ -41,16 +42,15 @@ const TabNavigator = () => {
         name="Generate"
         component={GenerateMealScreen}
         options={{
-          tabBarIcon: ({focused}) => (
-            <Image 
-                source={images.Generate}
-                style={{ 
-                  height: 30,
-                  width: 30,
-                  tintColor: focused ? COLORS.orange : COLORS.light_green}} />
-            ),
-            tabBarActiveTintColor: COLORS.orange,
-            tabBarInactiveTintColor: COLORS.light_green,
+          tabBarIcon: ({ focused }) => (
+            <Ionicons
+              name='bulb'
+              size={30}
+              color={focused ? COLORS.orange : COLORS.light_green}
+            />
+          ),
+          tabBarActiveTintColor: COLORS.orange,
+          tabBarInactiveTintColor: COLORS.light_green,
         }}
       />
 
@@ -58,16 +58,15 @@ const TabNavigator = () => {
         name="Search"
         component={SearchScreen}
         options={{
-          tabBarIcon: ({focused}) => (
-            <Image 
-                source={images.Search}
-                style={{ 
-                  height: 30,
-                  width: 30,
-                  tintColor: focused ? COLORS.orange : COLORS.light_green}} />
-            ),
-            tabBarActiveTintColor: COLORS.orange,
-            tabBarInactiveTintColor: COLORS.light_green,
+          tabBarIcon: ({ focused }) => (
+            <Ionicons
+              name='search'
+              size={30}
+              color={focused ? COLORS.orange : COLORS.light_green}
+            />
+          ),
+          tabBarActiveTintColor: COLORS.orange,
+          tabBarInactiveTintColor: COLORS.light_green,
         }}
       />
 
@@ -75,33 +74,31 @@ const TabNavigator = () => {
         name="Favorites"
         component={FavoriteScreen}
         options={{
-          tabBarIcon: ({focused}) => (
-            <Image 
-                source={images.Saved}
-                style={{ 
-                  height: 30,
-                  width: 30,
-                  tintColor: focused ? COLORS.orange : COLORS.light_green}} />
-            ),
-            tabBarActiveTintColor: COLORS.orange,
-            tabBarInactiveTintColor: COLORS.light_green,
+          tabBarIcon: ({ focused }) => (
+            <Ionicons
+              name='bookmark'
+              size={30}
+              color={focused ? COLORS.orange : COLORS.light_green}
+            />
+          ),
+          tabBarActiveTintColor: COLORS.orange,
+          tabBarInactiveTintColor: COLORS.light_green,
         }}
       />
 
-    <Tab.Screen
+      <Tab.Screen
         name="Profile"
         component={ProfileScreen}
         options={{
-          tabBarIcon: ({focused}) => (
-            <Image 
-                source={images.Profile}
-                style={{ 
-                  height: 30,
-                  width: 30,
-                  tintColor: focused ? COLORS.orange : COLORS.light_green}} />
-            ),
-            tabBarActiveTintColor: COLORS.orange,
-            tabBarInactiveTintColor: COLORS.light_green,
+          tabBarIcon: ({ focused }) => (
+            <Ionicons
+              name='person'
+              size={30}
+              color={focused ? COLORS.orange : COLORS.light_green}
+            />
+          ),
+          tabBarActiveTintColor: COLORS.orange,
+          tabBarInactiveTintColor: COLORS.light_green,
         }}
       />
 

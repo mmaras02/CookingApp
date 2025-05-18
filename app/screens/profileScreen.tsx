@@ -11,21 +11,23 @@ const ProfileScreen = () => {
   const userProfile = user?.profile;
   const navigation = useNavigation();
 
-  const handleLogout = async() => {
+  const handleLogout = async () => {
     try {
       await authServices.SignOutUser();
       Alert.alert("logging out...");
       setUser(null);
       navigation.navigate('Welcome' as never);
     } catch (error) {
-        console.error("Logout failed:", error);
+      console.error("Logout failed:", error);
     }
   }
 
   return (
     <View>
-      <View style={ styles.profileHeader}>
-        <Image source={{uri: userProfile?.profile_img}} style={styles.image}/>
+      <View style={styles.profileHeader}>
+        {userProfile?.profile_img && (
+          <Image source={{ uri: userProfile?.profile_img }} style={styles.image} />
+        )}
         <View>
           <Text style={globalStyles.TitleText}>{userProfile?.full_name}</Text>
           <Text style={globalStyles.text}>{userProfile?.username}</Text>
@@ -40,19 +42,19 @@ const ProfileScreen = () => {
         <ProfileOption iconName='restaurant' routeName='UsersRecipes' title='Tvoji recepti' />
         <ProfileOption iconName='create' routeName='CreateRecipe' title='Kreiraj recept' />
         <ProfileOption iconName='settings-outline' routeName='' title='Postavke' />
-   
-        <TouchableOpacity onPress={()=>handleLogout()} style={styles.profileHeader}>
+
+        <TouchableOpacity onPress={() => handleLogout()} style={styles.profileHeader}>
           <Ionicons name="log-out-outline" style={styles.iconImage} />
           <Text style={globalStyles.text}>Logout</Text>
         </TouchableOpacity>
 
       </View>
-      
+
     </View>
   )
 }
 
-export default ProfileScreen 
+export default ProfileScreen
 
 const styles = StyleSheet.create({
   profileHeader: {
@@ -62,7 +64,7 @@ const styles = StyleSheet.create({
     padding: 25,
     marginVertical: 2,
   },
-  
+
   image: {
     width: 70,
     height: 70,
