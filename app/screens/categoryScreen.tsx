@@ -1,8 +1,8 @@
-import { View, Text, FlatList, StyleSheet } from 'react-native'
+import { View, FlatList, StyleSheet } from 'react-native'
 import ReturnPage from '../navigation/returnPage';
 import { LoadingSpinner, MealItem } from '@/app/components';
 import { useMealsByCategory } from '@/app/hooks';
-import { globalStyles } from '@/styles';
+import { S, VS } from '../utils';
 
 const CategoryScreen = ({ route }: { route: any }) => {
   const { categoryId, categoryName } = route.params || {};
@@ -13,25 +13,27 @@ const CategoryScreen = ({ route }: { route: any }) => {
   return (
     <View>
       <ReturnPage title={categoryName} />
-      <View style={styles.mealDisplay}>
-        <FlatList data={meals}
-          keyExtractor={(item) => item.id.toString()}
-          renderItem={({ item }) => (
-            <MealItem meal={item} width={180} />
-          )}
-          numColumns={2}
-        />
-        <Text style={globalStyles.text}></Text>
-      </View>
+      <FlatList
+        data={meals}
+        keyExtractor={(item) => item.id.toString()}
+        renderItem={({ item }) => (
+          <View style={{ flex: 1 }}>
+            <MealItem meal={item} />
+          </View>
+        )}
+        numColumns={2}
+        contentContainerStyle={styles.flatListContent}
+      />
     </View>
+
   )
 }
 
 export default CategoryScreen
 
 const styles = StyleSheet.create({
-  mealDisplay: {
-    margin: 10,
-    marginBottom: 180,
-  }
+  flatListContent: {
+    padding: S(5),
+    paddingBottom: VS(70),
+  },
 })

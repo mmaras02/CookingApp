@@ -4,32 +4,32 @@ import { COLORS, globalStyles } from "@/styles";
 import { View, Text, StyleSheet } from "react-native";
 import { MultiSelect } from 'react-native-element-dropdown';
 
-const CategorySelector = ({ selectedCategories, setSelectedCategories } : CategoriesProps) => {
+const CategorySelector = ({ selectedCategories, setSelectedCategories }: CategoriesProps) => {
     const { data: allCategories } = useCategories();
 
     const categoryOptions = allCategories?.map((category: any) => ({
         label: category.name,
         value: category.id
     })) || [];
-    
-    return(
+
+    return (
         <View style={{ marginBottom: 20 }}>
-                <Text style={globalStyles.text}>Kategorije</Text>
-                    <MultiSelect
-                        style={styles.input}
-                        selectedTextStyle={styles.selectedTextStyle}
-                        iconStyle={styles.iconStyle}
-                        data={categoryOptions}
-                        labelField="label"
-                        valueField="value"
-                        placeholder="Izaber kategorije"
-                        value={selectedCategories}
-                        onChange={item => {
-                            setSelectedCategories(item);
-                        }}
-                        selectedStyle={styles.selectedStyle}
-                    />
-            </View>
+            <Text style={globalStyles.text}>Kategorije</Text>
+            <MultiSelect
+                style={styles.input}
+                selectedTextStyle={styles.selectedTextStyle}
+                iconStyle={styles.iconStyle}
+                data={categoryOptions}
+                labelField="label"
+                valueField="value"
+                placeholder="Izaber kategorije"
+                value={selectedCategories}
+                onChange={item => {
+                    setSelectedCategories(item);
+                }}
+                selectedStyle={styles.selectedStyle}
+            />
+        </View>
     )
 }
 

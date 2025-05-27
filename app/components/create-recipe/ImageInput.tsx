@@ -1,4 +1,4 @@
-import { useAuth } from "@/app/context/userSessionContext";
+import { useAuth } from "@/app/context/AuthContext";
 import { imageUploadServices } from "@/app/services";
 import { COLORS, globalStyles } from "@/styles";
 import { Ionicons } from "@expo/vector-icons"
@@ -7,11 +7,11 @@ import { TouchableOpacity, View, Text, Image, StyleSheet, Alert } from "react-na
 import { ImageInputProps } from "@/app/types";
 import { LoadingSpinner } from "..";
 
-  const ImageInput = ({imageUrl, setImageUrl, bucketName, imageHeight = 200, imageWidth = 370} : ImageInputProps) => {
+const ImageInput = ({ imageUrl, setImageUrl, bucketName, imageHeight = 200, imageWidth = 370 }: ImageInputProps) => {
     const { user } = useAuth();
     const userProfile = user?.profile;
     const [isUploading, setIsUploading] = useState(false);
-    
+
     const handleImageUpload = async () => {
         if (!userProfile?.id) {
             Alert.alert('Error', 'User not authenticated');
@@ -22,17 +22,17 @@ import { LoadingSpinner } from "..";
         try {
             const publicUrl = await imageUploadServices.pickImage(bucketName);
             if (publicUrl) {
-              setImageUrl(publicUrl);
+                setImageUrl(publicUrl);
             }
-          } finally {
+        } finally {
             setIsUploading(false);
-          }
+        }
     };
 
     return (
         <TouchableOpacity onPress={handleImageUpload}
-                        disabled={isUploading}
-                        style={[styles.imageContainer, { height: imageHeight, width: imageWidth }]} >
+            disabled={isUploading}
+            style={[styles.imageContainer, { height: imageHeight, width: imageWidth }]} >
             {isUploading ? (
                 <LoadingSpinner />
             ) : imageUrl ? (
@@ -42,15 +42,15 @@ import { LoadingSpinner } from "..";
                         <Ionicons name="camera" size={24} color="white" />
                     </View>
                 </View>
-                
+
             ) : (
-                <View style={{alignItems: 'center'}}>
+                <View style={{ alignItems: 'center' }}>
                     <Ionicons name="camera" size={28} color={COLORS.text} />
                     <Text style={globalStyles.text}>Dodaj sliku</Text>
                 </View>
             )}
         </TouchableOpacity>
-  );
+    );
 };
 export default ImageInput;
 

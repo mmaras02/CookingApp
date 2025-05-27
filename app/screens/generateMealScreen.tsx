@@ -1,37 +1,21 @@
-import { View, Text, StyleSheet, Animated } from 'react-native'
-import { useCallback, useEffect, useRef, useState } from 'react';
 import ReturnPage from '../navigation/returnPage';
 import LottieView from 'lottie-react-native';
+import { View, Text, StyleSheet, Animated } from 'react-native'
+import { useCallback, useRef, useState } from 'react';
 import { Button } from 'react-native-paper';
 import { globalStyles } from '@/styles';
-import { MealItem } from '@/app/components';
-import { mealServices } from '../services';
+import { ConfettiAnimation, MealItem } from '@/app/components';
 import { Meal } from '@/app/types';
+import { useMeals } from '../hooks';
 
 const GenerateMealScreen = () => {
   const [randomMeal, setRandomMeal] = useState<Meal | null>(null);
-  const [meals, setMeals] = useState<Meal[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const { data: meals, isLoading } = useMeals();
   const [scale] = useState(new Animated.Value(1.2));
   const confettiRef = useRef<LottieView>(null);
 
-  useEffect(() => {
-    const loadMeals = async () => {
-      setIsLoading(true);
-      try {
-        const fetchedMeals = await mealServices.getMeals();
-        setMeals(fetchedMeals);
-      } catch (error) {
-        console.error("Failed to fetch meals:", error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    loadMeals();
-  }, []);
-
   const handlePress = useCallback(() => {
-    if (!meals.length) return;
+    if (!meals?.length) return;
 
     if (confettiRef.current) confettiRef.current.play(0);
     Animated.sequence([
@@ -41,7 +25,7 @@ const GenerateMealScreen = () => {
 
     const randomIndex = Math.floor(Math.random() * meals.length);
     setRandomMeal(meals[randomIndex]);
-  }, [scale, meals.length]);
+  }, [scale, meals?.length]);
 
 
   return (
@@ -51,23 +35,17 @@ const GenerateMealScreen = () => {
         <Button
           onPress={handlePress}
           style={globalStyles.orangeButton}
-          disabled={isLoading || !meals.length}
+          disabled={isLoading || !meals?.length}
         >
           <Text style={globalStyles.whiteText}>Generiraj</Text>
         </Button>
 
         <View style={styles.imageContainer}>
-          <LottieView
-            ref={confettiRef}
-            source={require('@/assets/confetti.json')}
-            autoPlay={false}
-            loop={false}
-            style={styles.lottie}
-            resizeMode='cover'
-          />
+          <ConfettiAnimation ref={confettiRef} />
+
           {randomMeal && (
             <Animated.View style={[styles.animatedImageContainer, { transform: [{ scale }] }]}>
-              <MealItem meal={randomMeal} />
+              <MealItem meal={randomMeal} width={190} />
             </Animated.View>
           )}
         </View>
@@ -85,8 +63,7 @@ const styles = StyleSheet.create({
   imageContainer: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
-    width: '90%',
+    marginBottom: 40,
   },
   container: {
     flex: 1,
@@ -104,14 +81,5 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderRadius: 10,
     backgroundColor: '#f2a76d',
-  },
-  lottie: {
-    position: 'absolute',
-    top: -100,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    zIndex: 500,
-    pointerEvents: 'none',
   },
 })

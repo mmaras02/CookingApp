@@ -1,45 +1,28 @@
 import { View, Text, FlatList, StyleSheet } from 'react-native'
-import React, { useEffect, useState } from 'react'
-import { useAuth } from '@/app/context/userSessionContext'
-import { Meal } from '@/app/types' 
-import { mealServices } from '../services'
+import React from 'react'
+import { useAuth } from '@/app/context/AuthContext'
 import ReturnPage from '../navigation/returnPage'
 import { globalStyles } from '@/styles'
 import { MealCard } from '../components'
+import { S } from '../utils'
+import { useMealsByUser } from '../hooks/meals/useMealsByUser'
 
 const UsersRecipesScreen = () => {
   const { user } = useAuth();
   const userId = user?.profile.id;
-  const [meals, setMeals] = useState<Meal[]>([])
-  const [error, setError] = useState<string | null>(null)
-
-  useEffect(() => {
-    const fetchUserMeals = async () => {
-      if (!userId) return
-      
-      try {
-        const result = await mealServices.getMealsByUserId(userId)
-        setMeals(result)
-
-      } catch (err) {
-        setError("yo");
-      }
-    }
-
-    fetchUserMeals()
-  }, [userId]);
+  const { data: meals = [], error, isLoading } = useMealsByUser(userId!);
 
   if (error) {
     return (
       <View>
-        <Text>Error: {error}</Text>
+        <Text>Error: {error.message || 'Greška pri dohvaćanju recepata'}</Text>
       </View>
     )
   }
 
   return (
     <View style={styles.container}>
-        <ReturnPage title='Tvoji recepti' />
+      <ReturnPage title='Tvoji recepti' />
       {meals.length === 0 ? (
         <Text style={globalStyles.text}>Još nemaš svojih recepata</Text>
       ) : (
@@ -61,6 +44,6 @@ export default UsersRecipesScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 16,
-  }
+    padding: S(10),
+  },
 })

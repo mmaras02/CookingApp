@@ -5,6 +5,7 @@ export type Meal = {
         user_id: string;
         difficulty?: string;
         prep_time: number;
+        percentage_match?: number[];
 };
 
 export type MealCreate = Omit<Meal, "id">;

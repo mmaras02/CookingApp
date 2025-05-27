@@ -3,7 +3,7 @@ import React from 'react'
 import { RouteProp, useRoute } from '@react-navigation/native';
 import { RootParamList } from '../types';
 import ReturnPage from '../navigation/returnPage';
-import MealList from '../components/mealDetails/mealList';
+import MealList from '../components/meal-details/MealList';
 
 const DisplayMealsScreen = () => {
   const route = useRoute<RouteProp<RootParamList, 'DisplayMeals'>>();
@@ -12,7 +12,7 @@ const DisplayMealsScreen = () => {
   return (
     <ScrollView>
       <ReturnPage title='Svi recepti' />
-      {meals && meals.map((meal,index) => (
+      {meals && meals.map((meal, index) => (
         <View key={index}>
           <MealList meal={meal} />
         </View>

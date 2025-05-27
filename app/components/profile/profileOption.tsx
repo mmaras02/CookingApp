@@ -1,4 +1,4 @@
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { StyleSheet, Text, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { Ionicons } from '@expo/vector-icons'
 import { COLORS, globalStyles } from '@/styles'
@@ -10,12 +10,12 @@ interface Props {
     title: string
 }
 
-const ProfileOption = ({iconName, routeName, title} : Props) => {
+const ProfileOption = ({ iconName, routeName, title }: Props) => {
     const navigation = useNavigation();
-    
+
     return (
         <TouchableOpacity style={styles.profileHeader} onPress={() => navigation.navigate(routeName as never)}>
-            <Ionicons name={iconName as any} style={styles.iconImage} />
+            <Ionicons name={iconName as any} style={styles.icon} />
             <Text style={globalStyles.text}>{title}</Text>
         </TouchableOpacity>
     )
@@ -28,16 +28,15 @@ const styles = StyleSheet.create({
         backgroundColor: COLORS.light,
         flexDirection: 'row',
         alignItems: 'center',
-        padding: 25,
+        padding: 20,
         marginVertical: 2,
-    
-      },
-      iconImage: {
-        height: 30,
-        width: 30,
+    },
+    icon: {
+        height: 25,
+        width: 25,
         tintColor: COLORS.text,
         color: COLORS.text,
         fontSize: 28,
         marginRight: 20,
-      }
+    }
 })

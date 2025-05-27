@@ -9,23 +9,24 @@ import { useFavoriteStatus, useMealDetails, useUser } from "@/app/hooks";
 import images from "@/assets/images";
 import { useNavigation } from "expo-router";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { MS, S, VS } from "../utils";
 
 const MealDetailsScreen = () => {
     const route = useRoute<RouteProp<RootParamList, 'MealDetails'>>();
     const { mealId } = route.params;
     const { data: mealDetails, isLoading } = useMealDetails(mealId!);
-    const meal : Meal = mealDetails?.meal;
-    const ingredients : Ingredient[] = mealDetails?.ingredients || [];
-    const recipe : Recipe[] = mealDetails?.recipe || [];
-    const categories : string[] = mealDetails?.category || [];
+    const meal: Meal = mealDetails?.meal;
+    const ingredients: Ingredient[] = mealDetails?.ingredients || [];
+    const recipe: Recipe[] = mealDetails?.recipe || [];
+    const categories: string[] = mealDetails?.category || [];
     const { isFavorited, toggleFavorite } = useFavoriteStatus(mealId!);
-      const navigation = useNavigation<NativeStackNavigationProp<RootParamList>>();
+    const navigation = useNavigation<NativeStackNavigationProp<RootParamList>>();
     const { data: user } = useUser(meal?.user_id ?? "");
 
-    const imageSource = user?.profile_img 
-                        ? { uri: user.profile_img } 
-                        : images.ProfileIcon;
-      
+    const imageSource = user?.profile_img
+        ? { uri: user.profile_img }
+        : images.ProfileIcon;
+
     if (isLoading) return <LoadingSpinner />
 
     if (!meal) return <Text>Meal not found</Text>;
@@ -33,27 +34,29 @@ const MealDetailsScreen = () => {
     return (
         <ScrollView>
             <ReturnPage isOverImage={true} />
-            
+
             <View style={styles.imageContainer}>
                 <Image source={{ uri: meal.image_url! }} style={styles.header} />
+                <View style={styles.roundedOverlay} />
                 <TouchableOpacity style={styles.heartIcon}
-                                onPress={toggleFavorite}
-                                disabled={isLoading}>
+                    onPress={toggleFavorite}
+                    disabled={isLoading}>
                     <AntDesign
-                        name={ isFavorited ? "heart" : "hearto"}
+                        name={isFavorited ? "heart" : "hearto"}
                         size={32}
-                        color= {COLORS.orange}
+                        color={COLORS.orange}
                     />
+
                 </TouchableOpacity>
             </View>
-            
+
             <View style={styles.container}>
-                <View style={styles.title}> 
+                <View style={styles.title}>
                     <Text style={globalStyles.TitleText}>{meal.name}</Text>
 
                     {user && (
                         <TouchableOpacity style={styles.authorSection}
-                                          onPress={() => navigation.navigate('UserProfile', { userId: user?.id })}>
+                            onPress={() => navigation.navigate('UserProfile', { userId: user?.id })}>
                             <Image source={imageSource} style={styles.image} />
                             <Text style={globalStyles.text}>By: {user.username}</Text>
                         </TouchableOpacity>
@@ -71,7 +74,7 @@ const MealDetailsScreen = () => {
                 </View>
 
                 {/** prep and difficulty*/}
-                <View style={{flexDirection: 'row', justifyContent: 'space-around'}}>
+                <View style={{ flexDirection: 'row', justifyContent: 'space-around', marginTop: MS(5) }}>
                     <View style={styles.dataContent}>
                         <Ionicons name="time-outline" style={styles.iconImage} />
                         <Text style={globalStyles.text}>{meal.prep_time} min</Text>
@@ -86,17 +89,17 @@ const MealDetailsScreen = () => {
                         <MealRating meal={meal} isRating={true} />
                     </View>
                 </View>
-                
+
                 <IngredientsList ingredients={ingredients}
-                                 mealName={meal.name} />
+                    mealName={meal.name} />
 
                 <InstructionsList recipe={recipe} />
 
-                <MealReviews mealId={meal?.id ?? 0}/>
+                <MealReviews mealId={meal?.id ?? 0} />
                 {/** */}
             </View>
-            
-       
+
+
         </ScrollView>
     );
 }
@@ -109,27 +112,14 @@ const styles = StyleSheet.create({
     },
     header: {
         width: "100%",
-        height: 350,
-        borderBottomLeftRadius: 15,
-        borderBottomRightRadius: 15,
+        height: VS(260),
     },
     title: {
         justifyContent: 'center',
-        margin: 10,
-      },
-    backButton: {
-        position: 'absolute',
-        left: 10,
-        margin: 10,
-        padding: 10,
-        alignItems: 'center',
-        zIndex: 10,
-        backgroundColor: '#f6f6f6',
-        borderRadius: 10,
+        margin: S(10),
     },
     categorySection: {
         flexDirection: 'row',
-        marginLeft: 5,
     },
     imageContainer: {
         position: "relative",
@@ -138,50 +128,63 @@ const styles = StyleSheet.create({
     heartIcon: {
         position: "absolute",
         borderColor: COLORS.text,
-        top: 15,
-        right: 20,
+        top: S(10),
+        right: S(15),
         zIndex: 10,
         backgroundColor: COLORS.light,
-        padding: 8,
-        borderRadius: 50,
+        padding: S(7),
+        borderRadius: MS(50),
 
     },
-  
+
     categoryContent: {
         backgroundColor: COLORS.light_green,
-        margin: 10,
-        padding: 5,
+        marginRight: S(15),
+        marginTop: S(10),
+        padding: S(5),
         borderRadius: 5,
     },
 
     dataContent: {
         flexDirection: 'row',
-        margin: 10,
+        margin: S(8),
         alignItems: 'center',
     },
 
     iconImage: {
         color: COLORS.text,
-        fontSize: 30,
-        marginRight: 5,
-      },
+        fontSize: MS(26),
+        marginRight: S(5),
+    },
 
     authorSection: {
         flexDirection: 'row',
         alignItems: 'center',
-        margin: 10,
-        marginBottom: 25,
+        margin: S(5),
+        marginBottom: S(10),
     },
     image: {
-        width: 40,
-        height: 40,
+        width: S(35),
+        height: VS(35),
         borderRadius: 30,
-        marginRight: 10,
+        marginRight: S(10),
     },
     text: {
-        fontSize: 18,
+        fontSize: MS(18),
         alignSelf: 'center',
         marginLeft: 5,
         color: COLORS.light,
+    },
+
+    roundedOverlay: {
+        position: 'absolute',
+        bottom: 0,
+        left: 0,
+        right: 0,
+        height: 20,
+        backgroundColor: '#f2f2f2',
+        borderTopLeftRadius: 25,
+        borderTopRightRadius: 25,
+        zIndex: 2,
     }
 })

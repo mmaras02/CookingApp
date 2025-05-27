@@ -3,7 +3,7 @@ import { RouteProp, useRoute } from '@react-navigation/native';
 import { RootParamList } from '@/app/types';
 import ReturnPage from '../navigation/returnPage';
 import { globalStyles, COLORS } from '@/styles';
-import MealList from '../components/mealDetails/mealList';
+import MealList from '../components/meal-details/MealList';
 
 const FoundMealsScreen = () => {
     const route = useRoute<RouteProp<RootParamList, 'Found'>>();
@@ -23,15 +23,15 @@ const FoundMealsScreen = () => {
 
     return (
         <ScrollView>
-            <ReturnPage title='Pronađeni recepti'/>
+            <ReturnPage title='Pronađeni recepti' />
             <View style={styles.container}>
-                <Text style={globalStyles.text}>Najbolje se slaže:</Text>
+                <Text style={globalStyles.headingText}>Najbolje se slaže:</Text>
                 <View style={styles.firstMealContainer}>
                     <ImageBackground
                         source={{ uri: firstMeal.image_url! }}
                         style={styles.firstMealImage}
                         resizeMode="cover">
-                        <Text style={styles.TitleText}>{firstMeal.name}</Text> 
+                        <Text style={styles.TitleText}>{firstMeal.name}</Text>
                     </ImageBackground>
                 </View>
 
@@ -61,10 +61,10 @@ const styles = StyleSheet.create({
         margin: 5,
         borderRadius: 20,
         overflow: 'hidden',
-        
+
     },
     firstMealImage: {
-        height: 350,
+        height: 300,
         justifyContent: 'center',
         alignItems: 'center',
     },
@@ -75,6 +75,6 @@ const styles = StyleSheet.create({
         color: COLORS.light,
         maxWidth: '100%',
         textAlign: 'center',
-        padding: 10, 
+        padding: 10,
     },
 })

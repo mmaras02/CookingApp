@@ -1,1 +1,3 @@
-export { default as standardizeName } from './standardizeName';
+export { default as standardizeName } from "./standardizeName";
+export * from "./metrics";
+export * from "./globalTextSettings";

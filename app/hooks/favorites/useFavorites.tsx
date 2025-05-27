@@ -1,4 +1,4 @@
-import { useAuth } from '@/app/context/userSessionContext';
+import { useAuth } from '@/app/context/AuthContext';
 import { favoriteServices } from '@/app/services';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 
@@ -21,8 +21,8 @@ export const useFavoriteActions = () => {
       favoriteServices.toggleFavoriteMeal(userId, mealId, isFavorited),
 
     onMutate: async ({ mealId, isFavorited }) => {
-      await queryClient.cancelQueries({queryKey: ['favorites']});
-      await queryClient.cancelQueries({queryKey: ['favoriteStatus', userId, mealId]});
+      await queryClient.cancelQueries({ queryKey: ['favorites'] });
+      await queryClient.cancelQueries({ queryKey: ['favoriteStatus', userId, mealId] });
 
       const previousFavorites = queryClient.getQueryData(['favorites']);
 

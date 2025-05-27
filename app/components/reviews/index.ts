@@ -1,4 +1,4 @@
-export { default as MealReviews } from './mealReviews';
-export { default as ReviewList } from './reviewList';
-export { default as WriteReview } from './writeReview';
-export { default as MealRating } from './mealRating';
+export { default as MealReviews } from "./MealReviews";
+export { default as ReviewList } from "./ReviewList";
+export { default as WriteReview } from "./WriteReview";
+export { default as MealRating } from "./MealRating";

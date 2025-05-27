@@ -2,34 +2,42 @@ import { View, StyleSheet, ImageBackground } from 'react-native'
 import React, { useEffect } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import images from '@/assets/images';
-import { useAuth } from '../context/userSessionContext';
+import { supabase } from '@/lib/supabase';
 
 const WelcomeScreen = () => {
-    const navigation = useNavigation();
-    const { user } = useAuth();
+  const navigation = useNavigation();
 
-    useEffect(() => {
-        if(user)
-          setTimeout(() => navigation.navigate('HomeTabs' as never), 3000);
-        else
-          setTimeout(() => navigation.navigate('Signin' as never), 3000);
-    },[user]);
+  useEffect(() => {
+    const checkSession = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+
+      setTimeout(() => {
+        if (session?.user) {
+          navigation.navigate('HomeTabs' as never);
+        } else {
+          navigation.navigate('Signin' as never);
+        }
+      }, 1500);
+    };
+
+    checkSession();
+  }, []);
 
   return (
-        <View style={styles.container}>
-            <ImageBackground source={images.WelcomePage4}
-                    resizeMode='cover'
-                    style={styles.image} >
-            </ImageBackground>
-            
-        </View>
+    <View style={styles.container}>
+      <ImageBackground source={images.WelcomePage4}
+        resizeMode='cover'
+        style={styles.image} >
+      </ImageBackground>
+
+    </View>
   )
 }
 
 export default WelcomeScreen;
 
 const styles = StyleSheet.create({
-  container:{
+  container: {
     flex: 1,
     flexDirection: 'column',
   },
@@ -39,7 +47,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
   },
-  text:{
+  text: {
     color: 'white',
     fontSize: 42,
     fontWeight: 'bold',

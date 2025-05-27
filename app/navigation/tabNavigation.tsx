@@ -1,11 +1,10 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Image } from 'react-native';
-import images from '@/assets/images';
 import { TabParamList } from '@/app/types';
 import { COLORS } from '@/styles';
 import { HomeScreen, GenerateMealScreen, SearchScreen, FavoriteScreen, ProfileScreen } from '@/app/screens';
 import { Ionicons } from '@expo/vector-icons';
+import { S, VS } from '@/app/utils';
 
 const Tab = createBottomTabNavigator<TabParamList>();
 
@@ -15,11 +14,12 @@ const TabNavigator = () => {
       screenOptions={{
         headerShown: false,
         tabBarStyle: {
-          height: 60,
+          height: S(45),
           backgroundColor: COLORS.light,
         },
         tabBarLabelStyle: {
-          fontSize: 14,
+          fontSize: S(11),
+          marginTop: S(-3),
         },
       }} >
       <Tab.Screen
@@ -29,7 +29,7 @@ const TabNavigator = () => {
           tabBarIcon: ({ focused }) => (
             <Ionicons
               name='home'
-              size={30}
+              size={S(22)}
               color={focused ? COLORS.orange : COLORS.light_green}
             />
           ),
@@ -45,7 +45,7 @@ const TabNavigator = () => {
           tabBarIcon: ({ focused }) => (
             <Ionicons
               name='bulb'
-              size={30}
+              size={S(22)}
               color={focused ? COLORS.orange : COLORS.light_green}
             />
           ),
@@ -61,7 +61,7 @@ const TabNavigator = () => {
           tabBarIcon: ({ focused }) => (
             <Ionicons
               name='search'
-              size={30}
+              size={S(22)}
               color={focused ? COLORS.orange : COLORS.light_green}
             />
           ),
@@ -77,7 +77,7 @@ const TabNavigator = () => {
           tabBarIcon: ({ focused }) => (
             <Ionicons
               name='bookmark'
-              size={30}
+              size={S(22)}
               color={focused ? COLORS.orange : COLORS.light_green}
             />
           ),
@@ -93,7 +93,7 @@ const TabNavigator = () => {
           tabBarIcon: ({ focused }) => (
             <Ionicons
               name='person'
-              size={30}
+              size={S(22)}
               color={focused ? COLORS.orange : COLORS.light_green}
             />
           ),

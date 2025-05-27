@@ -1,15 +1,15 @@
-import { useAuth } from "@/app/context/userSessionContext";
+import { useAuth } from "@/app/context/AuthContext";
 import { View, StyleSheet } from "react-native";
 import { ReviewList, WriteReview } from ".";
 
-const MealReviews =  ({mealId} : {mealId: number}) => {
+const MealReviews = ({ mealId }: { mealId: number }) => {
     const { user } = useAuth();
-      const userProfile = user?.profile;
+    const userProfile = user?.profile;
 
-    return(
+    return (
         <View style={styles.container}>
-            <WriteReview mealId={mealId} 
-                         userId={userProfile?.id!}/>
+            <WriteReview mealId={mealId}
+                userId={userProfile?.id!} />
             <ReviewList mealId={mealId} />
 
         </View>
@@ -19,7 +19,7 @@ const MealReviews =  ({mealId} : {mealId: number}) => {
 export default MealReviews;
 
 const styles = StyleSheet.create({
- container: {
+    container: {
         margin: 10,
     },
 })

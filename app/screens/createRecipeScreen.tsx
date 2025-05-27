@@ -4,7 +4,7 @@ import ReturnPage from '../navigation/returnPage'
 import { globalStyles } from '@/styles'
 import { Ingredient } from '@/app/types'
 import { createMealServices } from '../services'
-import { useAuth } from '../context/userSessionContext'
+import { useAuth } from '../context/AuthContext'
 import { CategorySelector, ImageInput, IngredientInput, StepInput, TitleInput } from '../components'
 
 const CreateRecipeScreen = () => {
@@ -18,11 +18,11 @@ const CreateRecipeScreen = () => {
     const [isSubmitting, setIsSubmitting] = useState(false);
 
 
-    const handleCreateMeal = async() => {
-        if(!title || !imageUrl || !selectedCategories || !ingredients || !steps || !userProfile?.id){
+    const handleCreateMeal = async () => {
+        if (!userProfile?.id) {
             throw Error("All fields must be filled!");
         }
-      
+
         setIsSubmitting(true);
         try {
             const meal = await createMealServices.createMeal({
@@ -31,9 +31,9 @@ const CreateRecipeScreen = () => {
                 image_url: imageUrl || null,
                 prep_time: 30,
             });
-        
+
             await createMealServices.addMealCategories(meal.id, selectedCategories);
-        
+
             const fullIngredients = await createMealServices.findOrAddIngredients(ingredients);
             await createMealServices.addMealIngredients(meal.id, fullIngredients);
             await createMealServices.addMealSteps(meal.id, steps);
@@ -41,11 +41,11 @@ const CreateRecipeScreen = () => {
             Alert.alert('Success', 'Recipe created successfully!');
 
             clearAll();
-        } catch(error){
+        } catch (error) {
             Alert.alert('Error', 'Failed to create recipe. Please try again.');
         } finally {
             setIsSubmitting(false);
-          }
+        }
     }
 
     const clearAll = () => {
@@ -56,39 +56,39 @@ const CreateRecipeScreen = () => {
         setSelectedCategories([]);
     }
 
-  return (
-    <ScrollView>
-        <ReturnPage title='Stvori svoj recept' />
-        <View style={styles.container}>
+    return (
+        <ScrollView>
+            <ReturnPage title='Stvori svoj recept' />
+            <View style={styles.container}>
 
-            <TitleInput title={title}
-                        setTitle={setTitle} />
+                <TitleInput title={title}
+                    setTitle={setTitle} />
 
-            <ImageInput imageUrl={imageUrl}
-                        setImageUrl={setImageUrl}
-                        bucketName='meal-images' />
-                        
-
-            <CategorySelector selectedCategories={selectedCategories}
-                              setSelectedCategories={setSelectedCategories}  />
-
-            <IngredientInput ingredients={ingredients}
-                             setIngredients={setIngredients} />
-            
-            <StepInput steps={steps}
-                       setSteps={setSteps} />
+                <ImageInput imageUrl={imageUrl}
+                    setImageUrl={setImageUrl}
+                    bucketName='meal-images' />
 
 
-            <TouchableOpacity style={globalStyles.button}
-                              onPress={handleCreateMeal}
-                              disabled={isSubmitting}>
+                <CategorySelector selectedCategories={selectedCategories}
+                    setSelectedCategories={setSelectedCategories} />
 
-                <Text style={globalStyles.whiteText}>Create Recipe</Text>
-            </TouchableOpacity>
+                <IngredientInput ingredients={ingredients}
+                    setIngredients={setIngredients} />
 
-        </View>
-    </ScrollView>
-  )
+                <StepInput steps={steps}
+                    setSteps={setSteps} />
+
+
+                <TouchableOpacity style={globalStyles.button}
+                    onPress={handleCreateMeal}
+                    disabled={isSubmitting}>
+
+                    <Text style={globalStyles.whiteText}>Create Recipe</Text>
+                </TouchableOpacity>
+
+            </View>
+        </ScrollView>
+    )
 }
 
 export default CreateRecipeScreen;

@@ -1,46 +1,43 @@
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native'
-import { useAuth } from '../context/userSessionContext';
+import { View, Text, StyleSheet, ScrollView } from 'react-native'
+import { useAuth } from '../context/AuthContext';
 import { useMeals } from '@/app/hooks';
 import { globalStyles } from '@/styles';
 import { CategoryList, HorizontalMealList, SearchBar } from '@/app/components';
 import { Meal } from '@/app/types';
-import MealList from '../components/mealDetails/mealList';
+import { S } from '../utils';
 
 const HomeScreen = () => {
   const { data: meals } = useMeals();
   const { user } = useAuth();
-  const userProfile = user?.profile; 
+  const userProfile = user?.profile;
   const recommendedMeals: Meal[] = (meals?.filter(meal => !meal.user_id) || [])
-                                          .sort(() => 0.5 - Math.random());
-                                          
-  const quickAndEasyMeals : Meal[] = meals?.filter(meal => meal.prep_time <= 20) || [];
-  const otherUsersMeals : Meal[] = meals?.filter(meal => meal.user_id && meal.user_id !== userProfile?.id) || [];
+    .sort(() => 0.5 - Math.random());
+
+  const quickAndEasyMeals: Meal[] = meals?.filter(meal => meal.prep_time <= 20) || [];
+  const otherUsersMeals: Meal[] = meals?.filter(meal => meal.user_id && meal.user_id !== userProfile?.id) || [];
 
 
   return (
     <ScrollView>
-      <View style={styles.title}>
-        <Text style={globalStyles.TitleText}>Evo te nazad </Text>
-        <Text style={globalStyles.TitleText}>{userProfile?.username}!</Text>
+      <View style={styles.titleContainer}>
+        <Text style={globalStyles.TitleText}>Eeej, kuhanje zove </Text>
+        <Text style={globalStyles.TitleText}>{userProfile?.username} 🥳 !</Text>
       </View>
-      
+
       <SearchBar meals={meals!} />
       <CategoryList />
 
-      {/**recommended at least 8 meals*/}
       <HorizontalMealList meals={recommendedMeals!}
-                          title='Preporučeno' />
+        title='Preporučeno' />
 
-      {/**quick and easy */}
       <HorizontalMealList meals={quickAndEasyMeals}
-                          title='Brzo i jednostavno' />
+        title='Brzo i jednostavno' />
 
-      {/**see other users recipes */}
       {(otherUsersMeals || []).length > 0 && (
         <HorizontalMealList meals={otherUsersMeals}
-                            title='Recepti drugih korisnika' />
+          title='Recepti drugih korisnika' />
       )}
-       
+
     </ScrollView>
   )
 }
@@ -48,10 +45,9 @@ const HomeScreen = () => {
 export default HomeScreen
 
 const styles = StyleSheet.create({
-    title: {
-      height: 80,
-      justifyContent: 'center',
-      margin: 20,
-    },
+  titleContainer: {
+    margin: S(15),
+    marginBottom: S(30),
+  },
 
 })

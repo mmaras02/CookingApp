@@ -1,4 +1,4 @@
-import { useAuth } from "@/app/context/userSessionContext";
+import { useAuth } from "@/app/context/AuthContext";
 import { listsServices } from "@/app/services";
 import { List } from "@/app/types";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
@@ -13,21 +13,21 @@ export const useLists = () => {
         queryFn: () => listsServices.getLists(userId!),
     });
 
-    const { mutateAsync: createList }  = useMutation({
+    const { mutateAsync: createList } = useMutation({
         mutationFn: (title: string) => listsServices.createList(userId!, title),
-        
+
         onMutate: async (newTitle) => {
-            await queryClient.cancelQueries({queryKey: ['lists', userId]});
+            await queryClient.cancelQueries({ queryKey: ['lists', userId] });
             const previousLists = queryClient.getQueryData(['lists', userId]);
-            
+
             queryClient.setQueryData(['lists', userId], (old: any[] = []) => [
                 ...old,
                 {
-                    id: Date.now().toString(), 
+                    id: Date.now().toString(),
                     title: newTitle,
                 }
             ]);
-            
+
             return { previousLists };
         },
 
@@ -37,9 +37,9 @@ export const useLists = () => {
 
         onError: (err, variables, context) => {
             if (context?.previousLists) {
-              queryClient.setQueryData(['lists'], context.previousLists);
+                queryClient.setQueryData(['lists'], context.previousLists);
             }
-          },
+        },
     });
 
     return {

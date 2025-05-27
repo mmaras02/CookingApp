@@ -8,7 +8,6 @@ export const useListItems = (listId: number) => {
     queryFn: () => listsServices.getListItems(listId),
     enabled: !!listId,
   });
-
 }
 
 export const useCreateListItems = () => {
@@ -19,7 +18,7 @@ export const useCreateListItems = () => {
     onMutate: async (newItem) => {
       await queryClient.cancelQueries({ queryKey: ['listItems', newItem.list_id] });
       const previousItems = queryClient.getQueryData<ListItem[]>(['listItems', newItem.list_id]);
-      
+
       queryClient.setQueryData<ListItem[]>(['listItems', newItem.list_id], (old) => [
         ...(old || []),
         {
@@ -28,13 +27,13 @@ export const useCreateListItems = () => {
           created_at: new Date().toISOString()
         }
       ]);
-      
+
       return { previousItems };
     },
 
     onSuccess: (data, variables) => {
       queryClient.invalidateQueries({
-      queryKey: ['listItems', variables.list_id],
+        queryKey: ['listItems', variables.list_id],
       });
     },
     onError: (error) => {
@@ -47,12 +46,12 @@ export const useUpdateCheckbox = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: ({ id, is_checked }: { id: number; is_checked: boolean }) => 
+    mutationFn: ({ id, is_checked }: { id: number; is_checked: boolean }) =>
       listsServices.updateListItemChecked(id, is_checked),
     onMutate: async (updatedItem) => {
       await queryClient.cancelQueries({ queryKey: ['listItems'] });
       const previousItems = queryClient.getQueryData<ListItem[]>(['listItems']);
-      
+
       queryClient.setQueryData(['listItems'], (old: ListItem[] | undefined) =>
         old?.map(item =>
           item.id === updatedItem.id
@@ -60,7 +59,7 @@ export const useUpdateCheckbox = () => {
             : item
         )
       );
-      
+
       return { previousItems };
     },
     onError: (err, updatedItem, context) => {

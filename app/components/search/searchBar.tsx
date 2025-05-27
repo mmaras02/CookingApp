@@ -5,36 +5,37 @@ import { Meal, RootParamList } from '@/app/types';
 import { useNavigation } from 'expo-router';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { COLORS, globalStyles } from '@/styles';
+import { MS, S } from '@/app/utils';
 
-const SearchBar = ({meals} : {meals: Meal[]}) => {
+const SearchBar = ({ meals }: { meals: Meal[] }) => {
     const [search, setSearch] = useState("");
     const navigation = useNavigation<NativeStackNavigationProp<RootParamList>>();
 
     const filteredMeals = useMemo(() => {
-    if (!search) return [];
-    return meals?.filter(meal => 
-        meal.name.toLowerCase().includes(search.toLowerCase())
-    ).slice(0,5) || [];
+        if (!search) return [];
+        return meals?.filter(meal =>
+            meal.name.toLowerCase().includes(search.toLowerCase())
+        ).slice(0, 5) || [];
     }, [search, meals]);
 
     return (
         <View>
-        <Searchbar placeholder="Pretraži recepte"
-                    value={search}
-                    onChangeText={setSearch}
-                    style={styles.search} />
+            <Searchbar placeholder="Pretraži recepte"
+                value={search}
+                onChangeText={setSearch}
+                style={styles.search} />
 
-        {search.length > 0 && (
-            <View style={styles.suggestionsContainer}>
-                {filteredMeals.map((meal) => (
-                <TouchableOpacity key={meal.id} 
-                                    style={styles.suggestionItem}
-                                    onPress={() => navigation.navigate('MealDetails', { mealId: meal.id! })}>
-                    <Text style={globalStyles.text}>{meal.name}</Text>
-                </TouchableOpacity>
-                ))}
-                
-            </View>
+            {search.length > 0 && (
+                <View style={styles.suggestionsContainer}>
+                    {filteredMeals.map((meal) => (
+                        <TouchableOpacity key={meal.id}
+                            style={styles.suggestionItem}
+                            onPress={() => navigation.navigate('MealDetails', { mealId: meal.id! })}>
+                            <Text style={globalStyles.text}>{meal.name}</Text>
+                        </TouchableOpacity>
+                    ))}
+
+                </View>
             )}
         </View>
     )
@@ -47,16 +48,17 @@ const styles = StyleSheet.create({
         width: '90%',
         alignSelf: 'center',
         backgroundColor: COLORS.dark_grey,
-        marginBottom: 40,
+        marginBottom: S(30),
+        borderRadius: MS(10),
     },
 
     suggestionsContainer: {
         position: 'absolute',
         width: '90%',
         alignSelf: 'center',
-        top: 60,
+        top: S(50),
         backgroundColor: COLORS.dark_grey,
-        borderRadius: 10,
+        borderRadius: MS(10),
         elevation: 3,
         //shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.2,
@@ -64,7 +66,7 @@ const styles = StyleSheet.create({
         zIndex: 1000,
     },
     suggestionItem: {
-        padding: 15,
+        padding: S(15),
         borderBottomWidth: 1,
         borderBottomColor: '#eee',
     },

@@ -1,4 +1,5 @@
 import { useWriteReview } from "@/app/hooks";
+import { MS, S } from "@/app/utils";
 import { COLORS, globalStyles } from "@/styles";
 import { Ionicons } from "@expo/vector-icons";
 import { useState } from "react";
@@ -9,9 +10,9 @@ interface ReviewProps {
     userId: string;
 }
 
-const WriteReview =  ({mealId, userId} : ReviewProps) => {
+const WriteReview = ({ mealId, userId }: ReviewProps) => {
     const [comment, setComment] = useState("");
-    const [rating, setRating] = useState(0); 
+    const [rating, setRating] = useState(0);
     const { mutate: writeReview } = useWriteReview();
 
     const handleSubmitReview = () => {
@@ -25,26 +26,26 @@ const WriteReview =  ({mealId, userId} : ReviewProps) => {
         }
         writeReview({ mealId, rating, comment }, {
             onSuccess: () => {
-              Alert.alert("Review submitted successfully!");
-              setComment("");
-              setRating(0);
+                Alert.alert("Review submitted successfully!");
+                setComment("");
+                setRating(0);
             },
             onError: () => {
                 Alert.alert("Failed to submit review");
-              }
-            });
+            }
+        });
     }
 
-    return(
+    return (
         <View>
             <Text style={globalStyles.headingText}>Ostavi svoj komentar!</Text>
             <View style={styles.starsContainer}>
                 {[1, 2, 3, 4, 5].map((star) => (
                     <TouchableOpacity key={star} onPress={() => setRating(star)}>
                         <Ionicons name={star <= rating ? "star" : "star-outline"}
-                                  size={30}
-                                  color={COLORS.orange}
-                                  style={styles.star} />
+                            size={30}
+                            color={COLORS.orange}
+                            style={styles.star} />
                     </TouchableOpacity>
                 ))}
             </View>
@@ -58,9 +59,9 @@ const WriteReview =  ({mealId, userId} : ReviewProps) => {
                     multiline
                 />
             </View>
-            
+
             <TouchableOpacity style={globalStyles.orangeButton}
-                              onPress={handleSubmitReview} >
+                onPress={handleSubmitReview} >
 
                 <Text style={globalStyles.whiteText}>Objavi</Text>
             </TouchableOpacity>
@@ -75,20 +76,20 @@ const styles = StyleSheet.create({
 
     starsContainer: {
         flexDirection: "row",
-        margin: 10,
+        margin: S(10),
     },
     star: {
-        marginHorizontal: 5,
+        marginHorizontal: S(3),
     },
 
     inputContainer: {
         backgroundColor: COLORS.dark_grey,
-        padding: 15,
-        marginHorizontal: 15,
-        borderRadius: 10,
+        padding: S(15),
+        marginHorizontal: S(5),
+        borderRadius: MS(10),
     },
     input: {
-        fontSize: 16,
+        fontSize: MS(16),
         color: COLORS.text,
     },
 })

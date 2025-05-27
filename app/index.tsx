@@ -1,31 +1,27 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import Layout from './_layout';
-import { UserProvider } from './context/userSessionContext';
+import { UserProvider } from './context/AuthContext';
+import { disableFontScaling } from './utils';
+import { ActivityIndicator } from 'react-native';
 import { useFonts } from 'expo-font';
-import { SplashScreen } from 'expo-router';
-import { View } from 'react-native';
+
+disableFontScaling();
 
 const App = () => {
-    const [fontsLoaded] = useFonts({
+  const [fontsLoaded] = useFonts({
     'Montserrat-Regular': require('../assets/fonts/Montserrat-Regular.ttf'),
     'Montserrat-Bold': require('../assets/fonts/Montserrat-Bold.ttf'),
   });
 
-  const onLayoutRootView = useCallback(async () => {
-    if (fontsLoaded) {
-      await SplashScreen.hideAsync();
-    }
-  }, [fontsLoaded]);
+  if (!fontsLoaded) {
+    return <ActivityIndicator size="large" />;
+  }
 
-  if (!fontsLoaded) return null;
-  
-    return (
-        <UserProvider>
-            <View onLayout={onLayoutRootView}>
-                <Layout />    
-            </View>
-        </UserProvider>
-    )
+  return (
+    <UserProvider>
+      <Layout />
+    </UserProvider>
+  )
 }
 
 export default App;

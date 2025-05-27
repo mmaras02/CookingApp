@@ -1,10 +1,10 @@
 const standardizeName = (name: string) => {
     return name
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
         .trim()
         .toLowerCase()
-        .split(/\s+/)
-        .map(word => word[0]?.toUpperCase() + word.slice(1))
-        .join(' ');
+        .replace(/\s+/g, ' ');
 };
 
-export default standardizeName ;
+export default standardizeName;

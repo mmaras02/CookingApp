@@ -5,6 +5,7 @@ import { globalStyles, COLORS } from '@/styles';
 import { useState } from 'react';
 import Checkbox from 'expo-checkbox';
 import { useCreateListItems, useListItems, useUpdateCheckbox } from '@/app/hooks';
+import { S } from '../utils';
 
 const ListItemScreen = () => {
     const route = useRoute();
@@ -21,8 +22,8 @@ const ListItemScreen = () => {
     };
 
     const handleInput = () => {
-        if(!input.trim()) return;
-        
+        if (!input.trim()) return;
+
         createListItem({
             list_id: listId,
             content: input.trim(),
@@ -34,10 +35,10 @@ const ListItemScreen = () => {
     }
 
     const toggleCheckbox = async (itemId: number, currentChecked: boolean) => {
-       updateCheckbox({
-        id: itemId,
-        is_checked: !currentChecked,
-       });
+        updateCheckbox({
+            id: itemId,
+            is_checked: !currentChecked,
+        });
     };
 
     return (
@@ -45,8 +46,8 @@ const ListItemScreen = () => {
             <ReturnPage />
             <View style={styles.container}>
                 <Pressable style={styles.checkboxButton} onPress={handleUseCheckboxes}>
-                <Text style={styles.boxText}>
-                        { useCheckboxes ?  "☑️ use checkboxes" : "☐ use checkboxes"}
+                    <Text style={styles.boxText}>
+                        {useCheckboxes ? "☑️ use checkboxes" : "☐ use checkboxes"}
                     </Text>
                 </Pressable >
 
@@ -56,17 +57,17 @@ const ListItemScreen = () => {
                     <View key={item.id} style={styles.notes}>
                         {item.is_checkbox && (
                             <Checkbox value={item.is_checked || false}
-                                      style={styles.checkbox}
-                                      onValueChange={() => toggleCheckbox(item.id, item.is_checked)}
-                                      color={item.is_checked ? COLORS.light_green : ""}/>
+                                style={styles.checkbox}
+                                onValueChange={() => toggleCheckbox(item.id, item.is_checked)}
+                                color={item.is_checked ? COLORS.light_green : ""} />
                         )}
-                        <Text key={item.id} 
-                              style={[ globalStyles.text, item.is_checked && styles.strikethrough]}>
-                                {item?.content}
+                        <Text key={item.id}
+                            style={[globalStyles.text, item.is_checked && styles.strikethrough]}>
+                            {item?.content}
                         </Text>
 
                     </View>
-                    
+
                 ))}
                 <TextInput
                     placeholder={useCheckboxes ? "Add new item..." : "Write your notes..."}
@@ -76,7 +77,7 @@ const ListItemScreen = () => {
                     returnKeyType="done"
                 />
             </View>
-            
+
         </ScrollView>
     );
 }
@@ -85,26 +86,26 @@ export default ListItemScreen;
 
 const styles = StyleSheet.create({
     container: {
-        padding: 20,
+        padding: S(15),
     },
     checkboxButton: {
         alignSelf: 'flex-end',
-        padding: 10,
+        padding: S(10),
         backgroundColor: COLORS.light_green,
     },
     boxText: {
-        fontSize: 16,
+        fontSize: S(14),
         color: COLORS.light,
     },
     notes: {
         flexDirection: 'row',
-        margin: 5,
-        
+        margin: S(5),
+
     },
     checkbox: {
         marginRight: 10,
-        width: 25,
-        height: 25,
+        width: S(20),
+        height: (20),
     },
     strikethrough: {
         textDecorationLine: 'line-through',

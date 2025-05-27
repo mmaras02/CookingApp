@@ -1,60 +1,58 @@
-import { StyleSheet } from 'react-native';
-import { COLORS } from '.';
+import { StyleSheet } from "react-native";
+import { COLORS } from ".";
+import { S, MS } from "@/app/utils";
 
 export const globalStyles = StyleSheet.create({
-    TitleText:{
-      color: COLORS.title_text,
-      fontSize: 23,
-      fontWeight: 'bold',
-      fontFamily: 'Montserrat-Regular',
-    },
-    text: {
-      fontSize: 17,
-      color: COLORS.text,
-      marginRight: 5,
-      fontWeight: 500,
-      fontFamily: 'Montserrat-Bold'
-    },
-    whiteText: {
-      fontSize: 18,
-      color: COLORS.light,
-      marginRight: 5,
-      fontWeight: 600,
-    },
-    image: {
-      width: 170,
-      height: 220,
-      resizeMode: 'cover',
-      borderRadius: 5,
-      elevation: 8,
-    },
-    button: {
-      margin: 8,
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-      backgroundColor: COLORS.light_green,
-      padding: 12,
-      borderRadius: 5,
-    },
-    orangeButton: {
-      height: 50,
-      width: 140,
-      margin: 20,
-      justifyContent: 'center',
-      alignItems: 'center',
-      borderRadius: 10,
-      backgroundColor: '#f2a76d',
-      zIndex: 600,
-    },
+        TitleText: {
+                color: COLORS.title_text,
+                fontSize: MS(22),
+                fontWeight: "bold",
+                fontFamily: "Montserrat-Regular",
+        },
 
-    headingText: {
-      fontSize: 24,
-      fontWeight: 700,
-      color: COLORS.text,
-  },
-})
-
-/*orange: #f2a76d
-green: #7f9481
-neutral: #f6f6f6*/
+        headingText: {
+                fontSize: MS(22),
+                fontWeight: "700",
+                color: COLORS.text,
+                fontFamily: "Montserrat-Bold",
+        },
+        text: {
+                fontSize: MS(16),
+                color: COLORS.text,
+                marginRight: S(5),
+                fontWeight: "500",
+                fontFamily: "Montserrat-Bold",
+        },
+        whiteText: {
+                fontSize: MS(16),
+                color: COLORS.light,
+                marginRight: S(5),
+                fontWeight: "700",
+                fontFamily: "Montserrat-Bold",
+        },
+        image: {
+                width: S(170),
+                height: S(220),
+                resizeMode: "cover",
+                borderRadius: S(5),
+                elevation: 8,
+        },
+        button: {
+                margin: S(8),
+                justifyContent: "center",
+                alignItems: "center",
+                backgroundColor: COLORS.light_green,
+                padding: S(12),
+                borderRadius: S(5),
+        },
+        orangeButton: {
+                height: S(40),
+                width: S(125),
+                margin: S(20),
+                justifyContent: "center",
+                alignItems: "center",
+                borderRadius: S(10),
+                backgroundColor: "#f2a76d",
+                zIndex: 600,
+        },
+});

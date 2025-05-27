@@ -1,1 +1,1 @@
-export { default as NewListModal } from './newListModal';
+export { default as NewListModal } from "./NewListModal";

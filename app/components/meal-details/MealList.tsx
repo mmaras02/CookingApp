@@ -5,24 +5,25 @@ import { Meal, RootParamList } from '@/app/types'
 import { COLORS, globalStyles } from '@/styles'
 import { useNavigation } from 'expo-router'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
+import { S } from '@/app/utils';
 
-const MealList = ({meal} : {meal: Meal}) => {
+const MealList = ({ meal }: { meal: Meal }) => {
     const navigation = useNavigation<NativeStackNavigationProp<RootParamList>>();
-    
+
     return (
         <TouchableOpacity style={styles.mealCard}
             onPress={() => navigation.navigate('MealDetails', { mealId: meal.id })}>
-            <Image 
-                source={{ uri: meal.image_url! }} 
-                style={styles.image} 
+            <Image
+                source={{ uri: meal.image_url! }}
+                style={styles.image}
                 resizeMode="cover"
             />
             <View style={styles.mealInfo}>
                 <Text style={globalStyles.text}>
-                {meal.name}
+                    {meal.name}
                 </Text>
-                <View style={{flexDirection: 'row'}}>
-                <MealRating meal={meal} />
+                <View style={{ flexDirection: 'row' }}>
+                    <MealRating meal={meal} />
                 </View>
             </View>
         </TouchableOpacity>
@@ -34,18 +35,21 @@ export default MealList
 const styles = StyleSheet.create({
     mealCard: {
         flexDirection: 'row',
-        padding: 10,
+        padding: S(8),
         alignItems: 'center',
         backgroundColor: COLORS.light,
-        margin: 5,
-      },
-      image: {
-        width: 90,
-        height: 90,
-        borderRadius: 20,
-        marginRight: 15,
-      },
-      mealInfo: {
+        margin: S(3),
+        borderRadius: S(10),
+        borderColor: COLORS.grey,
+        borderWidth: 1,
+    },
+    image: {
+        width: S(70),
+        height: S(70),
+        borderRadius: S(10),
+        marginRight: S(10),
+    },
+    mealInfo: {
         flex: 1,
-      },
+    },
 })

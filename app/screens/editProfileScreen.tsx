@@ -1,7 +1,7 @@
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import React, { useState } from 'react'
 import { COLORS, globalStyles } from '@/styles'
-import { useAuth } from '../context/userSessionContext';
+import { useAuth } from '../context/AuthContext';
 import ReturnPage from '../navigation/returnPage';
 import { ImageInput } from '../components';
 import { useEditProfile } from '../hooks';
@@ -16,15 +16,15 @@ const EditProfileScreen = () => {
   const [profilePhoto, setProfilePhoto] = useState<string | null>(userProfile?.profile_img || null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { mutate: editProfile } = useEditProfile();
-  
-  const handleEditProfile = async() => {
+
+  const handleEditProfile = async () => {
     if (!userProfile?.id) return;
     setIsSubmitting(true);
 
     const oldImage = userProfile.profile_img;
     const newImage = profilePhoto;
 
-    if(oldImage)
+    if (oldImage)
       await imageUploadServices.deleteImageFromSupabase(oldImage, 'user-images');
 
     editProfile({
@@ -39,34 +39,34 @@ const EditProfileScreen = () => {
 
   return (
     <View style={styles.container}>
-        <ReturnPage />
-        <ImageInput imageUrl={profilePhoto}
-                    setImageUrl={setProfilePhoto}
-                    bucketName='user-images'
-                    imageHeight={120} 
-                    imageWidth={130}/>
+      <ReturnPage />
+      <ImageInput imageUrl={profilePhoto}
+        setImageUrl={setProfilePhoto}
+        bucketName='user-images'
+        imageHeight={120}
+        imageWidth={130} />
 
-        <Text style={globalStyles.text}>Your name</Text>
-        <TextInput placeholder={name}
-                    style={styles.input}
-                    value={name}
-                    onChangeText={setName} />
+      <Text style={globalStyles.text}>Your name</Text>
+      <TextInput placeholder={name}
+        style={styles.input}
+        value={name}
+        onChangeText={setName} />
 
-        <Text style={globalStyles.text}>Your username</Text>
-        <TextInput placeholder={username}
-                    style={styles.input}
-                    value={username}
-                    onChangeText={setUsername} />
-          
-        <Text style={globalStyles.text}>Your email</Text>
-        <TextInput placeholder={user?.user.email}
-                    style={styles.input}/>
+      <Text style={globalStyles.text}>Your username</Text>
+      <TextInput placeholder={username}
+        style={styles.input}
+        value={username}
+        onChangeText={setUsername} />
 
-        <TouchableOpacity style={globalStyles.button}
-                                      onPress={handleEditProfile}
-                                      disabled={isSubmitting}>
-            <Text style={globalStyles.whiteText}>Save</Text>
-        </TouchableOpacity>
+      <Text style={globalStyles.text}>Your email</Text>
+      <TextInput placeholder={user?.user.email}
+        style={styles.input} />
+
+      <TouchableOpacity style={globalStyles.button}
+        onPress={handleEditProfile}
+        disabled={isSubmitting}>
+        <Text style={globalStyles.whiteText}>Save</Text>
+      </TouchableOpacity>
     </View>
   )
 }
@@ -78,15 +78,12 @@ const styles = StyleSheet.create({
     margin: 20,
     height: '70%'
   },
-    input: {
-        borderWidth: 1,
-        borderColor: COLORS.dark_grey,
-        borderRadius: 10,
-        padding: 12,
-        fontSize: 16,
-        marginBottom: 30,
-    },
-    button: {
-      height: 0,
-    }
+  input: {
+    borderWidth: 1,
+    borderColor: COLORS.dark_grey,
+    borderRadius: 10,
+    padding: 12,
+    fontSize: 16,
+    marginBottom: 30,
+  }
 })
