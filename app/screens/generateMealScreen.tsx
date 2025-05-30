@@ -1,12 +1,12 @@
 import ReturnPage from '../navigation/returnPage';
 import LottieView from 'lottie-react-native';
 import { View, StyleSheet, Animated } from 'react-native'
-import { useCallback, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { CategorySelector, ConfettiAnimation, CustomButton, MealItem } from '@/app/components';
 import { Meal } from '@/app/types';
 import { useMeals, useMealsByCategories } from '../hooks';
 import images from '@/assets/images';
-import { S } from '../utils';
+import { getDayOfWeek, S } from '../utils';
 
 const GenerateMealScreen = () => {
   const [randomMeal, setRandomMeal] = useState<Meal | null>(null);
@@ -18,9 +18,14 @@ const GenerateMealScreen = () => {
   const confettiRef = useRef<LottieView>(null);
   const [fadeAnim] = useState(new Animated.Value(1));
 
-  const handlePress = useCallback(() => {
-    const filteredMeals = selectedCategories.length === 0 ? meals : categoryMeals;
+  useEffect(() => {
+    if (getDayOfWeek() === 5) {
+      setSelectedCategories([5]);
+    }
+  }, []);
 
+  const handlePress = () => {
+    const filteredMeals = selectedCategories.length === 0 ? meals : categoryMeals;
     if (!filteredMeals || filteredMeals?.length === 0) return;
 
     if (confettiRef.current) confettiRef.current.play(0);
@@ -39,7 +44,7 @@ const GenerateMealScreen = () => {
       ]).start();
     });
 
-  }, [scale, meals, categoryMeals, selectedCategories]);
+  };
 
   return (
     <View style={styles.container}>
