@@ -5,7 +5,7 @@ import { Ionicons } from "@expo/vector-icons"
 import { useState } from "react";
 import { TouchableOpacity, View, Text, Image, StyleSheet, Alert } from "react-native"
 import { ImageInputProps } from "@/app/types";
-import { LoadingSpinner } from "..";
+import { LoadingSpinner } from "../common";
 
 const ImageInput = ({ imageUrl, setImageUrl, bucketName, imageHeight = 200, imageWidth = 370 }: ImageInputProps) => {
     const { user } = useAuth();

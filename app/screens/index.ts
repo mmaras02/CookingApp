@@ -1,20 +1,17 @@
-export { default as HomeScreen } from './homeScreen';
-export { default as WelcomeScreen } from './welcomeScreen';
-export { default as MealDetailsScreen } from './mealDetailsScreen';
-export { default as CategoryScreen } from './categoryScreen';
-export { default as GenerateMealScreen } from './generateMealScreen';
-export { default as FavoriteScreen } from './favoritesScreen';
-export { default as SearchScreen } from './searchScreen';
-export { default as FoundMealsScreen } from './foundMealsScreen';
-export { default as SigninScreen } from './signinScreen';
-export { default as SignupScreen } from './signupScreen';
-export { default as ProfileScreen } from './profileScreen';
-export { default as ListsScreen } from './listsScreen';
-export { default as ListItemScreen } from './listItemScreen';
-export { default as CreateRecipeScreen } from './createRecipeScreen';
-export { default as UsersRecipesScreen } from './usersRecipesScreen';
-export { default as UserProfileScreen } from './userProfileScreen';
-export { default as EditProfileScreen } from './editProfileScreen';
-export { default as DisplayMealsScreen } from './displayMealsScreen';
-
-
+export { default as HomeScreen } from "./homeScreen";
+export { default as WelcomeScreen } from "./welcomeScreen";
+export { default as MealDetailsScreen } from "./mealDetailsScreen";
+export { default as GenerateMealScreen } from "./generateMealScreen";
+export { default as FavoriteScreen } from "./favoritesScreen";
+export { default as SearchScreen } from "./searchScreen";
+export { default as FoundMealsScreen } from "./foundMealsScreen";
+export { default as SigninScreen } from "./signinScreen";
+export { default as SignupScreen } from "./signupScreen";
+export { default as ProfileScreen } from "./profileScreen";
+export { default as ListsScreen } from "./listsScreen";
+export { default as ListItemScreen } from "./listItemScreen";
+export { default as CreateRecipeScreen } from "./createRecipeScreen";
+export { default as UsersRecipesScreen } from "./usersRecipesScreen";
+export { default as UserProfileScreen } from "./userProfileScreen";
+export { default as EditProfileScreen } from "./editProfileScreen";
+export { default as DisplayMealsScreen } from "./displayMealsScreen";

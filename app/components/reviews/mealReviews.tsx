@@ -8,8 +8,7 @@ const MealReviews = ({ mealId }: { mealId: number }) => {
 
     return (
         <View style={styles.container}>
-            <WriteReview mealId={mealId}
-                userId={userProfile?.id!} />
+            <WriteReview mealId={mealId} />
             <ReviewList mealId={mealId} />
 
         </View>

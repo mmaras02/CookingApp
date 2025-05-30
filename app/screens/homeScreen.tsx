@@ -28,9 +28,7 @@ const HomeScreen = () => {
       <SearchBar meals={meals!} />
       <CategoryList />
 
-
       <TitleHeader titleText='Istraži mogućnosti' />
-
 
       <View style={styles.container}>
         <FeatureCard title='Što imam u frižideru?'

@@ -6,12 +6,7 @@ import { useState } from "react";
 import { View, StyleSheet, TouchableOpacity, Text, TextInput, Alert } from "react-native";
 import { CustomButton } from "..";
 
-interface ReviewProps {
-    mealId: number;
-    userId: string;
-}
-
-const WriteReview = ({ mealId, userId }: ReviewProps) => {
+const WriteReview = ({ mealId }: { mealId: number }) => {
     const [comment, setComment] = useState("");
     const [rating, setRating] = useState(0);
     const { mutate: writeReview } = useWriteReview();

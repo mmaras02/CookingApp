@@ -4,13 +4,13 @@ import { Ionicons } from '@expo/vector-icons'
 import { COLORS, globalStyles } from '@/styles'
 import { useNavigation } from 'expo-router'
 
-interface Props {
+interface ProfileOptionProps {
     iconName: string,
     routeName: string,
     title: string
 }
 
-const ProfileOption = ({ iconName, routeName, title }: Props) => {
+const ProfileOption = ({ iconName, routeName, title }: ProfileOptionProps) => {
     const navigation = useNavigation();
 
     return (

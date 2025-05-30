@@ -1,7 +1,6 @@
 export * from "./category";
 export * from "./create-recipe";
 export * from "./list";
-export * from "./loading";
 export * from "./meal-details";
 export * from "./modals";
 export * from "./profile";

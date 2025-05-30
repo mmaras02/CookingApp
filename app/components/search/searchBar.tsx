@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
         width: '90%',
         alignSelf: 'center',
         backgroundColor: COLORS.dark_grey,
-        marginBottom: S(30),
+        marginBottom: S(10),
         borderRadius: MS(10),
     },
 

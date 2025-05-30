@@ -86,9 +86,6 @@ const findOrAddIngredients = async (ingredients: Ingredient[]) => {
                         quantity: original?.quantity ?? "",
                 };
         });
-
-        console.log("Ingwqq", ingredientsdWithQuantity);
-
         return ingredientsdWithQuantity;
 };
 

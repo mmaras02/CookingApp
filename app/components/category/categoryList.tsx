@@ -4,39 +4,35 @@ import { useNavigation } from 'expo-router';
 import { COLORS, globalStyles } from '@/styles';
 import { useCategories } from '@/app/hooks';
 import { RootParamList } from '@/app/types';
-import { S, VS, MS } from '@/app/utils';
+import { S } from '@/app/utils';
+import { TitleHeader } from '../common';
 
 const CategoryList = () => {
     const { data: categories } = useCategories();
     const navigation = useNavigation<NativeStackNavigationProp<RootParamList>>();
 
     return (
-        <View style={styles.categoriesSection}>
+        <>
+            <TitleHeader titleText='Kategorije' />
+            <View style={styles.categoriesSection}>
+                <FlatList
+                    data={categories}
+                    keyExtractor={(item) => item.name || Math.random().toString()}
+                    horizontal={true}
+                    showsHorizontalScrollIndicator={false}
+                    renderItem={({ item }) => (
+                        <View style={styles.categoryBox}>
+                            <TouchableOpacity
+                                activeOpacity={0.7}
+                                onPress={() => navigation.navigate('DisplayMeals', { categoryId: item.id, categoryName: item.name })}>
 
-            <View style={styles.titleSection}>
-                <Text style={globalStyles.titleText}>Kategorije</Text>
-                <TouchableOpacity>
-                    <Text style={styles.moreText}>Vidi više</Text>
-                </TouchableOpacity>
+                                <Text style={globalStyles.whiteText}>{item.name}</Text>
+                            </TouchableOpacity>
+                        </View>
+                    )} />
+
             </View>
-
-            <FlatList
-                data={categories}
-                keyExtractor={(item) => item.name || Math.random().toString()}
-                horizontal={true}
-                showsHorizontalScrollIndicator={false}
-                renderItem={({ item }) => (
-                    <View style={styles.categoryBox}>
-                        <TouchableOpacity
-                            activeOpacity={0.7}
-                            onPress={() => navigation.navigate('Category', { categoryId: item.id, categoryName: item.name })}>
-
-                            <Text style={globalStyles.whiteText}>{item.name}</Text>
-                        </TouchableOpacity>
-                    </View>
-                )} />
-
-        </View>
+        </>
     )
 }
 export default CategoryList;
@@ -53,15 +49,4 @@ const styles = StyleSheet.create({
         padding: S(10),
         borderRadius: S(5),
     },
-    titleSection: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-between'
-    },
-    moreText: {
-        fontSize: MS(15),
-        color: COLORS.orange,
-        fontWeight: 700,
-        marginRight: S(8),
-    }
 });

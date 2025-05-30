@@ -101,16 +101,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     zIndex: 1000,
   },
-  button: {
-    height: 50,
-    width: 140,
-    margin: 20,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 10,
-    backgroundColor: '#f2a76d',
-  },
-
   questionMark: {
     width: S(300),
     height: S(300),

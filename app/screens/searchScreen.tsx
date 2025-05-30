@@ -1,6 +1,6 @@
-import { View, Text, Image, FlatList, StyleSheet, TouchableOpacity, Button } from 'react-native'
+import { View, Text, Image, FlatList, StyleSheet, TouchableOpacity } from 'react-native'
 import React, { useCallback, useState } from 'react'
-import { globalStyles, COLORS } from '@/styles';
+import { globalStyles } from '@/styles';
 import ReturnPage from '../navigation/returnPage';
 import { useNavigation } from 'expo-router';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
