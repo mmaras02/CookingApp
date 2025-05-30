@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
         backgroundColor: COLORS.grey,
         margin: S(10),
         paddingHorizontal: S(5),
-        borderRadius: 10,
+        borderRadius: S(5),
         borderStyle: 'solid',
         borderColor: COLORS.light_green,
         borderWidth: 0.3,

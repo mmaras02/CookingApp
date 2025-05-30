@@ -1,3 +1,3 @@
-export * from './useMealDetails'; 
-export * from './useMeals'; 
-export * from './useMealsByCategory'; 
+export * from "./useMealDetails";
+export * from "./useMeals";
+export * from "./useMealsByCategories ";

@@ -1,11 +1,10 @@
-import { View, Text, TouchableOpacity, StyleSheet, ScrollView, Alert } from 'react-native'
+import { View, StyleSheet, ScrollView, Alert } from 'react-native'
 import React, { useState } from 'react'
 import ReturnPage from '../navigation/returnPage'
-import { globalStyles } from '@/styles'
 import { Ingredient } from '@/app/types'
 import { createMealServices } from '../services'
 import { useAuth } from '../context/AuthContext'
-import { CategorySelector, ImageInput, IngredientInput, StepInput, TitleInput } from '../components'
+import { CategorySelector, CustomButton, ImageInput, IngredientInput, StepInput, TitleInput } from '../components'
 
 const CreateRecipeScreen = () => {
     const { user } = useAuth();
@@ -13,10 +12,9 @@ const CreateRecipeScreen = () => {
     const [title, setTitle] = useState("");
     const [ingredients, setIngredients] = useState<Ingredient[]>([{ name: '', quantity: '' }]);
     const [steps, setSteps] = useState<string[]>(['']);
-    const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+    const [selectedCategories, setSelectedCategories] = useState<number[]>([]);
     const [imageUrl, setImageUrl] = useState<string | null>(null);
     const [isSubmitting, setIsSubmitting] = useState(false);
-
 
     const handleCreateMeal = async () => {
         if (!userProfile?.id) {
@@ -78,13 +76,8 @@ const CreateRecipeScreen = () => {
                 <StepInput steps={steps}
                     setSteps={setSteps} />
 
-
-                <TouchableOpacity style={globalStyles.button}
-                    onPress={handleCreateMeal}
-                    disabled={isSubmitting}>
-
-                    <Text style={globalStyles.whiteText}>Create Recipe</Text>
-                </TouchableOpacity>
+                <CustomButton onPress={handleCreateMeal}
+                    buttonText='Kreiraj recept' />
 
             </View>
         </ScrollView>

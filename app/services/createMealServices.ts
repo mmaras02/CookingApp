@@ -13,7 +13,7 @@ const createMeal = async (mealData: MealCreate) => {
         return data;
 };
 
-const addMealCategories = async (mealId: number, categoryIds: string[]) => {
+const addMealCategories = async (mealId: number, categoryIds: number[]) => {
         const categoriesToAdd = categoryIds.map((category_id) => ({
                 meal_id: mealId,
                 category_id,

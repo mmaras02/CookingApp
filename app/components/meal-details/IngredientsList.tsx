@@ -32,7 +32,7 @@ const IngredientsList = ({ ingredients, mealName }: IngredientsListProps) => {
 
     return (
         <View style={styles.ingredientSection}>
-            <Text style={globalStyles.TitleText}>Sastojci</Text>
+            <Text style={globalStyles.titleText}>Sastojci</Text>
 
             <TouchableOpacity style={styles.addButton}
                 onPress={handleAddToList}>

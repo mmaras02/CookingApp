@@ -11,7 +11,7 @@ const ReviewList = ({ mealId }: { mealId: number }) => {
         <View>
             {reviews && reviews.length > 0 ? (
                 <>
-                    <Text style={globalStyles.TitleText}>Vidi što drugi misle!</Text>
+                    <Text style={globalStyles.titleText}>Vidi što drugi misle!</Text>
                     {reviews.map((review, index) => (
                         <View key={index} style={styles.singleComment}>
                             <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
@@ -35,7 +35,7 @@ const ReviewList = ({ mealId }: { mealId: number }) => {
                     ))}
                 </>
             ) : (
-                <Text style={globalStyles.TitleText}>Još nema komentara!</Text>
+                <Text style={globalStyles.titleText}>Još nema komentara!</Text>
             )}
         </View>
     );

@@ -25,7 +25,7 @@ const UserProfileScreen = () => {
         <View style={styles.profileHeader}>
           <Image source={imageSource} style={styles.image} />
           <View>
-            <Text style={globalStyles.TitleText}>{user?.full_name}</Text>
+            <Text style={globalStyles.titleText}>{user?.full_name}</Text>
             <Text style={globalStyles.text}>{user?.username}</Text>
           </View>
         </View>

@@ -4,6 +4,7 @@ import { useNavigation } from 'expo-router';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { Meal, RootParamList } from '@/app/types';
 import { S, MS } from '@/app/utils';
+import { globalStyles } from '@/styles';
 
 const MealCard = ({ meal }: { meal: Meal }) => {
     const navigation = useNavigation<NativeStackNavigationProp<RootParamList>>();
@@ -15,7 +16,7 @@ const MealCard = ({ meal }: { meal: Meal }) => {
                 <ImageBackground source={{ uri: meal.image_url }}
                     style={styles.image}>
                     <View style={styles.overlay}>
-                        <Text style={styles.titleText}>{meal.name}</Text>
+                        <Text style={globalStyles.whiteText}>{meal.name}</Text>
                     </View>
                 </ImageBackground>
             )}

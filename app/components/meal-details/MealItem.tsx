@@ -20,7 +20,7 @@ const MealItem = ({ meal, width = S(155) }: { meal: Meal, width?: number }) => {
         )}
         <View style={styles.textBox}>
           <View>
-            <Text style={globalStyles.TitleText}
+            <Text style={globalStyles.titleText}
               numberOfLines={1}
               ellipsizeMode="tail">{meal.name}</Text>
             {user ? (

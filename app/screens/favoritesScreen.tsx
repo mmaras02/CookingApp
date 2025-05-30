@@ -2,7 +2,6 @@ import React from 'react';
 import { View, FlatList, StyleSheet, RefreshControl } from 'react-native';
 import ReturnPage from '../navigation/returnPage';
 import { useFavorites } from '@/app/hooks';
-import { COLORS } from '@/styles';
 import { LoadingSpinner } from '../components';
 import MealList from '../components/meal-details/MealList';
 
@@ -18,7 +17,7 @@ const FavoriteScreen = () => {
 
   return (
     <View style={styles.container}>
-      <ReturnPage title='Tvoji favoriti' />
+      <ReturnPage title='Spremljeni recepti' />
       <FlatList
         data={favorites}
         keyExtractor={(item) => item.id!.toString()}

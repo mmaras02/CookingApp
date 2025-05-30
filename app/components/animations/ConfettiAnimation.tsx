@@ -20,7 +20,7 @@ export default ConfettiAnimation
 const styles = StyleSheet.create({
     lottie: {
         position: 'absolute',
-        top: -100,
+        top: -210,
         left: 0,
         right: 0,
         bottom: 0,

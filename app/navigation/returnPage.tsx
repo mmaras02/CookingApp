@@ -3,16 +3,16 @@ import { useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 import { COLORS } from '@/styles';
 
-const ReturnPage = ({isOverImage = false, title} : {isOverImage?: boolean, title?: string}) => {
+const ReturnPage = ({ isOverImage = false, title }: { isOverImage?: boolean, title?: string }) => {
     const navigation = useNavigation();
 
-  return(
-    <View style={[styles.container, isOverImage && styles.absoluteContainer]}>
-        <TouchableOpacity onPress={() => navigation.goBack()} style={[styles.backButton, isOverImage && styles.overlay]}>
-            <Ionicons name="arrow-back-outline" size={24} color={COLORS.light} />
-        </TouchableOpacity>
-        <Text style={styles.text}>{title}</Text>
-    </View>
+    return (
+        <View style={[styles.container, isOverImage && styles.absoluteContainer]}>
+            <TouchableOpacity onPress={() => navigation.goBack()} style={[styles.backButton, isOverImage && styles.overlay]}>
+                <Ionicons name="arrow-back-outline" size={24} color={COLORS.light} />
+            </TouchableOpacity>
+            <Text style={styles.text}>{title}</Text>
+        </View>
     )
 }
 
@@ -32,6 +32,7 @@ const styles = StyleSheet.create({
         backgroundColor: COLORS.transparent_orange,
         borderRadius: 40,
         marginRight: 20,
+        zIndex: 1500,
     },
     overlay: {
         position: 'absolute',

@@ -14,7 +14,7 @@ const CategoryList = () => {
         <View style={styles.categoriesSection}>
 
             <View style={styles.titleSection}>
-                <Text style={globalStyles.TitleText}>Kategorije</Text>
+                <Text style={globalStyles.titleText}>Kategorije</Text>
                 <TouchableOpacity>
                     <Text style={styles.moreText}>Vidi više</Text>
                 </TouchableOpacity>
@@ -31,7 +31,7 @@ const CategoryList = () => {
                             activeOpacity={0.7}
                             onPress={() => navigation.navigate('Category', { categoryId: item.id, categoryName: item.name })}>
 
-                            <Text style={styles.text}>{item.name}</Text>
+                            <Text style={globalStyles.whiteText}>{item.name}</Text>
                         </TouchableOpacity>
                     </View>
                 )} />
@@ -52,10 +52,6 @@ const styles = StyleSheet.create({
         backgroundColor: COLORS.light_green,
         padding: S(10),
         borderRadius: S(5),
-    },
-    text: {
-        fontSize: MS(18),
-        color: COLORS.light
     },
     titleSection: {
         flexDirection: 'row',

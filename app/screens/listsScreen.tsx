@@ -14,7 +14,7 @@ function ListsScreen() {
 
     return (
         <View style={styles.container}>
-            <ReturnPage title={"Bilješke"} />
+            <ReturnPage title='Shopping košarica' />
             <View style={styles.content}>
 
                 <View style={styles.listContainer}>

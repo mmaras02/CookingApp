@@ -9,7 +9,7 @@ const CategorySelector = ({ selectedCategories, setSelectedCategories }: Categor
 
     const categoryOptions = allCategories?.map((category: any) => ({
         label: category.name,
-        value: category.id
+        value: String(category.id),
     })) || [];
 
     return (
@@ -23,9 +23,9 @@ const CategorySelector = ({ selectedCategories, setSelectedCategories }: Categor
                 labelField="label"
                 valueField="value"
                 placeholder="Izaber kategorije"
-                value={selectedCategories}
-                onChange={item => {
-                    setSelectedCategories(item);
+                value={selectedCategories.map(String)}
+                onChange={items => {
+                    setSelectedCategories(items.map(Number));
                 }}
                 selectedStyle={styles.selectedStyle}
             />

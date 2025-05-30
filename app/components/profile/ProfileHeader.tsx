@@ -14,7 +14,7 @@ const ProfileHeader = ({ userProfile }: ProfileHeaderProps) => {
                 <Image source={{ uri: userProfile?.profile_img }} style={styles.image} />
             )}
             <View>
-                <Text style={globalStyles.TitleText}>{userProfile?.full_name}</Text>
+                <Text style={globalStyles.titleText}>{userProfile?.full_name}</Text>
                 <Text style={globalStyles.text}>{userProfile?.username}</Text>
             </View>
         </View>

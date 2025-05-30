@@ -8,7 +8,7 @@ import { Meal, RootParamList } from '@/app/types';
 import { useFocusEffect } from '@react-navigation/native';
 import { useIngredientsList } from '@/app/hooks';
 import { ingredientServices } from '@/app/services';
-import { LoadingSpinner } from '../components';
+import { CustomButton, LoadingSpinner } from '../components';
 import { S, VS } from '../utils';
 
 const SearchScreen = () => {
@@ -55,7 +55,7 @@ const SearchScreen = () => {
     <View>
       <ReturnPage title='Odaberi željene sastojke' />
       <View style={styles.container}>
-        {/*<Text style={globalStyles.TitleText}>Choose the ingredients you have at home!</Text>*/}
+        {/*<Text style={globalStyles.titleText}>Choose the ingredients you have at home!</Text>*/}
 
         <FlatList
           data={ingredients ?? []}
@@ -74,9 +74,12 @@ const SearchScreen = () => {
             )
           }}
         />
-        <Button title="Pronađi obrok"
-          onPress={() => handleUserChoice()}
-          color={COLORS.orange} />
+        <View style={styles.buttonContainer}>
+          <CustomButton
+            onPress={handleUserChoice}
+            buttonText='Pronađi obrok'
+          />
+        </View>
       </View>
 
     </View>
@@ -104,5 +107,9 @@ const styles = StyleSheet.create({
   selected: {
     opacity: 0.2,
   },
-
+  buttonContainer: {
+    position: 'absolute',
+    bottom: VS(110),
+    width: '100%'
+  },
 })

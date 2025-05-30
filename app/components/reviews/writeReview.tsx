@@ -1,9 +1,10 @@
 import { useWriteReview } from "@/app/hooks";
-import { MS, S } from "@/app/utils";
+import { MS, S, VS } from "@/app/utils";
 import { COLORS, globalStyles } from "@/styles";
 import { Ionicons } from "@expo/vector-icons";
 import { useState } from "react";
 import { View, StyleSheet, TouchableOpacity, Text, TextInput, Alert } from "react-native";
+import { CustomButton } from "..";
 
 interface ReviewProps {
     mealId: number;
@@ -60,11 +61,12 @@ const WriteReview = ({ mealId, userId }: ReviewProps) => {
                 />
             </View>
 
-            <TouchableOpacity style={globalStyles.orangeButton}
-                onPress={handleSubmitReview} >
-
-                <Text style={globalStyles.whiteText}>Objavi</Text>
-            </TouchableOpacity>
+            <View style={styles.buttonContainer}>
+                <CustomButton
+                    onPress={handleSubmitReview}
+                    buttonText='Objavi komentar'
+                />
+            </View>
 
         </View>
     )
@@ -92,4 +94,8 @@ const styles = StyleSheet.create({
         fontSize: MS(16),
         color: COLORS.text,
     },
+    buttonContainer: {
+        marginTop: VS(20),
+        marginBottom: S(30),
+    }
 })

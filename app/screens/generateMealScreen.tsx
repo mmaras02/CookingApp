@@ -1,54 +1,74 @@
 import ReturnPage from '../navigation/returnPage';
 import LottieView from 'lottie-react-native';
-import { View, Text, StyleSheet, Animated } from 'react-native'
+import { View, StyleSheet, Animated } from 'react-native'
 import { useCallback, useRef, useState } from 'react';
-import { Button } from 'react-native-paper';
-import { globalStyles } from '@/styles';
-import { ConfettiAnimation, MealItem } from '@/app/components';
+import { CategorySelector, ConfettiAnimation, CustomButton, MealItem } from '@/app/components';
 import { Meal } from '@/app/types';
-import { useMeals } from '../hooks';
+import { useMeals, useMealsByCategories } from '../hooks';
+import images from '@/assets/images';
+import { S } from '../utils';
 
 const GenerateMealScreen = () => {
   const [randomMeal, setRandomMeal] = useState<Meal | null>(null);
-  const { data: meals, isLoading } = useMeals();
+  const [selectedCategories, setSelectedCategories] = useState<number[]>([]);
+  const { data: meals } = useMeals();
+  const { data: categoryMeals } = useMealsByCategories(selectedCategories);
+
   const [scale] = useState(new Animated.Value(1.2));
   const confettiRef = useRef<LottieView>(null);
+  const [fadeAnim] = useState(new Animated.Value(1));
 
   const handlePress = useCallback(() => {
-    if (!meals?.length) return;
+    const filteredMeals = selectedCategories.length === 0 ? meals : categoryMeals;
+
+    if (!filteredMeals || filteredMeals?.length === 0) return;
 
     if (confettiRef.current) confettiRef.current.play(0);
-    Animated.sequence([
-      Animated.spring(scale, { toValue: 1.4, friction: 3, useNativeDriver: true }),
-      Animated.spring(scale, { toValue: 1.2, friction: 3, useNativeDriver: true }),
-    ]).start();
 
-    const randomIndex = Math.floor(Math.random() * meals.length);
-    setRandomMeal(meals[randomIndex]);
-  }, [scale, meals?.length]);
+    Animated.timing(fadeAnim, {
+      toValue: 0,
+      duration: 400,
+      useNativeDriver: true,
+    }).start(() => {
+      const randomIndex = Math.floor(Math.random() * filteredMeals.length);
+      setRandomMeal(filteredMeals[randomIndex]);
 
+      Animated.sequence([
+        Animated.spring(scale, { toValue: 1.4, friction: 3, useNativeDriver: true }),
+        Animated.spring(scale, { toValue: 1.2, friction: 3, useNativeDriver: true }),
+      ]).start();
+    });
+
+  }, [scale, meals, categoryMeals, selectedCategories]);
 
   return (
     <View style={styles.container}>
       <ReturnPage title='Generiraj nasumični obrok' />
       <View style={styles.generateSection}>
-        <Button
-          onPress={handlePress}
-          style={globalStyles.orangeButton}
-          disabled={isLoading || !meals?.length}
-        >
-          <Text style={globalStyles.whiteText}>Generiraj</Text>
-        </Button>
+
+        <View style={{ width: '100%', zIndex: 1200 }}>
+          <CategorySelector selectedCategories={selectedCategories}
+            setSelectedCategories={setSelectedCategories} />
+        </View>
 
         <View style={styles.imageContainer}>
           <ConfettiAnimation ref={confettiRef} />
 
-          {randomMeal && (
+          {randomMeal ? (
             <Animated.View style={[styles.animatedImageContainer, { transform: [{ scale }] }]}>
               <MealItem meal={randomMeal} width={190} />
             </Animated.View>
+          ) : (
+            <Animated.Image source={images.QuestionMark}
+              style={[styles.questionMark, { opacity: fadeAnim }]}
+              resizeMode="contain" />
           )}
+
         </View>
+
+        <CustomButton onPress={handlePress}
+          buttonText='Generiraj obrok' />
+
       </View>
     </View>
   );
@@ -59,10 +79,13 @@ const styles = StyleSheet.create({
   generateSection: {
     flex: 1,
     alignItems: 'center',
+    margin: S(15),
   },
   imageContainer: {
     flex: 1,
     justifyContent: 'center',
+    alignItems: 'center',
+    width: '100%',
     marginBottom: 40,
   },
   container: {
@@ -81,5 +104,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderRadius: 10,
     backgroundColor: '#f2a76d',
+  },
+
+  questionMark: {
+    width: S(300),
+    height: S(300),
+    position: 'absolute',
   },
 })

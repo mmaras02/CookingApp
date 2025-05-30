@@ -13,7 +13,7 @@ const FoundMealsScreen = () => {
         return (
             <View>
                 <ReturnPage />
-                <Text style={globalStyles.TitleText}>No meals found</Text>
+                <Text style={globalStyles.titleText}>No meals found</Text>
                 <Text style={globalStyles.text}>Please try different ingredients</Text>
             </View>
         );
@@ -31,11 +31,11 @@ const FoundMealsScreen = () => {
                         source={{ uri: firstMeal.image_url! }}
                         style={styles.firstMealImage}
                         resizeMode="cover">
-                        <Text style={styles.TitleText}>{firstMeal.name}</Text>
+                        <Text style={styles.titleText}>{firstMeal.name}</Text>
                     </ImageBackground>
                 </View>
 
-                <Text style={globalStyles.TitleText}> I drugi recepti koji sadrže odgovarajuće sastojke</Text>
+                <Text style={globalStyles.titleText}> I drugi recepti koji sadrže odgovarajuće sastojke</Text>
                 <View>
                     {remainingMeals.map((item) => (
                         <View key={item.id || Math.random()}>
@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-    TitleText: {
+    titleText: {
         backgroundColor: COLORS.transparent_orange,
         fontSize: 30,
         fontWeight: 600,

@@ -52,7 +52,7 @@ const MealDetailsScreen = () => {
 
             <View style={styles.container}>
                 <View style={styles.title}>
-                    <Text style={globalStyles.TitleText}>{meal.name}</Text>
+                    <Text style={globalStyles.titleText}>{meal.name}</Text>
 
                     {user && (
                         <TouchableOpacity style={styles.authorSection}

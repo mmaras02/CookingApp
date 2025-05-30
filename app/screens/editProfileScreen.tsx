@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { COLORS, globalStyles } from '@/styles'
 import { useAuth } from '../context/AuthContext';
 import ReturnPage from '../navigation/returnPage';
-import { ImageInput } from '../components';
+import { CustomButton, ImageInput } from '../components';
 import { useEditProfile } from '../hooks';
 import { imageUploadServices } from '../services';
 
@@ -39,7 +39,7 @@ const EditProfileScreen = () => {
 
   return (
     <View style={styles.container}>
-      <ReturnPage />
+      <ReturnPage title='Osobne informacije' />
       <ImageInput imageUrl={profilePhoto}
         setImageUrl={setProfilePhoto}
         bucketName='user-images'
@@ -62,11 +62,8 @@ const EditProfileScreen = () => {
       <TextInput placeholder={user?.user.email}
         style={styles.input} />
 
-      <TouchableOpacity style={globalStyles.button}
-        onPress={handleEditProfile}
-        disabled={isSubmitting}>
-        <Text style={globalStyles.whiteText}>Save</Text>
-      </TouchableOpacity>
+      <CustomButton onPress={handleEditProfile}
+        buttonText='Spremi' />
     </View>
   )
 }

@@ -51,7 +51,7 @@ const ListItemScreen = () => {
                     </Text>
                 </Pressable >
 
-                <Text style={globalStyles.TitleText}>{title}</Text>
+                <Text style={globalStyles.titleText}>{title}</Text>
 
                 {listItems?.map((item: any) => (
                     <View key={item.id} style={styles.notes}>
@@ -61,11 +61,11 @@ const ListItemScreen = () => {
                                 onValueChange={() => toggleCheckbox(item.id, item.is_checked)}
                                 color={item.is_checked ? COLORS.light_green : ""} />
                         )}
+
                         <Text key={item.id}
                             style={[globalStyles.text, item.is_checked && styles.strikethrough]}>
                             {item?.content}
                         </Text>
-
                     </View>
 
                 ))}
@@ -109,5 +109,10 @@ const styles = StyleSheet.create({
     },
     strikethrough: {
         textDecorationLine: 'line-through',
+    },
+    image: {
+        width: S(85),
+        height: S(85),
+        borderRadius: S(10),
     },
 })

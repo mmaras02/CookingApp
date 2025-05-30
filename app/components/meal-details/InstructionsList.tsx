@@ -7,7 +7,7 @@ import { S, VS } from '@/app/utils';
 const InstructionsList = ({ recipe }: { recipe: Recipe[] }) => {
     return (
         <View style={styles.container}>
-            <Text style={globalStyles.TitleText}>Priprema</Text>
+            <Text style={globalStyles.titleText}>Priprema</Text>
             {recipe.map((step) => (
                 <View style={styles.instructionBox} key={step.step_number}>
                     <View style={styles.stepNumber}><Text style={globalStyles.text}> {step.step_number}</Text></View>

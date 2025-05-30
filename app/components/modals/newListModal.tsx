@@ -3,7 +3,7 @@ import { Modal, Pressable, View, Text, StyleSheet, TextInput } from "react-nativ
 import { globalStyles, COLORS } from '@/styles';
 import { ModalProps } from "@/app/types";
 
-const NewListModal =  ({ visible, onClose, createList, isLoading }: ModalProps) => {
+const NewListModal = ({ visible, onClose, createList, isLoading }: ModalProps) => {
     const [listTitle, setListTitle] = useState("");
 
     const handleCreateList = () => {
@@ -12,7 +12,7 @@ const NewListModal =  ({ visible, onClose, createList, isLoading }: ModalProps) 
         onClose();
     }
 
-    return(
+    return (
         <Modal
             animationType="slide"
             transparent={true}
@@ -22,19 +22,19 @@ const NewListModal =  ({ visible, onClose, createList, isLoading }: ModalProps) 
             <View style={styles.centeredView}>
                 <View style={styles.modalContainer}>
                     <Pressable style={styles.closeButton} onPress={onClose}>
-                        <Text style={globalStyles.TitleText}>X</Text>
+                        <Text style={globalStyles.titleText}>X</Text>
                     </Pressable>
-                    <Text style={globalStyles.TitleText}>Enter title: </Text>
+                    <Text style={globalStyles.titleText}>Enter title: </Text>
                     <TextInput
                         style={styles.input}
                         placeholder="Enter list title"
                         value={listTitle}
                         onChangeText={setListTitle}
                     />
-                        <Pressable style={styles.createButton} onPress={handleCreateList}>
-                            <Text style={styles.textStyle}>Create</Text>
-                        </Pressable>
-                        
+                    <Pressable style={styles.createButton} onPress={handleCreateList}>
+                        <Text style={styles.textStyle}>Create</Text>
+                    </Pressable>
+
                 </View>
             </View>
         </Modal>
