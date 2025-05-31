@@ -19,7 +19,7 @@ export default TitleInput;
 const styles = StyleSheet.create({
     input: {
         borderWidth: 1,
-        borderColor: COLORS.dark_grey,
+        borderColor: COLORS.surfaceMuted,
         borderRadius: 10,
         padding: 12,
         fontSize: 16,

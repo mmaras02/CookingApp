@@ -31,7 +31,7 @@ export default LogoutButton;
 
 const styles = StyleSheet.create({
     logoutContainer: {
-        backgroundColor: COLORS.light,
+        backgroundColor: COLORS.textSecondary,
         flexDirection: 'row',
         alignItems: 'center',
         padding: 20,
@@ -39,8 +39,8 @@ const styles = StyleSheet.create({
     icon: {
         height: 30,
         width: 30,
-        tintColor: COLORS.text,
-        color: COLORS.text,
+        tintColor: COLORS.textPrimary,
+        color: COLORS.textPrimary,
         fontSize: 28,
         marginRight: 20,
     }

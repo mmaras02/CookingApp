@@ -1,9 +1,9 @@
-import { View, Text } from 'react-native'
-import React, { useState } from 'react'
+import { useState } from 'react';
+import { View, Text } from 'react-native';
 import { authStyles } from '@/styles';
 import { useNavigation } from 'expo-router';
 import { authServices } from '@/app/services';
-import { AuthButton, AuthFooter, AuthInput, GoogleButton } from '../components';
+import { AuthButton, AuthFooter, AuthInput, GoogleButton } from '@/app/components';
 
 const SignupScreen = () => {
     const navigation = useNavigation();

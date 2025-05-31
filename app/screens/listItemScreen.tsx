@@ -1,9 +1,9 @@
+import Checkbox from 'expo-checkbox';
+import ReturnPage from '../navigation/returnPage';
 import { View, Text, StyleSheet, TextInput, Pressable, ScrollView } from 'react-native'
 import { useRoute } from '@react-navigation/native';
-import ReturnPage from '../navigation/returnPage';
 import { globalStyles, COLORS } from '@/styles';
 import { useState } from 'react';
-import Checkbox from 'expo-checkbox';
 import { useCreateListItems, useListItems, useUpdateCheckbox } from '@/app/hooks';
 import { S } from '../utils';
 
@@ -59,7 +59,7 @@ const ListItemScreen = () => {
                             <Checkbox value={item.is_checked || false}
                                 style={styles.checkbox}
                                 onValueChange={() => toggleCheckbox(item.id, item.is_checked)}
-                                color={item.is_checked ? COLORS.light_green : ""} />
+                                color={item.is_checked ? COLORS.primary : ""} />
                         )}
 
                         <Text key={item.id}
@@ -91,11 +91,11 @@ const styles = StyleSheet.create({
     checkboxButton: {
         alignSelf: 'flex-end',
         padding: S(10),
-        backgroundColor: COLORS.light_green,
+        backgroundColor: COLORS.primary,
     },
     boxText: {
         fontSize: S(14),
-        color: COLORS.light,
+        color: COLORS.textSecondary,
     },
     notes: {
         flexDirection: 'row',
@@ -109,10 +109,5 @@ const styles = StyleSheet.create({
     },
     strikethrough: {
         textDecorationLine: 'line-through',
-    },
-    image: {
-        width: S(85),
-        height: S(85),
-        borderRadius: S(10),
     },
 })

@@ -1,6 +1,6 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { WelcomeScreen, MealDetailsScreen, FoundMealsScreen, SigninScreen, SignupScreen, ListsScreen, ListItemScreen, CreateRecipeScreen, UsersRecipesScreen, UserProfileScreen, EditProfileScreen, DisplayMealsScreen } from '@/app/screens';
+import { WelcomeScreen, MealDetailsScreen, FoundMealsScreen, SigninScreen, SignupScreen, ListsScreen, ListItemScreen, CreateRecipeScreen, UsersRecipesScreen, UserProfileScreen, EditProfileScreen, DisplayMealsScreen, SearchScreen } from '@/app/screens';
 import TabNavigator from './tabNavigation';
 
 const Stack = createNativeStackNavigator();
@@ -21,6 +21,9 @@ const StackNavigator = () => {
       <Stack.Screen name="UserProfile" component={UserProfileScreen} />
       <Stack.Screen name="EditProfile" component={EditProfileScreen} />
       <Stack.Screen name="DisplayMeals" component={DisplayMealsScreen} />
+
+      <Stack.Screen name="Search" component={SearchScreen} />
+
     </Stack.Navigator>
   );
 };

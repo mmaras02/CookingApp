@@ -1,71 +1,69 @@
 {
-  "expo": {
-    "name": "CookingApp",
-    "slug": "CookingApp",
-    "version": "1.0.0",
-    "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
-    "scheme": "myapp",
-    "userInterfaceStyle": "automatic",
-    "newArchEnabled": true,
-    "updates": {
-      "url": "https://u.expo.dev/f954ee62-35b0-4abf-896e-fcf724b5baa7"
-    },
-    "runtimeVersion": {
-      "policy": "sdkVersion"
-    },
-    "ios": {
-      "supportsTablet": true,
-      "bundleIdentifier": "com.miamaras.CookingApp",
-      "infoPlist": {
-        "ITSAppUsesNonExemptEncryption": false
-      }
-    },
-    "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/images/icon.png",
-        "backgroundColor": "#ffffff"
-      },
-      "permissions": [
-        "android.permission.RECORD_AUDIO"
-      ],
-      "package": "com.miamaras.CookingApp",
-      "versionCode": 1
-    },
-    "web": {
-      "bundler": "metro",
-      "output": "static",
-      "favicon": "./assets/images/icon.png"
-    },
-    "plugins": [
-      "expo-router",
-      [
-        "expo-splash-screen",
-        {
-          "image": "./assets/images/icon.png",
-          "imageWidth": 200,
-          "resizeMode": "contain",
-          "backgroundColor": "#ffffff"
+        "expo": {
+                "name": "Little chef",
+                "slug": "Little chef",
+                "version": "1.0.0",
+                "orientation": "portrait",
+                "icon3": "./assets/images/icon3.png",
+                "scheme": "myapp",
+                "userInterfaceStyle": "automatic",
+                "newArchEnabled": true,
+                "updates": {
+                        "url": "https://u.expo.dev/f954ee62-35b0-4abf-896e-fcf724b5baa7"
+                },
+                "runtimeVersion": {
+                        "policy": "sdkVersion"
+                },
+                "ios": {
+                        "supportsTablet": true,
+                        "bundleIdentifier": "com.miamaras.CookingApp",
+                        "infoPlist": {
+                                "ITSAppUsesNonExemptEncryption": false
+                        }
+                },
+                "android": {
+                        "adaptiveicon3": {
+                                "foregroundImage": "./assets/images/icon3.png",
+                                "backgroundColor": "rgb(85, 141, 119)"
+                        },
+                        "permissions": ["android.permission.RECORD_AUDIO"],
+                        "package": "com.miamaras.CookingApp",
+                        "versionCode": 1
+                },
+                "web": {
+                        "bundler": "metro",
+                        "output": "static",
+                        "favicon3": "./assets/images/icon3.png"
+                },
+                "plugins": [
+                        "expo-router",
+                        [
+                                "expo-splash-screen",
+                                {
+                                        "image": "./assets/images/icon3.png",
+                                        "imageWidth": 200,
+                                        "resizeMode": "contain",
+                                        "backgroundColor": "rgb(85, 141, 119)"
+                                }
+                        ],
+                        [
+                                "expo-image-picker",
+                                {
+                                        "photosPermission": "Selecct and upload images.",
+                                        "cameraPermission": "Allow $(PRODUCT_NAME) to access your camera."
+                                }
+                        ]
+                ],
+                "experiments": {
+                        "typedRoutes": true
+                },
+                "extra": {
+                        "router": {
+                                "origin": false
+                        },
+                        "eas": {
+                                "projectId": "f954ee62-35b0-4abf-896e-fcf724b5baa7"
+                        }
+                }
         }
-      ],
-      [
-        "expo-image-picker",
-        {
-          "photosPermission": "Selecct and upload images.",
-          "cameraPermission": "Allow $(PRODUCT_NAME) to access your camera."
-        }
-      ]
-    ],
-    "experiments": {
-      "typedRoutes": true
-    },
-    "extra": {
-      "router": {
-        "origin": false
-      },
-      "eas": {
-        "projectId": "f954ee62-35b0-4abf-896e-fcf724b5baa7"
-      }
-    }
-  }
 }

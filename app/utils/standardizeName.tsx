@@ -1,4 +1,4 @@
-const standardizeName = (name: string) => {
+export const standardizeName = (name: string) => {
     return name
         .normalize('NFD')
         .replace(/[\u0300-\u036f]/g, '')
@@ -7,4 +7,9 @@ const standardizeName = (name: string) => {
         .replace(/\s+/g, ' ');
 };
 
-export default standardizeName;
+export const capitalizeName = (name: string) => {
+    return name
+        .trim()
+        .toLowerCase()
+        .replace(/^(\w)(\w*)/, (_, first, rest) => first.toUpperCase() + rest);
+}

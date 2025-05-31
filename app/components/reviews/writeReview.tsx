@@ -40,7 +40,7 @@ const WriteReview = ({ mealId }: { mealId: number }) => {
                     <TouchableOpacity key={star} onPress={() => setRating(star)}>
                         <Ionicons name={star <= rating ? "star" : "star-outline"}
                             size={30}
-                            color={COLORS.orange}
+                            color={COLORS.secondary}
                             style={styles.star} />
                     </TouchableOpacity>
                 ))}
@@ -80,14 +80,14 @@ const styles = StyleSheet.create({
     },
 
     inputContainer: {
-        backgroundColor: COLORS.dark_grey,
+        backgroundColor: COLORS.surfaceMuted,
         padding: S(15),
         marginHorizontal: S(5),
         borderRadius: MS(10),
     },
     input: {
         fontSize: MS(16),
-        color: COLORS.text,
+        color: COLORS.textPrimary,
     },
     buttonContainer: {
         marginTop: VS(20),

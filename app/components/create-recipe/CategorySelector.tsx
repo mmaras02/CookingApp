@@ -38,7 +38,7 @@ export default CategorySelector;
 const styles = StyleSheet.create({
     input: {
         borderWidth: 1,
-        borderColor: COLORS.dark_grey,
+        borderColor: COLORS.surfaceMuted,
         borderRadius: 10,
         padding: 12,
         fontSize: 16,
@@ -47,11 +47,11 @@ const styles = StyleSheet.create({
     dropdownContainer: {
         marginTop: 10,
         borderRadius: 10,
-        color: COLORS.light,
+        color: COLORS.textSecondary,
     },
     selectedTextStyle: {
         fontSize: 14,
-        color: COLORS.light
+        color: COLORS.textSecondary
     },
     iconStyle: {
         width: 20,
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     },
     selectedStyle: {
         borderRadius: 12,
-        backgroundColor: COLORS.orange,
+        backgroundColor: COLORS.secondary,
 
     },
 })

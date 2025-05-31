@@ -1,5 +1,5 @@
-import { View, StyleSheet, ImageBackground } from 'react-native'
-import React, { useEffect } from 'react';
+import { View, StyleSheet, ImageBackground } from 'react-native';
+import { useEffect } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import images from '@/assets/images';
 import { supabase } from '@/lib/supabase';
@@ -25,7 +25,7 @@ const WelcomeScreen = () => {
 
   return (
     <View style={styles.container}>
-      <ImageBackground source={images.WelcomePage4}
+      <ImageBackground source={images.WelcomePage}
         resizeMode='cover'
         style={styles.image} >
       </ImageBackground>
@@ -46,12 +46,5 @@ const styles = StyleSheet.create({
     height: '100%',
     flex: 1,
     justifyContent: 'center',
-  },
-  text: {
-    color: 'white',
-    fontSize: 42,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    backgroundColor: 'rgba(0,0,0,0.5)',
   },
 })

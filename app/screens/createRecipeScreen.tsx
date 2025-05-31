@@ -1,10 +1,10 @@
-import { View, StyleSheet, ScrollView, Alert } from 'react-native'
-import React, { useState } from 'react'
 import ReturnPage from '../navigation/returnPage'
+import { View, StyleSheet, ScrollView, Alert } from 'react-native';
+import { useState } from 'react';
 import { Ingredient } from '@/app/types'
-import { createMealServices } from '../services'
+import { createMealServices } from '@/app/services'
 import { useAuth } from '../context/AuthContext'
-import { CategorySelector, CustomButton, ImageInput, IngredientInput, StepInput, TitleInput } from '../components'
+import { CategorySelector, CustomButton, ImageInput, IngredientInput, StepInput, TitleInput } from '@/app/components'
 
 const CreateRecipeScreen = () => {
     const { user } = useAuth();
@@ -14,14 +14,20 @@ const CreateRecipeScreen = () => {
     const [steps, setSteps] = useState<string[]>(['']);
     const [selectedCategories, setSelectedCategories] = useState<number[]>([]);
     const [imageUrl, setImageUrl] = useState<string | null>(null);
-    const [isSubmitting, setIsSubmitting] = useState(false);
+
+    const clearAll = () => {
+        setTitle('');
+        setIngredients([{ name: '', quantity: '' }]);
+        setImageUrl('');
+        setSteps(['']);
+        setSelectedCategories([]);
+    }
 
     const handleCreateMeal = async () => {
-        if (!userProfile?.id) {
+        if (!title || !ingredients || !imageUrl || !steps || !selectedCategories || !userProfile?.id) {
             throw Error("All fields must be filled!");
         }
 
-        setIsSubmitting(true);
         try {
             const meal = await createMealServices.createMeal({
                 name: title,
@@ -41,17 +47,8 @@ const CreateRecipeScreen = () => {
             clearAll();
         } catch (error) {
             Alert.alert('Error', 'Failed to create recipe. Please try again.');
-        } finally {
-            setIsSubmitting(false);
-        }
-    }
 
-    const clearAll = () => {
-        setTitle('');
-        setIngredients([{ name: '', quantity: '' }]);
-        setImageUrl('');
-        setSteps(['']);
-        setSelectedCategories([]);
+        }
     }
 
     return (

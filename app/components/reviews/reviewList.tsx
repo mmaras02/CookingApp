@@ -23,7 +23,7 @@ const ReviewList = ({ mealId }: { mealId: number }) => {
                                 </View>
 
                                 <View style={{ flexDirection: 'row', alignItems: 'center', marginRight: 20 }}>
-                                    <Ionicons name="star" size={30} color={COLORS.orange} />
+                                    <Ionicons name="star" size={30} color={COLORS.secondary} />
                                     <Text style={globalStyles.text}>{review.rating}</Text>
                                 </View>
                             </View>
@@ -45,7 +45,7 @@ export default ReviewList;
 
 const styles = StyleSheet.create({
     singleComment: {
-        backgroundColor: COLORS.light,
+        backgroundColor: COLORS.textSecondary,
         elevation: 1,
         height: VS(110),
         margin: S(10),

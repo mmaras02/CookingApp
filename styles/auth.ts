@@ -13,6 +13,6 @@ export const authStyles = StyleSheet.create({
         headingText: {
                 fontSize: 32,
                 fontWeight: 700,
-                color: COLORS.light_green,
+                color: COLORS.primary,
         },
 });

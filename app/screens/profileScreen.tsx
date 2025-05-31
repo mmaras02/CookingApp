@@ -1,8 +1,8 @@
-import { View, Alert } from 'react-native'
+import { View, Alert } from 'react-native';
 import { useAuth } from '../context/AuthContext';
 import { useNavigation } from 'expo-router';
 import { authServices } from '@/app/services';
-import { LogoutButton, ProfileHeader, ProfileOption } from '../components';
+import { LogoutButton, ProfileHeader, ProfileOption } from '@/app/components';
 
 const ProfileScreen = () => {
   const { user, setUser } = useAuth();

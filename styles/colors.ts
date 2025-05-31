@@ -1,13 +1,17 @@
 export const COLORS = {
-        orange: "rgba(253, 160, 98, 0.95)",
-        //orange: "#FF6F61",
-        title_text: "rgb(85, 141, 119)",
-        text: "rgba(5, 41, 29, 0.83)",
-        light_green: "rgb(91, 139, 120)",
-        transparent_orange: "rgba(236, 163, 114, 0.8)", //vidi sta s ovim
-        light: "rgba(246, 246, 246, 1)",
-        grey: "rgba(235, 235, 235, 0.89)",
-        dark_grey: "rgb(225, 225, 225)",
+        primary: "rgb(85, 141, 119)",
+        primaryLight: "rgb(140, 171, 158)",
+        primaryTransparent: "rgba(118, 172, 151, 0.8)",
+
+        secondary: "rgba(253, 160, 98, 0.95)",
+        accentSolid: "#FF6F61",
+        secondaryTransparent: "rgba(236, 163, 114, 0.8)",
+
+        textPrimary: "rgba(5, 46, 33, 0.83)",
+        textSecondary: "rgba(246, 246, 246, 1)",
+
+        surfaceSubtle: "rgba(235, 235, 235, 0.89)",
+        surfaceMuted: "rgb(225, 225, 225)",
 };
 //'rgb(81, 116, 84)', lijepa zelena
 //rgba(127, 148, 129, 1) origigi green

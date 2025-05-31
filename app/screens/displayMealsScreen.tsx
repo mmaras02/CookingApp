@@ -1,9 +1,8 @@
-import { FlatList, View, StyleSheet } from 'react-native'
-import React from 'react'
+import ReturnPage from '../navigation/returnPage';
+import { FlatList, View, StyleSheet } from 'react-native';
 import { RouteProp, useRoute } from '@react-navigation/native';
 import { RootParamList } from '../types';
-import ReturnPage from '../navigation/returnPage';
-import { LoadingSpinner, MealItem } from '../components';
+import { LoadingSpinner, MealItem } from '@/app/components';
 import { S, VS } from '../utils';
 import { useMealsByCategories } from '../hooks';
 

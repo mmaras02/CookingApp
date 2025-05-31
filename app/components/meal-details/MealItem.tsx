@@ -29,7 +29,7 @@ const MealItem = ({ meal, width = S(155) }: { meal: Meal, width?: number }) => {
               <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                 <Ionicons name='time-outline'
                   size={MS(18)}
-                  color={COLORS.text} />
+                  color={COLORS.textPrimary} />
                 <Text style={styles.text}>{meal.prep_time} min</Text>
               </View>
             )}
@@ -48,7 +48,7 @@ export default MealItem;
 
 const styles = StyleSheet.create({
   box: {
-    backgroundColor: COLORS.grey,
+    backgroundColor: COLORS.surfaceSubtle,
     margin: S(10),
     height: VS(195), //350
     borderRadius: S(5),
@@ -61,12 +61,12 @@ const styles = StyleSheet.create({
   textBox: {
     height: VS(80),
     justifyContent: 'space-between',
-    borderColor: COLORS.dark_grey,
+    borderColor: COLORS.surfaceMuted,
     borderWidth: 1,
   },
   text: {
     fontSize: MS(14),
     fontWeight: 600,
-    color: COLORS.text,
+    color: COLORS.textPrimary,
   },
 });

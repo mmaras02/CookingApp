@@ -5,7 +5,7 @@ import { COLORS } from "@/styles";
 const LoadingSpinner = () => {
     return (
         <View style={styles.container}>
-            <ActivityIndicator size="large" color={COLORS.orange} />
+            <ActivityIndicator size="large" color={COLORS.secondary} />
         </View>
     );
 };

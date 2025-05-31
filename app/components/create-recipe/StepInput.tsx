@@ -3,13 +3,13 @@ import { COLORS, globalStyles } from "@/styles";
 import { Ionicons } from "@expo/vector-icons";
 import { TouchableOpacity, View, Text, TextInput, StyleSheet } from "react-native";
 
-const StepInput = ({steps, setSteps} : StepInputProps) => {
+const StepInput = ({ steps, setSteps }: StepInputProps) => {
     const handleAddStep = () => {
         setSteps([...steps, '']);
     };
 
     const handleDeleteStep = (index: number) => {
-        if(steps.length > 1){
+        if (steps.length > 1) {
             const updatedSteps = [...steps];
             updatedSteps.splice(index, 1);
             setSteps(updatedSteps);
@@ -21,12 +21,12 @@ const StepInput = ({steps, setSteps} : StepInputProps) => {
         setSteps(updatedSteps);
     };
 
-    return(
+    return (
         <>
-        <Text style={globalStyles.text}>Priprema</Text>
+            <Text style={globalStyles.text}>Priprema</Text>
             {steps.map((step, index) => (
                 <View key={index}
-                      style={styles.stepContainer}>
+                    style={styles.stepContainer}>
                     <TextInput
                         style={[styles.input, styles.stepInput]}
                         placeholder={`Korak ${index + 1}`}
@@ -34,15 +34,15 @@ const StepInput = ({steps, setSteps} : StepInputProps) => {
                         multiline
                     />
                     <TouchableOpacity style={styles.deleteButton}
-                                      onPress={() => handleDeleteStep(index)}>
-                        <Ionicons name="trash" size={20} color={COLORS.orange} />
+                        onPress={() => handleDeleteStep(index)}>
+                        <Ionicons name="trash" size={20} color={COLORS.secondary} />
                     </TouchableOpacity>
-            
-            </View>
+
+                </View>
             ))}
-            
+
             <TouchableOpacity style={styles.addButton}
-                              onPress={handleAddStep}>
+                onPress={handleAddStep}>
                 <Text style={globalStyles.text}>+ Dodaj korak</Text>
             </TouchableOpacity>
         </>
@@ -54,7 +54,7 @@ export default StepInput;
 const styles = StyleSheet.create({
     input: {
         borderWidth: 1,
-        borderColor: COLORS.dark_grey,
+        borderColor: COLORS.surfaceMuted,
         borderRadius: 10,
         padding: 12,
         fontSize: 16,
@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     addButton: {
-        backgroundColor: COLORS.dark_grey,
+        backgroundColor: COLORS.surfaceMuted,
         padding: 10,
         borderRadius: 10,
         alignItems: 'center',

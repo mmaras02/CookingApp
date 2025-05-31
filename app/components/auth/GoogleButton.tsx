@@ -26,7 +26,7 @@ export const styles = StyleSheet.create({
         justifyContent: "center",
         flexDirection: "row",
         borderWidth: 1,
-        borderColor: COLORS.light_green,
+        borderColor: COLORS.primary,
         borderRadius: 100,
         height: 50,
     },

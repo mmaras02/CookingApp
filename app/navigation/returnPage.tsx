@@ -9,7 +9,7 @@ const ReturnPage = ({ isOverImage = false, title }: { isOverImage?: boolean, tit
     return (
         <View style={[styles.container, isOverImage && styles.absoluteContainer]}>
             <TouchableOpacity onPress={() => navigation.goBack()} style={[styles.backButton, isOverImage && styles.overlay]}>
-                <Ionicons name="arrow-back-outline" size={24} color={COLORS.light} />
+                <Ionicons name="arrow-back-outline" size={24} color={COLORS.textSecondary} />
             </TouchableOpacity>
             <Text style={styles.text}>{title}</Text>
         </View>
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
         marginVertical: 10,
         padding: 12,
         alignItems: 'center',
-        backgroundColor: COLORS.transparent_orange,
+        backgroundColor: COLORS.primaryTransparent,
         borderRadius: 40,
         marginRight: 20,
         zIndex: 1500,
@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     },
     text: {
         fontSize: 24,
-        color: COLORS.orange,
+        color: COLORS.primaryTransparent,
         fontWeight: 600,
     },
     absoluteContainer: {

@@ -1,5 +1,4 @@
-import { StyleSheet, Text, TouchableOpacity } from 'react-native'
-import React from 'react'
+import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons'
 import { COLORS, globalStyles } from '@/styles'
 import { useNavigation } from 'expo-router'
@@ -25,7 +24,7 @@ export default ProfileOption
 
 const styles = StyleSheet.create({
     profileHeader: {
-        backgroundColor: COLORS.light,
+        backgroundColor: COLORS.textSecondary,
         flexDirection: 'row',
         alignItems: 'center',
         padding: 20,
@@ -34,8 +33,8 @@ const styles = StyleSheet.create({
     icon: {
         height: 25,
         width: 25,
-        tintColor: COLORS.text,
-        color: COLORS.text,
+        tintColor: COLORS.textPrimary,
+        color: COLORS.textPrimary,
         fontSize: 28,
         marginRight: 20,
     }

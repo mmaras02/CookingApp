@@ -3,9 +3,9 @@ import { COLORS, globalStyles } from "@/styles";
 import { Ionicons } from "@expo/vector-icons";
 import { Ingredient, IngredientInputProps } from "@/app/types";
 
-const IngredientInput = ({ingredients, setIngredients} : IngredientInputProps) => {
+const IngredientInput = ({ ingredients, setIngredients }: IngredientInputProps) => {
     const handleAddIngredient = () => {
-        setIngredients([...ingredients, { name: '', quantity: ''}]);
+        setIngredients([...ingredients, { name: '', quantity: '' }]);
     }
 
     const handleDeleteIngredient = (index: number) => {
@@ -23,12 +23,12 @@ const IngredientInput = ({ingredients, setIngredients} : IngredientInputProps) =
         setIngredients(updatedIngredients);
     };
 
-    return(
+    return (
         <>
-        <Text style={globalStyles.text}>Sastojci:</Text>
+            <Text style={globalStyles.text}>Sastojci:</Text>
             {ingredients?.map((ingredient, index) => (
                 <View style={styles.ingredientsContainer}
-                      key={index}>
+                    key={index}>
                     <TextInput
                         style={[styles.input, styles.ingredientInput]}
                         placeholder="Sastojak"
@@ -41,20 +41,20 @@ const IngredientInput = ({ingredients, setIngredients} : IngredientInputProps) =
                         value={ingredient.quantity?.toString()}
                         onChangeText={(text) => handleIngredientChange(index, 'quantity', text)}
                     />
-                {ingredients.length > 1 && (
-                    <TouchableOpacity style={styles.deleteButton}
-                                      onPress={() => handleDeleteIngredient(index)}>
-                        <Ionicons name="trash" size={24} color={COLORS.orange} />
-                    </TouchableOpacity>
-                )}
+                    {ingredients.length > 1 && (
+                        <TouchableOpacity style={styles.deleteButton}
+                            onPress={() => handleDeleteIngredient(index)}>
+                            <Ionicons name="trash" size={24} color={COLORS.secondary} />
+                        </TouchableOpacity>
+                    )}
                 </View>
             ))}
-            
+
             <TouchableOpacity style={styles.addButton}
-                              onPress={handleAddIngredient}>
+                onPress={handleAddIngredient}>
                 <Text style={globalStyles.text}>+ Dodaj sastojak</Text>
             </TouchableOpacity>
-    </>
+        </>
     )
 }
 
@@ -63,7 +63,7 @@ export default IngredientInput;
 const styles = StyleSheet.create({
     input: {
         borderWidth: 1,
-        borderColor: COLORS.dark_grey,
+        borderColor: COLORS.surfaceMuted,
         borderRadius: 10,
         padding: 12,
         fontSize: 16,
@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     addButton: {
-        backgroundColor: COLORS.dark_grey,
+        backgroundColor: COLORS.surfaceMuted,
         padding: 10,
         borderRadius: 10,
         alignItems: 'center',

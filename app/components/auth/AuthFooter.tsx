@@ -15,7 +15,7 @@ const AuthFooter = ({ text, linkText, routeName }: FooterProps) => {
         <View style={styles.footerContainer}>
             <Text style={styles.continueText}>{text} </Text>
             <TouchableOpacity onPress={() => navigation.navigate(routeName as never)}>
-                <Text style={{ 'fontWeight': 800, color: COLORS.text }}> {linkText}</Text>
+                <Text style={{ 'fontWeight': 800, color: COLORS.textPrimary }}> {linkText}</Text>
             </TouchableOpacity>
         </View>
     )

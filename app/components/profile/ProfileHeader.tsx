@@ -1,18 +1,21 @@
-import { StyleSheet, Text, Image, View } from 'react-native'
-import React from 'react'
-import { COLORS, globalStyles } from '@/styles'
+import images from '@/assets/images';
+import { StyleSheet, Text, Image, View } from 'react-native';
+import { globalStyles } from '@/styles'
 import { UserProfile } from '@/app/types'
+import { S } from '@/app/utils';
 
 interface ProfileHeaderProps {
     userProfile: UserProfile;
 }
 
 const ProfileHeader = ({ userProfile }: ProfileHeaderProps) => {
+    const imageSource = userProfile?.profile_img
+        ? { uri: userProfile.profile_img }
+        : images.ProfileIcon;
+
     return (
         <View style={styles.profileHeader}>
-            {userProfile?.profile_img && (
-                <Image source={{ uri: userProfile?.profile_img }} style={styles.image} />
-            )}
+            <Image source={imageSource} style={styles.image} />
             <View>
                 <Text style={globalStyles.titleText}>{userProfile?.full_name}</Text>
                 <Text style={globalStyles.text}>{userProfile?.username}</Text>
@@ -25,16 +28,15 @@ export default ProfileHeader
 
 const styles = StyleSheet.create({
     profileHeader: {
-        backgroundColor: COLORS.light,
         flexDirection: 'row',
         alignItems: 'center',
-        padding: 20,
+        padding: S(20),
         marginVertical: 2,
     },
     image: {
-        width: 70,
-        height: 70,
+        width: S(60),
+        height: S(60),
         borderRadius: 10,
-        marginRight: 20,
+        marginRight: S(15),
     },
 })

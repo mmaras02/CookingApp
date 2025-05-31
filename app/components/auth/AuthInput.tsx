@@ -15,7 +15,7 @@ interface AuthProps {
 const AuthInput = ({ iconName, placeholder, value, onChangeText, secureTextEntry = false }: AuthProps) => {
     return (
         <View style={styles.inputContainer}>
-            <Ionicons name={iconName} size={24} color={COLORS.light_green} />
+            <Ionicons name={iconName} size={24} color={COLORS.primary} />
             <TextInput
                 placeholder={placeholder}
                 value={value}
@@ -34,7 +34,7 @@ export const styles = StyleSheet.create({
         flexDirection: "row",
         alignItems: "center",
         borderWidth: 1,
-        borderColor: COLORS.light_green,
+        borderColor: COLORS.primary,
         borderRadius: 100,
         paddingHorizontal: 20,
         margin: 5,

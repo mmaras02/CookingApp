@@ -1,9 +1,7 @@
-import React from 'react';
 import { View, FlatList, StyleSheet, RefreshControl } from 'react-native';
 import ReturnPage from '../navigation/returnPage';
 import { useFavorites } from '@/app/hooks';
-import { LoadingSpinner } from '../components';
-import MealList from '../components/meal-details/MealList';
+import { LoadingSpinner, MealList } from '@/app/components';
 
 
 const FavoriteScreen = () => {

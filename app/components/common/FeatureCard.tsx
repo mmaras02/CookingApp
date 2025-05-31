@@ -30,15 +30,15 @@ export default FeatureCard;
 const styles = StyleSheet.create({
     card: {
         marginVertical: S(5),
-        padding: S(12),
-        backgroundColor: COLORS.grey,
-        borderColor: COLORS.dark_grey,
+        padding: S(10),
+        backgroundColor: COLORS.surfaceSubtle,
+        borderColor: COLORS.surfaceMuted,
         borderWidth: 1,
     },
     title: {
         fontSize: 16,
         fontWeight: '600',
-        color: COLORS.text,
+        color: COLORS.textPrimary,
     },
     icon: {
         fontSize: S(18),
@@ -46,6 +46,6 @@ const styles = StyleSheet.create({
     description: {
         fontSize: S(12),
         fontWeight: 400,
-        color: COLORS.text,
+        color: COLORS.textPrimary,
     },
 });

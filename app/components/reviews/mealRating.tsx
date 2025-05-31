@@ -1,5 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import { StyleSheet, Text, View } from 'react-native';
 import { Meal } from '@/app/types';
 import { Ionicons } from '@expo/vector-icons';
 import { COLORS, globalStyles } from '@/styles';
@@ -29,7 +28,7 @@ const MealRating = ({ meal, isRating = false }: { meal: Meal, isRating?: boolean
                     key={index}
                     name={index < Math.round(mealAvg) ? 'star' : 'star-outline'}
                     size={18}
-                    color={COLORS.orange}
+                    color={COLORS.secondary}
                     style={styles.stars}
                 />
             ))}
@@ -52,10 +51,10 @@ const styles = StyleSheet.create({
         marginLeft: 4,
         marginBottom: 10,
         fontSize: 14,
-        color: COLORS.text,
+        color: COLORS.textPrimary,
     },
     iconImage: {
-        color: COLORS.orange,
+        color: COLORS.secondary,
         fontSize: 30,
         marginRight: 5,
     },

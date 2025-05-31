@@ -1,6 +1,6 @@
 import { supabase } from "@/lib/supabase";
 import { Ingredient, MealCreate } from "@/app/types";
-import { standardizeName } from "../utils";
+import { capitalizeName, standardizeName } from "../utils";
 
 const createMeal = async (mealData: MealCreate) => {
         const { data, error } = await supabase
@@ -54,9 +54,12 @@ const findOrAddIngredients = async (ingredients: Ingredient[]) => {
         let allIngredientsFinal = existingIngredients || [];
 
         //finding new ingredienst
-        const newIngredients = userIngredients.filter((userIng) => {
-                allIngredients?.some((dbIng) => dbIng.name === userIng.name);
-        });
+        const newIngredients = userIngredients.filter(
+                (userIng) =>
+                        !allIngredients.some(
+                                (dbIng) => dbIng.name === userIng.name
+                        )
+        );
 
         if (newIngredients.length > 0) {
                 const { data: createdIngredients, error: createError } =
@@ -64,7 +67,7 @@ const findOrAddIngredients = async (ingredients: Ingredient[]) => {
                                 .from("ingredients")
                                 .insert(
                                         newIngredients.map((ing) => ({
-                                                name: ing.name,
+                                                name: capitalizeName(ing.name),
                                         }))
                                 )
                                 .select();

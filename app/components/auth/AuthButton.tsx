@@ -18,7 +18,7 @@ export default AuthButton;
 
 export const styles = StyleSheet.create({
     signupButton: {
-        backgroundColor: COLORS.light_green,
+        backgroundColor: COLORS.primary,
         height: 50,
         borderRadius: 100,
         alignItems: "center",
@@ -26,7 +26,7 @@ export const styles = StyleSheet.create({
         marginTop: 20,
     },
     signupText: {
-        color: COLORS.light,
+        color: COLORS.textSecondary,
         fontSize: 22,
         fontWeight: 600,
     },

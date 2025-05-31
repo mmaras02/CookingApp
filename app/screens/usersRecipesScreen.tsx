@@ -1,9 +1,8 @@
-import { View, Text, FlatList, StyleSheet } from 'react-native'
-import React from 'react'
-import { useAuth } from '@/app/context/AuthContext'
 import ReturnPage from '../navigation/returnPage'
+import { View, Text, FlatList, StyleSheet } from 'react-native';
+import { useAuth } from '@/app/context/AuthContext'
 import { globalStyles } from '@/styles'
-import { MealCard } from '../components'
+import { MealCard } from '@/app/components'
 import { S } from '../utils'
 import { useMealsByUser } from '../hooks/meals/useMealsByUser'
 

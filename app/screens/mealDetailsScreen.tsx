@@ -1,12 +1,12 @@
+import images from "@/assets/images";
+import ReturnPage from "../navigation/returnPage";
 import { RouteProp, useRoute } from "@react-navigation/native";
 import { View, Text, Image, StyleSheet, ScrollView, TouchableOpacity } from "react-native";
 import { Ingredient, Meal, RootParamList, Recipe } from "@/app/types";
 import { globalStyles, COLORS } from '@/styles';
-import ReturnPage from "../navigation/returnPage";
 import { IngredientsList, InstructionsList, LoadingSpinner, MealRating, MealReviews } from "@/app/components";
 import { AntDesign, Ionicons } from "@expo/vector-icons";
 import { useFavoriteStatus, useMealDetails, useUser } from "@/app/hooks";
-import images from "@/assets/images";
 import { useNavigation } from "expo-router";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { MS, S, VS } from "../utils";
@@ -44,7 +44,7 @@ const MealDetailsScreen = () => {
                     <AntDesign
                         name={isFavorited ? "heart" : "hearto"}
                         size={32}
-                        color={COLORS.orange}
+                        color={COLORS.primaryTransparent}
                     />
 
                 </TouchableOpacity>
@@ -66,7 +66,7 @@ const MealDetailsScreen = () => {
                     <View style={styles.categorySection}>
                         {categories && categories.map((category, index) => (
                             <View key={index} style={styles.categoryContent}>
-                                <Text style={styles.text}>{category} </Text>
+                                <Text style={globalStyles.whiteText}>{category} </Text>
                             </View>
                         ))}
                     </View>
@@ -127,22 +127,23 @@ const styles = StyleSheet.create({
 
     heartIcon: {
         position: "absolute",
-        borderColor: COLORS.text,
+        borderColor: COLORS.textPrimary,
         top: S(10),
         right: S(15),
         zIndex: 10,
-        backgroundColor: COLORS.light,
+        backgroundColor: COLORS.textSecondary,
         padding: S(7),
         borderRadius: MS(50),
 
     },
 
     categoryContent: {
-        backgroundColor: COLORS.light_green,
+        backgroundColor: COLORS.primaryTransparent,
         marginRight: S(15),
         marginTop: S(10),
         padding: S(5),
         borderRadius: 5,
+        paddingLeft: S(10),
     },
 
     dataContent: {
@@ -152,7 +153,7 @@ const styles = StyleSheet.create({
     },
 
     iconImage: {
-        color: COLORS.text,
+        color: COLORS.textPrimary,
         fontSize: MS(26),
         marginRight: S(5),
     },
@@ -173,7 +174,7 @@ const styles = StyleSheet.create({
         fontSize: MS(18),
         alignSelf: 'center',
         marginLeft: 5,
-        color: COLORS.light,
+        color: COLORS.textSecondary,
     },
 
     roundedOverlay: {

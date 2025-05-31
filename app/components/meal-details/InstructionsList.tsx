@@ -1,5 +1,4 @@
-import { View, Text, StyleSheet } from 'react-native'
-import React from 'react'
+import { View, Text, StyleSheet } from 'react-native';
 import { globalStyles } from '@/styles';
 import { Recipe } from '@/app/types';
 import { S, VS } from '@/app/utils';

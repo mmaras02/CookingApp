@@ -1,5 +1,5 @@
-import { StyleSheet, Text, TouchableOpacity, View, FlatList } from 'react-native'
-import React, { useState } from 'react'
+import { StyleSheet, Text, TouchableOpacity, View, FlatList } from 'react-native';
+import { useState } from 'react';
 import ReturnPage from '../navigation/returnPage';
 import { useLists } from '@/app/hooks';
 import { ListItem, LoadingSpinner, NewListModal } from '@/app/components';
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
         position: 'absolute',
         width: S(50),
         height: S(50),
-        backgroundColor: COLORS.orange,
+        backgroundColor: COLORS.secondary,
         borderRadius: MS(50),
         alignItems: 'center',
         justifyContent: 'center',
@@ -76,6 +76,6 @@ const styles = StyleSheet.create({
     },
     plus: {
         fontSize: S(35),
-        color: COLORS.light
+        color: COLORS.textSecondary
     },
 })

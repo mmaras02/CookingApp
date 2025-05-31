@@ -1,5 +1,4 @@
-import { Alert, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React from 'react'
+import { Alert, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useNavigation } from 'expo-router'
 import { List, RootParamList } from '@/app/types'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
@@ -42,7 +41,7 @@ const ListItem = ({ list }: { list: List }) => {
                     e.stopPropagation();
                     handleDelete(list.id);
                 }}>
-                    <Ionicons name="trash-outline" size={26} color={COLORS.light_green} />
+                    <Ionicons name="trash-outline" size={26} color={COLORS.primary} />
                 </TouchableOpacity>
             </View>
 
@@ -56,13 +55,13 @@ const styles = StyleSheet.create({
     listItem: {
         height: VS(100),
         width: S(140),
-        backgroundColor: COLORS.grey,
+        backgroundColor: COLORS.surfaceSubtle,
         margin: S(10),
         paddingHorizontal: S(5),
         borderRadius: S(5),
         borderStyle: 'solid',
-        borderColor: COLORS.light_green,
-        borderWidth: 0.3,
+        borderColor: COLORS.surfaceMuted,
+        borderWidth: 1,
         justifyContent: 'space-around',
     },
     footer: {

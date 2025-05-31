@@ -1,5 +1,4 @@
 import { Meal, RootParamList } from '@/app/types';
-import React from 'react'
 import { FlatList } from 'react-native';
 import { MealItem, TitleHeader } from '..';
 import { useNavigation } from 'expo-router';

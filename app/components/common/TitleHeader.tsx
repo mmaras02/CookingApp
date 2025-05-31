@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     },
     moreText: {
         fontSize: S(14),
-        color: COLORS.orange,
+        color: COLORS.secondary,
         fontWeight: 700,
         marginRight: S(10),
         marginTop: S(10),

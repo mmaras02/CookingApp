@@ -1,11 +1,11 @@
-import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
-import React, { useState } from 'react'
+import ReturnPage from '../navigation/returnPage';
+import { StyleSheet, Text, TextInput, View } from 'react-native'
+import { useState } from 'react'
 import { COLORS, globalStyles } from '@/styles'
 import { useAuth } from '../context/AuthContext';
-import ReturnPage from '../navigation/returnPage';
-import { CustomButton, ImageInput } from '../components';
+import { CustomButton, ImageInput } from '@/app/components';
 import { useEditProfile } from '../hooks';
-import { imageUploadServices } from '../services';
+import { imageUploadServices } from '@/app/services';
 
 const EditProfileScreen = () => {
   const { user } = useAuth();
@@ -14,12 +14,10 @@ const EditProfileScreen = () => {
   const [name, setName] = useState(userProfile?.full_name || "");
   const [username, setUsername] = useState(userProfile?.username || "");
   const [profilePhoto, setProfilePhoto] = useState<string | null>(userProfile?.profile_img || null);
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const { mutate: editProfile } = useEditProfile();
 
   const handleEditProfile = async () => {
     if (!userProfile?.id) return;
-    setIsSubmitting(true);
 
     const oldImage = userProfile.profile_img;
     const newImage = profilePhoto;
@@ -77,7 +75,7 @@ const styles = StyleSheet.create({
   },
   input: {
     borderWidth: 1,
-    borderColor: COLORS.dark_grey,
+    borderColor: COLORS.surfaceMuted,
     borderRadius: 10,
     padding: 12,
     fontSize: 16,

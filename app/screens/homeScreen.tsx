@@ -32,12 +32,12 @@ const HomeScreen = () => {
 
       <View style={styles.container}>
         <FeatureCard title='Što imam u frižideru?'
-          description='izaberi sastojke koje imaš i otkrij što možes napraviti'
+          description='Odaberi sastojke koje imaš i otkrij što možeš pripremiti'
           icon='🔍' //👨‍🍳
           route='Search' />
 
         <FeatureCard title='Što ću danas kuhati?'
-          description='Nemoraš se mislit, aplikacija će odlučiti za tebe!'
+          description='Ne moraš razbijati glavu – aplikacija odlučuje za tebe!'
           icon='🤔'
           route='Generate' />
 
@@ -79,18 +79,18 @@ const styles = StyleSheet.create({
   featureContent: {
     marginVertical: S(5),
     padding: S(12),
-    backgroundColor: COLORS.grey,
-    borderColor: COLORS.dark_grey,
+    backgroundColor: COLORS.surfaceSubtle,
+    borderColor: COLORS.surfaceMuted,
     borderWidth: 1,
   },
   text: {
     fontSize: MS(12),
     fontWeight: 400,
-    color: COLORS.text,
+    color: COLORS.textPrimary,
   },
   moreText: {
     fontSize: S(14),
-    color: COLORS.orange,
+    color: COLORS.secondary,
     fontWeight: 700,
     marginRight: S(10),
     marginTop: S(10),

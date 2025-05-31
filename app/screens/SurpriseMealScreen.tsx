@@ -1,14 +1,14 @@
 import ReturnPage from '../navigation/returnPage';
 import LottieView from 'lottie-react-native';
+import images from '@/assets/images';
 import { View, StyleSheet, Animated } from 'react-native'
 import { useEffect, useRef, useState } from 'react';
 import { CategorySelector, ConfettiAnimation, CustomButton, MealItem } from '@/app/components';
 import { Meal } from '@/app/types';
 import { useMeals, useMealsByCategories } from '../hooks';
-import images from '@/assets/images';
-import { getDayOfWeek, S } from '../utils';
+import { getDayOfWeek, S, VS } from '../utils';
 
-const GenerateMealScreen = () => {
+const SurpriseMealScreen = () => {
   const [randomMeal, setRandomMeal] = useState<Meal | null>(null);
   const [selectedCategories, setSelectedCategories] = useState<number[]>([]);
   const { data: meals } = useMeals();
@@ -48,7 +48,8 @@ const GenerateMealScreen = () => {
 
   return (
     <View style={styles.container}>
-      <ReturnPage title='Generiraj nasumični obrok' />
+      <ReturnPage title='Ne znaš što kuhati?' />
+
       <View style={styles.generateSection}>
 
         <View style={{ width: '100%', zIndex: 1200 }}>
@@ -72,13 +73,13 @@ const GenerateMealScreen = () => {
         </View>
 
         <CustomButton onPress={handlePress}
-          buttonText='Generiraj obrok' />
+          buttonText='Iznenadi me!' />
 
       </View>
     </View>
   );
 };
-export default GenerateMealScreen
+export default SurpriseMealScreen
 
 const styles = StyleSheet.create({
   generateSection: {
@@ -91,7 +92,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     width: '100%',
-    marginBottom: 40,
+    marginBottom: VS(40),
   },
   container: {
     flex: 1,

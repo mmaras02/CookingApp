@@ -1,5 +1,5 @@
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React, { useMemo, useState } from 'react'
+import { useMemo, useState } from 'react'
 import { Searchbar } from 'react-native-paper'
 import { Meal, RootParamList } from '@/app/types';
 import { useNavigation } from 'expo-router';
@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
     search: {
         width: '90%',
         alignSelf: 'center',
-        backgroundColor: COLORS.dark_grey,
+        backgroundColor: COLORS.surfaceMuted,
         marginBottom: S(10),
         borderRadius: MS(10),
     },
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
         width: '90%',
         alignSelf: 'center',
         top: S(50),
-        backgroundColor: COLORS.dark_grey,
+        backgroundColor: COLORS.surfaceMuted,
         borderRadius: MS(10),
         elevation: 3,
         //shadowOffset: { width: 0, height: 2 },

@@ -2,7 +2,7 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { TabParamList } from '@/app/types';
 import { COLORS } from '@/styles';
-import { HomeScreen, GenerateMealScreen, SearchScreen, FavoriteScreen, ProfileScreen } from '@/app/screens';
+import { HomeScreen, SurpriseMealScreen, SearchScreen, FavoriteScreen, ProfileScreen, ListsScreen } from '@/app/screens';
 import { Ionicons } from '@expo/vector-icons';
 import { S, VS } from '@/app/utils';
 
@@ -15,7 +15,7 @@ const TabNavigator = () => {
         headerShown: false,
         tabBarStyle: {
           height: S(45),
-          backgroundColor: COLORS.light,
+          backgroundColor: COLORS.textSecondary,
         },
         tabBarLabelStyle: {
           fontSize: S(11),
@@ -30,43 +30,43 @@ const TabNavigator = () => {
             <Ionicons
               name='home'
               size={S(22)}
-              color={focused ? COLORS.orange : COLORS.light_green}
+              color={focused ? COLORS.secondary : COLORS.primaryLight}
             />
           ),
-          tabBarActiveTintColor: COLORS.orange,
-          tabBarInactiveTintColor: COLORS.light_green,
+          tabBarActiveTintColor: COLORS.secondary,
+          tabBarInactiveTintColor: COLORS.primaryLight,
         }}
       />
 
       <Tab.Screen
         name="Generate"
-        component={GenerateMealScreen}
+        component={SurpriseMealScreen}
         options={{
           tabBarIcon: ({ focused }) => (
             <Ionicons
               name='bulb'
               size={S(22)}
-              color={focused ? COLORS.orange : COLORS.light_green}
+              color={focused ? COLORS.secondary : COLORS.primaryLight}
             />
           ),
-          tabBarActiveTintColor: COLORS.orange,
-          tabBarInactiveTintColor: COLORS.light_green,
+          tabBarActiveTintColor: COLORS.secondary,
+          tabBarInactiveTintColor: COLORS.primaryLight,
         }}
       />
 
       <Tab.Screen
-        name="Search"
-        component={SearchScreen}
+        name="Lists"
+        component={ListsScreen}
         options={{
           tabBarIcon: ({ focused }) => (
             <Ionicons
-              name='search'
+              name='cart'
               size={S(22)}
-              color={focused ? COLORS.orange : COLORS.light_green}
+              color={focused ? COLORS.secondary : COLORS.primaryLight}
             />
           ),
-          tabBarActiveTintColor: COLORS.orange,
-          tabBarInactiveTintColor: COLORS.light_green,
+          tabBarActiveTintColor: COLORS.secondary,
+          tabBarInactiveTintColor: COLORS.primaryLight,
         }}
       />
 
@@ -78,11 +78,11 @@ const TabNavigator = () => {
             <Ionicons
               name='bookmark'
               size={S(22)}
-              color={focused ? COLORS.orange : COLORS.light_green}
+              color={focused ? COLORS.secondary : COLORS.primaryLight}
             />
           ),
-          tabBarActiveTintColor: COLORS.orange,
-          tabBarInactiveTintColor: COLORS.light_green,
+          tabBarActiveTintColor: COLORS.secondary,
+          tabBarInactiveTintColor: COLORS.primaryLight,
         }}
       />
 
@@ -94,11 +94,11 @@ const TabNavigator = () => {
             <Ionicons
               name='person'
               size={S(22)}
-              color={focused ? COLORS.orange : COLORS.light_green}
+              color={focused ? COLORS.secondary : COLORS.primaryLight}
             />
           ),
-          tabBarActiveTintColor: COLORS.orange,
-          tabBarInactiveTintColor: COLORS.light_green,
+          tabBarActiveTintColor: COLORS.secondary,
+          tabBarInactiveTintColor: COLORS.primaryLight,
         }}
       />
 

@@ -1,5 +1,4 @@
 import { View, Text, Image, StyleSheet, TouchableOpacity, Alert } from 'react-native';
-import React from 'react';
 import { COLORS, globalStyles } from '@/styles';
 import { useCreateListItems, useLists } from '@/app/hooks';
 import { Ionicons } from '@expo/vector-icons';
@@ -84,12 +83,12 @@ const styles = StyleSheet.create({
     },
 
     iconImage: {
-        color: COLORS.orange,
+        color: COLORS.secondary,
         fontSize: MS(26),
         marginRight: 5,
     },
     text: {
-        color: COLORS.orange,
+        color: COLORS.secondary,
         fontSize: MS(18),
         fontWeight: 700,
     }

@@ -45,7 +45,7 @@ const ImageInput = ({ imageUrl, setImageUrl, bucketName, imageHeight = 200, imag
 
             ) : (
                 <View style={{ alignItems: 'center' }}>
-                    <Ionicons name="camera" size={28} color={COLORS.text} />
+                    <Ionicons name="camera" size={28} color={COLORS.textPrimary} />
                     <Text style={globalStyles.text}>Dodaj sliku</Text>
                 </View>
             )}
@@ -56,7 +56,7 @@ export default ImageInput;
 
 const styles = StyleSheet.create({
     imageContainer: {
-        backgroundColor: COLORS.dark_grey,
+        backgroundColor: COLORS.surfaceMuted,
         borderRadius: 10,
         justifyContent: 'center',
         alignItems: 'center',

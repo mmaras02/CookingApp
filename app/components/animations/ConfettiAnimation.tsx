@@ -1,4 +1,4 @@
-import LottieView from "lottie-react-native"
+import LottieView from "lottie-react-native";
 import React from "react";
 import { StyleSheet } from 'react-native'
 

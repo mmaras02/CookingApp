@@ -1,5 +1,4 @@
-import { StyleSheet, Text, TouchableOpacity, View, Image } from 'react-native'
-import React from 'react'
+import { StyleSheet, Text, TouchableOpacity, View, Image } from 'react-native';
 import { MealRating } from '../reviews'
 import { Meal, RootParamList } from '@/app/types'
 import { COLORS, globalStyles } from '@/styles'
@@ -37,10 +36,10 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         padding: S(8),
         alignItems: 'center',
-        backgroundColor: COLORS.light,
+        backgroundColor: COLORS.textSecondary,
         margin: S(3),
         borderRadius: S(10),
-        borderColor: COLORS.grey,
+        borderColor: COLORS.surfaceSubtle,
         borderWidth: 1,
     },
     image: {
