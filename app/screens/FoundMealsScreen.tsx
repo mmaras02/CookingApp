@@ -1,15 +1,13 @@
-import { View, Text, StyleSheet, ImageBackground, ScrollView, TouchableOpacity } from 'react-native';
-import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
+import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { RouteProp, useRoute } from '@react-navigation/native';
+import { ReturnPage } from '@/app/navigation';
 import { RootParamList } from '@/app/types';
-import ReturnPage from '../navigation/returnPage';
-import { globalStyles, COLORS } from '@/styles';
-import { S, VS } from '../utils';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { MealList } from '@/app/components';
+import { globalStyles } from '@/styles';
+import { VS } from '@/app/utils';
+import { MealCard, MealList } from '@/app/components';
 
 const FoundMealsScreen = () => {
     const route = useRoute<RouteProp<RootParamList, 'Found'>>();
-    const navigation = useNavigation<NativeStackNavigationProp<RootParamList>>();
     const { meals } = route.params;
 
     if (!meals || meals.length === 0) {
@@ -29,16 +27,7 @@ const FoundMealsScreen = () => {
             <ReturnPage title='Pronađeni recepti' />
             <View style={styles.container}>
                 <Text style={globalStyles.headingText}>Najbolji rezultat:</Text>
-                <TouchableOpacity style={styles.firstMealContainer}
-                    onPress={() => navigation.navigate('MealDetails', { mealId: firstMeal.id })}>
-                    <ImageBackground
-                        source={{ uri: firstMeal.image_url! }}
-                        style={styles.firstMealImage}
-                        resizeMode="cover"
-                    >
-                        <Text style={styles.titleText}>{firstMeal.name}</Text>
-                    </ImageBackground>
-                </TouchableOpacity>
+                <MealCard meal={firstMeal} isFoundMeal />
 
                 {remainingMeals.length > 0 && (
                     <>
@@ -65,26 +54,5 @@ const styles = StyleSheet.create({
         marginBottom: VS(50),
         margin: 'auto',
         marginHorizontal: 10,
-    },
-    firstMealContainer: {
-        marginBottom: 30,
-        margin: 5,
-        borderRadius: 20,
-        overflow: 'hidden',
-
-    },
-    firstMealImage: {
-        height: 300,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    titleText: {
-        backgroundColor: COLORS.secondaryTransparent,
-        fontSize: 30,
-        fontWeight: 600,
-        color: COLORS.textSecondary,
-        maxWidth: '100%',
-        textAlign: 'center',
-        padding: 10,
     },
 })

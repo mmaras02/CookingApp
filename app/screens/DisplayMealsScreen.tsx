@@ -1,10 +1,10 @@
-import ReturnPage from '../navigation/returnPage';
+import ReturnPage from '@/app/navigation/returnPage';
 import { FlatList, View, StyleSheet } from 'react-native';
 import { RouteProp, useRoute } from '@react-navigation/native';
-import { RootParamList } from '../types';
+import { RootParamList } from '@/app/types';
 import { LoadingSpinner, MealItem } from '@/app/components';
-import { S, VS } from '../utils';
-import { useMealsByCategories } from '../hooks';
+import { S, VS } from '@/app/utils';
+import { useMealsByCategories } from '@/app/hooks';
 
 const DisplayMealsScreen = () => {
   const route = useRoute<RouteProp<RootParamList, 'DisplayMeals'>>();

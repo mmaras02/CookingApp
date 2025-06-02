@@ -66,9 +66,6 @@ const GetUserProfile = async (id: any) => {
                 console.log(profileError.message);
                 return;
         }
-
-        console.log("data", profile);
-
         return profile;
 };
 

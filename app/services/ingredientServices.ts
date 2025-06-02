@@ -96,7 +96,6 @@ const getMealsByIngredients = async (IngredientIds: number[]) => {
                 (a, b) => (b.percentage_match ?? 0) - (a.percentage_match ?? 0)
         );
 
-        console.log("result", result);
         return result;
 };
 

@@ -1,4 +1,4 @@
-import ReturnPage from '../navigation/returnPage'
+import ReturnPage from '@/app/navigation/returnPage'
 import { View, StyleSheet, ScrollView, Alert } from 'react-native';
 import { useState } from 'react';
 import { Ingredient } from '@/app/types'

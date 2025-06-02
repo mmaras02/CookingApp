@@ -1,8 +1,7 @@
 import { View, FlatList, StyleSheet, RefreshControl } from 'react-native';
-import ReturnPage from '../navigation/returnPage';
+import ReturnPage from '@/app/navigation/returnPage';
 import { useFavorites } from '@/app/hooks';
 import { LoadingSpinner, MealList } from '@/app/components';
-
 
 const FavoriteScreen = () => {
   const { data: favorites, refetch, isRefetching, isLoading } = useFavorites();

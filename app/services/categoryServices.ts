@@ -1,5 +1,13 @@
 import { supabase } from "@/lib/supabase";
 import { mealServices } from ".";
+import { Category } from "../types";
+
+interface MealCategoryJoin {
+        categories: {
+                id: number;
+                name: string;
+        };
+}
 
 const getCategories = async () => {
         const { data, error } = await supabase
@@ -32,12 +40,14 @@ const getMealsByCategories = async (categoryIds: number[]) => {
         return meals;
 };
 
-const getCategoryByMealId = async (mealId: number) => {
+const getCategoryByMealId = async (mealId: number): Promise<Category[]> => {
         const { data, error } = await supabase
                 .from("meal_category")
-                .select("categories(name)")
-                .eq("meal_id", mealId)
-                .throwOnError();
+                .select<
+                        "categories(id, name)",
+                        MealCategoryJoin
+                >("categories(id, name)")
+                .eq("meal_id", mealId);
 
         if (error) {
                 throw new Error(
@@ -46,10 +56,14 @@ const getCategoryByMealId = async (mealId: number) => {
         }
 
         //const categoryNames = data.map((item) => item.categories.name);
-        const categoryNames = data.map(
+        /*const categoryNames = data.map(
                 (item) => (item.categories as unknown as { name: string }).name
         );
-        return categoryNames;
+        return categoryNames;*/
+        return data.map((item) => ({
+                id: item.categories?.id,
+                name: item.categories?.name,
+        }));
 };
 
 export default {

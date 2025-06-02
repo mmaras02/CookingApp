@@ -38,7 +38,6 @@ const deleteList = async (listId: number) => {
                 .single();
 
         if (listError) throw listError;
-
         return data;
 };
 

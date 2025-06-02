@@ -1,12 +1,12 @@
-import ReturnPage from '../navigation/returnPage';
 import LottieView from 'lottie-react-native';
 import images from '@/assets/images';
 import { View, StyleSheet, Animated } from 'react-native'
 import { useEffect, useRef, useState } from 'react';
 import { CategorySelector, ConfettiAnimation, CustomButton, MealItem } from '@/app/components';
 import { Meal } from '@/app/types';
-import { useMeals, useMealsByCategories } from '../hooks';
-import { getDayOfWeek, S, VS } from '../utils';
+import { ReturnPage } from '@/app/navigation';
+import { useMeals, useMealsByCategories } from '@/app/hooks';
+import { getDayOfWeek, S, VS } from '@/app/utils';
 
 const SurpriseMealScreen = () => {
   const [randomMeal, setRandomMeal] = useState<Meal | null>(null);

@@ -1,11 +1,11 @@
 import Checkbox from 'expo-checkbox';
-import ReturnPage from '../navigation/returnPage';
 import { View, Text, StyleSheet, TextInput, Pressable, ScrollView } from 'react-native'
+import { ReturnPage } from '@/app/navigation';
 import { useRoute } from '@react-navigation/native';
 import { globalStyles, COLORS } from '@/styles';
 import { useState } from 'react';
 import { useCreateListItems, useListItems, useUpdateCheckbox } from '@/app/hooks';
-import { S } from '../utils';
+import { S } from '@/app/utils';
 
 const ListItemScreen = () => {
     const route = useRoute();

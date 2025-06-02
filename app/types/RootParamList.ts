@@ -1,4 +1,4 @@
-import { Category, Meal } from ".";
+import { Meal } from ".";
 
 export type RootParamList = {
         Welcome: undefined;

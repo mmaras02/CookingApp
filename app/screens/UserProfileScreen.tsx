@@ -1,12 +1,11 @@
 import { RouteProp, useRoute } from "@react-navigation/native";
 import { StyleSheet, View, Text, FlatList } from "react-native";
 import { RootParamList } from "@/app/types";
-import ReturnPage from "../navigation/returnPage";
-import { useUser } from "../hooks";
+import { ReturnPage } from '@/app/navigation';
+import { useMealsByUser, useUser } from "@/app/hooks";
 import { globalStyles } from "@/styles";
-import { useMealsByUser } from "../hooks/meals/useMealsByUser";
 import { MealCard, ProfileHeader } from "@/app/components";
-import { S } from "../utils";
+import { S } from "@/app/utils";
 
 const UserProfileScreen = () => {
   const route = useRoute<RouteProp<RootParamList, 'UserProfile'>>();

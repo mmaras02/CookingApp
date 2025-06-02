@@ -71,7 +71,6 @@ const getUserFavorites = async (userId: string) => {
                 );
 
         if (error) throw error;
-
         return meals as Meal[];
 };
 

@@ -1,10 +1,10 @@
-import ReturnPage from '../navigation/returnPage'
 import { View, Text, FlatList, StyleSheet } from 'react-native';
 import { useAuth } from '@/app/context/AuthContext'
 import { globalStyles } from '@/styles'
 import { MealCard } from '@/app/components'
-import { S } from '../utils'
-import { useMealsByUser } from '../hooks/meals/useMealsByUser'
+import { S } from '@/app/utils'
+import { useMealsByUser } from '@/app/hooks/meals/useMealsByUser'
+import { ReturnPage } from '@/app/navigation';
 
 const UsersRecipesScreen = () => {
   const { user } = useAuth();

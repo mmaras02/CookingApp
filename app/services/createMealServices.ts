@@ -1,6 +1,6 @@
 import { supabase } from "@/lib/supabase";
 import { Ingredient, MealCreate } from "@/app/types";
-import { capitalizeName, standardizeName } from "../utils";
+import { capitalizeName, standardizeName } from "@/app/utils";
 
 const createMeal = async (mealData: MealCreate) => {
         const { data, error } = await supabase
@@ -32,8 +32,6 @@ const findOrAddIngredients = async (ingredients: Ingredient[]) => {
                 name: standardizeName(ing.name),
         }));
 
-        console.log("user ingredients", userIngredients);
-
         const { data: dbIngredients, error: findError } = await supabase
                 .from("ingredients")
                 .select("id, name");
@@ -44,7 +42,6 @@ const findOrAddIngredients = async (ingredients: Ingredient[]) => {
                 ...ing,
                 name: standardizeName(ing.name),
         }));
-        console.log("existing ingredients", allIngredients);
 
         //find matching
         const existingIngredients = allIngredients.filter((dbIng) =>
@@ -115,7 +112,6 @@ const addMealSteps = async (mealId: string, steps: string[]) => {
                 step_number: index + 1,
                 instructions: instruction,
         }));
-        console.log("enter1", stepRecords);
 
         const { error } = await supabase.from("recipes").insert(stepRecords);
 

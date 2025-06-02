@@ -8,12 +8,10 @@ const getRecipeByMealId = async (mealId: number) => {
                 .order("step_number", { ascending: true })
                 .throwOnError();
 
-        if (error) {
+        if (error)
                 throw new Error(
                         `Error fetching recipe for meal with id ${mealId}`
                 );
-        }
-
         return data;
 };
 

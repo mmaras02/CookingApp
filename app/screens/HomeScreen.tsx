@@ -1,15 +1,14 @@
 import { View, Text, StyleSheet, ScrollView } from 'react-native'
 import { useAuth } from '../context/AuthContext';
-import { useMeals } from '@/app/hooks';
-import { COLORS, globalStyles } from '@/styles';
+import { useCategories, useMeals } from '@/app/hooks';
+import { globalStyles } from '@/styles';
 import { CategoryList, FeatureCard, HorizontalMealList, SearchBar, TitleHeader } from '@/app/components';
 import { Meal } from '@/app/types';
-import { MS, S } from '../utils';
-import { useNavigation } from 'expo-router';
+import { S } from '@/app/utils';
 
 const HomeScreen = () => {
-  const navigation = useNavigation();
   const { data: meals } = useMeals();
+  const { data: categories } = useCategories();
   const { user } = useAuth();
   const userProfile = user?.profile;
   const recommendedMeals: Meal[] = (meals?.filter(meal => !meal.user_id) || [])
@@ -26,7 +25,7 @@ const HomeScreen = () => {
       </View>
 
       <SearchBar meals={meals!} />
-      <CategoryList />
+      <CategoryList categories={categories!} />
 
       <TitleHeader titleText='Istraži mogućnosti' />
 
@@ -76,33 +75,4 @@ const styles = StyleSheet.create({
     //marginBottom: S(5),
     //marginTop: VS(20),
   },
-  featureContent: {
-    marginVertical: S(5),
-    padding: S(12),
-    backgroundColor: COLORS.surfaceSubtle,
-    borderColor: COLORS.surfaceMuted,
-    borderWidth: 1,
-  },
-  text: {
-    fontSize: MS(12),
-    fontWeight: 400,
-    color: COLORS.textPrimary,
-  },
-  moreText: {
-    fontSize: S(14),
-    color: COLORS.secondary,
-    fontWeight: 700,
-    marginRight: S(10),
-    marginTop: S(10),
-  },
-  content: {
-    marginLeft: S(15),
-    marginTop: S(30),
-    marginBottom: 0,
-    justifyContent: 'space-between',
-    flexDirection: 'row',
-    alignItems: 'center',
-  }
-
-
 })

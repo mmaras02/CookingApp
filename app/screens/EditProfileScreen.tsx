@@ -1,10 +1,10 @@
-import ReturnPage from '../navigation/returnPage';
+import ReturnPage from '@/app/navigation/returnPage';
 import { StyleSheet, Text, TextInput, View } from 'react-native'
 import { useState } from 'react'
 import { COLORS, globalStyles } from '@/styles'
 import { useAuth } from '../context/AuthContext';
 import { CustomButton, ImageInput } from '@/app/components';
-import { useEditProfile } from '../hooks';
+import { useEditProfile } from '@/app/hooks';
 import { imageUploadServices } from '@/app/services';
 
 const EditProfileScreen = () => {

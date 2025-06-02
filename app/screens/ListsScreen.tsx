@@ -1,10 +1,10 @@
 import { StyleSheet, Text, TouchableOpacity, View, FlatList } from 'react-native';
+import { ReturnPage } from '@/app/navigation';
 import { useState } from 'react';
-import ReturnPage from '../navigation/returnPage';
 import { useLists } from '@/app/hooks';
 import { ListItem, LoadingSpinner, NewListModal } from '@/app/components';
 import { COLORS } from '@/styles';
-import { MS, S, VS } from '../utils';
+import { MS, S, VS } from '@/app/utils';
 
 function ListsScreen() {
     const { lists, isLoading, createList } = useLists();

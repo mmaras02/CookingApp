@@ -1,7 +1,6 @@
 import { View, Text, Image, FlatList, StyleSheet, TouchableOpacity } from 'react-native';
 import { useCallback, useState } from 'react';
 import { globalStyles } from '@/styles';
-import ReturnPage from '../navigation/returnPage';
 import { useNavigation } from 'expo-router';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { Meal, RootParamList } from '@/app/types';
@@ -9,7 +8,8 @@ import { useFocusEffect } from '@react-navigation/native';
 import { useIngredientsList } from '@/app/hooks';
 import { ingredientServices } from '@/app/services';
 import { CustomButton, LoadingSpinner } from '@/app/components';
-import { S, VS } from '../utils';
+import { S, VS } from '@/app/utils';
+import { ReturnPage } from '@/app/navigation';
 
 const SearchScreen = () => {
   const navigation = useNavigation<NativeStackNavigationProp<RootParamList>>();
