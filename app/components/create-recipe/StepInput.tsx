@@ -1,5 +1,6 @@
 import { StepInputProps } from "@/app/types";
-import { COLORS, globalStyles } from "@/styles";
+import { MS, S, VS } from "@/app/utils";
+import { COLORS, globalStyles, sharedStyles } from "@/styles";
 import { Ionicons } from "@expo/vector-icons";
 import { TouchableOpacity, View, Text, TextInput, StyleSheet } from "react-native";
 
@@ -23,17 +24,17 @@ const StepInput = ({ steps, setSteps }: StepInputProps) => {
 
     return (
         <>
-            <Text style={globalStyles.text}>Priprema</Text>
+            <Text style={globalStyles.text}>Priprema:</Text>
             {steps.map((step, index) => (
                 <View key={index}
-                    style={styles.stepContainer}>
+                    style={sharedStyles.inputContainer}>
                     <TextInput
-                        style={[styles.input, styles.stepInput]}
+                        style={[sharedStyles.input, styles.stepInput]}
                         placeholder={`Korak ${index + 1}`}
                         onChangeText={(text) => handleStepChange(index, text)}
                         multiline
                     />
-                    <TouchableOpacity style={styles.deleteButton}
+                    <TouchableOpacity style={sharedStyles.deleteButton}
                         onPress={() => handleDeleteStep(index)}>
                         <Ionicons name="trash" size={20} color={COLORS.secondary} />
                     </TouchableOpacity>
@@ -41,7 +42,7 @@ const StepInput = ({ steps, setSteps }: StepInputProps) => {
                 </View>
             ))}
 
-            <TouchableOpacity style={styles.addButton}
+            <TouchableOpacity style={sharedStyles.addButton}
                 onPress={handleAddStep}>
                 <Text style={globalStyles.text}>+ Dodaj korak</Text>
             </TouchableOpacity>
@@ -52,29 +53,7 @@ const StepInput = ({ steps, setSteps }: StepInputProps) => {
 export default StepInput;
 
 const styles = StyleSheet.create({
-    input: {
-        borderWidth: 1,
-        borderColor: COLORS.surfaceMuted,
-        borderRadius: 10,
-        padding: 12,
-        fontSize: 16,
-        marginBottom: 10,
-    },
     stepInput: {
         flex: 1,
-    },
-    stepContainer: {
-        flexDirection: 'row',
-        alignItems: 'center',
-    },
-    addButton: {
-        backgroundColor: COLORS.surfaceMuted,
-        padding: 10,
-        borderRadius: 10,
-        alignItems: 'center',
-        marginBottom: 20,
-    },
-    deleteButton: {
-        padding: 10,
     },
 })

@@ -1,6 +1,7 @@
 import { TouchableOpacity, Text, Alert, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { COLORS, globalStyles } from '@/styles';
+import { MS, S } from '@/app/utils';
 
 interface LogoutButtonProps {
     onLogout: () => void;
@@ -34,14 +35,11 @@ const styles = StyleSheet.create({
         backgroundColor: COLORS.textSecondary,
         flexDirection: 'row',
         alignItems: 'center',
-        padding: 20,
+        padding: S(20),
     },
     icon: {
-        height: 30,
-        width: 30,
-        tintColor: COLORS.textPrimary,
+        fontSize: MS(24),
         color: COLORS.textPrimary,
-        fontSize: 28,
-        marginRight: 20,
+        marginRight: S(20),
     }
 });

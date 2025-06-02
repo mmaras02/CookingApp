@@ -16,7 +16,7 @@ const FeatureCard = ({ title, description, icon, route }: FeatureCardProps) => {
     return (
         <TouchableOpacity style={styles.card}
             onPress={() => navigation.navigate(route as never)}>
-            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+            <View style={styles.container}>
                 <Text style={globalStyles.headingText}>{title}</Text>
                 <Text style={styles.icon}> {icon}</Text>
             </View>
@@ -28,17 +28,16 @@ const FeatureCard = ({ title, description, icon, route }: FeatureCardProps) => {
 export default FeatureCard;
 
 const styles = StyleSheet.create({
+    container: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
     card: {
         marginVertical: S(5),
         padding: S(10),
         backgroundColor: COLORS.surfaceSubtle,
         borderColor: COLORS.surfaceMuted,
         borderWidth: 1,
-    },
-    title: {
-        fontSize: 16,
-        fontWeight: '600',
-        color: COLORS.textPrimary,
     },
     icon: {
         fontSize: S(18),

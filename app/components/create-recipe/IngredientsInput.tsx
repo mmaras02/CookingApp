@@ -1,5 +1,5 @@
 import { View, Text, StyleSheet, TouchableOpacity, TextInput } from "react-native";
-import { COLORS, globalStyles } from "@/styles";
+import { COLORS, globalStyles, sharedStyles } from "@/styles";
 import { Ionicons } from "@expo/vector-icons";
 import { Ingredient, IngredientInputProps } from "@/app/types";
 
@@ -27,22 +27,22 @@ const IngredientInput = ({ ingredients, setIngredients }: IngredientInputProps) 
         <>
             <Text style={globalStyles.text}>Sastojci:</Text>
             {ingredients?.map((ingredient, index) => (
-                <View style={styles.ingredientsContainer}
+                <View style={sharedStyles.inputContainer}
                     key={index}>
                     <TextInput
-                        style={[styles.input, styles.ingredientInput]}
+                        style={[sharedStyles.input, styles.ingredientInput]}
                         placeholder="Sastojak"
                         value={ingredient.name}
                         onChangeText={(text) => handleIngredientChange(index, 'name', text)}
                     />
                     <TextInput
                         placeholder="Qty"
-                        style={[styles.input, styles.quantityInput]}
+                        style={[sharedStyles.input, styles.quantityInput]}
                         value={ingredient.quantity?.toString()}
                         onChangeText={(text) => handleIngredientChange(index, 'quantity', text)}
                     />
                     {ingredients.length > 1 && (
-                        <TouchableOpacity style={styles.deleteButton}
+                        <TouchableOpacity style={sharedStyles.deleteButton}
                             onPress={() => handleDeleteIngredient(index)}>
                             <Ionicons name="trash" size={24} color={COLORS.secondary} />
                         </TouchableOpacity>
@@ -50,7 +50,7 @@ const IngredientInput = ({ ingredients, setIngredients }: IngredientInputProps) 
                 </View>
             ))}
 
-            <TouchableOpacity style={styles.addButton}
+            <TouchableOpacity style={sharedStyles.addButton}
                 onPress={handleAddIngredient}>
                 <Text style={globalStyles.text}>+ Dodaj sastojak</Text>
             </TouchableOpacity>
@@ -61,34 +61,11 @@ const IngredientInput = ({ ingredients, setIngredients }: IngredientInputProps) 
 export default IngredientInput;
 
 const styles = StyleSheet.create({
-    input: {
-        borderWidth: 1,
-        borderColor: COLORS.surfaceMuted,
-        borderRadius: 10,
-        padding: 12,
-        fontSize: 16,
-        marginBottom: 10,
-    },
-    ingredientsContainer: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        marginTop: 10,
-    },
     ingredientInput: {
         flex: 2,
         marginRight: 10,
     },
     quantityInput: {
         flex: 1,
-    },
-    addButton: {
-        backgroundColor: COLORS.surfaceMuted,
-        padding: 10,
-        borderRadius: 10,
-        alignItems: 'center',
-        marginBottom: 20,
-    },
-    deleteButton: {
-        padding: 10,
     },
 })

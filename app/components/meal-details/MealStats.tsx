@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     },
     iconImage: {
         color: COLORS.textPrimary,
-        fontSize: MS(26),
+        fontSize: MS(24),
         marginRight: MS(5),
     },
 });

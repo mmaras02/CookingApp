@@ -32,12 +32,12 @@ export const useLists = () => {
         },
 
         onSuccess: (newList) => {
-            queryClient.setQueryData(['lists'], (old: any[]) => [...(old || []), newList]);
+            queryClient.setQueryData(['lists', userId], (old: any[] = []) => [...old, newList]);
         },
 
         onError: (err, variables, context) => {
             if (context?.previousLists) {
-                queryClient.setQueryData(['lists'], context.previousLists);
+                queryClient.setQueryData(['lists', userId], context.previousLists);
             }
         },
     });

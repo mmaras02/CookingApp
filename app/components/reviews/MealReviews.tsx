@@ -1,5 +1,6 @@
 import { View, StyleSheet } from "react-native";
 import { ReviewList, WriteReview } from ".";
+import { S } from "@/app/utils";
 
 const MealReviews = ({ mealId }: { mealId: number }) => {
     return (
@@ -15,6 +16,6 @@ export default MealReviews;
 
 const styles = StyleSheet.create({
     container: {
-        margin: 10,
+        margin: S(10),
     },
 })

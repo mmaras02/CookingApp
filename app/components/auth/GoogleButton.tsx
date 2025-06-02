@@ -1,3 +1,4 @@
+import { S, VS } from "@/app/utils";
 import images from "@/assets/images";
 import { COLORS, globalStyles } from "@/styles"
 import { Text, StyleSheet, TouchableOpacity, Image } from "react-native"
@@ -19,7 +20,7 @@ export default GoogleButton;
 export const styles = StyleSheet.create({
     continueText: {
         textAlign: "center",
-        marginVertical: 20,
+        marginVertical: VS(20),
     },
     googleContainer: {
         alignItems: "center",
@@ -27,12 +28,12 @@ export const styles = StyleSheet.create({
         flexDirection: "row",
         borderWidth: 1,
         borderColor: COLORS.primary,
-        borderRadius: 100,
-        height: 50,
+        borderRadius: S(100),
+        height: VS(40),
     },
     googleImg: {
-        width: 28,
-        height: 28,
+        width: S(24),
+        height: S(24),
         marginRight: 10,
     },
 });

@@ -1,8 +1,8 @@
-import { View, Text } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import { useState } from 'react';
 import { useNavigation } from 'expo-router';
 import { authServices } from '@/app/services';
-import { authStyles } from '@/styles';
+import { authStyles, globalStyles } from '@/styles';
 import { AuthButton, AuthFooter, AuthInput, GoogleButton } from '@/app/components';
 
 const SigninScreen = () => {
@@ -22,7 +22,7 @@ const SigninScreen = () => {
             <View style={authStyles.textContainer}>
                 <Text style={authStyles.headingText}>Hey,</Text>
                 <Text style={authStyles.headingText}>Welcome</Text>
-                <Text style={authStyles.headingText}>Back!</Text>
+                <Text style={authStyles.headingText}>Back! 👋</Text>
             </View>
 
             <View>
@@ -37,6 +37,12 @@ const SigninScreen = () => {
                     onChangeText={setPassword}
                     secureTextEntry={true} />
 
+                <TouchableOpacity style={{ marginBottom: 20 }}>
+                    <Text style={[globalStyles.text, { textAlign: 'right', fontWeight: 700 }]}>
+                        Zaboravili ste lozinku?
+                    </Text>
+                </TouchableOpacity>
+
                 <AuthButton buttonText='Logiraj se'
                     onPress={handleUserSignin} />
 
@@ -48,7 +54,7 @@ const SigninScreen = () => {
 
             </View>
 
-        </View>
+        </View >
     )
 }
 

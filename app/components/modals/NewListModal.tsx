@@ -1,17 +1,26 @@
 import { useState } from "react"
-import { Modal, Pressable, View, Text, StyleSheet, TextInput } from "react-native";
+import { Modal, View, Text, StyleSheet, TextInput, TouchableOpacity } from "react-native";
 import { globalStyles, COLORS } from '@/styles';
-import { ModalProps } from "@/app/types";
+import { ModalProps, RootParamList } from "@/app/types";
+import { CustomButton } from "../common";
+import { S, VS } from "@/app/utils";
+import { useNavigation } from "expo-router";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
 const NewListModal = ({ visible, onClose, createList, isLoading }: ModalProps) => {
     const [listTitle, setListTitle] = useState("");
+    const navigation = useNavigation<NativeStackNavigationProp<RootParamList>>();
 
-    const handleCreateList = () => {
-        createList(listTitle);
-        setListTitle('');
-        onClose();
+    const handleCreateList = async () => {
+        try {
+            const list = await createList(listTitle);
+            navigation.navigate('ListItem', { listId: list.id, title: listTitle });
+            setListTitle('');
+            onClose();
+        } catch (error) {
+            console.error('Error creating list:', error);
+        }
     }
-
     return (
         <Modal
             animationType="slide"
@@ -21,20 +30,18 @@ const NewListModal = ({ visible, onClose, createList, isLoading }: ModalProps) =
 
             <View style={styles.centeredView}>
                 <View style={styles.modalContainer}>
-                    <Pressable style={styles.closeButton} onPress={onClose}>
+                    <TouchableOpacity style={styles.closeButton}
+                        onPress={onClose}>
                         <Text style={globalStyles.titleText}>X</Text>
-                    </Pressable>
-                    <Text style={globalStyles.titleText}>Enter title: </Text>
+                    </TouchableOpacity>
                     <TextInput
                         style={styles.input}
-                        placeholder="Enter list title"
+                        placeholder="Naslov liste"
                         value={listTitle}
                         onChangeText={setListTitle}
                     />
-                    <Pressable style={styles.createButton} onPress={handleCreateList}>
-                        <Text style={styles.textStyle}>Create</Text>
-                    </Pressable>
-
+                    <CustomButton onPress={handleCreateList}
+                        buttonText="Kreiraj listu" />
                 </View>
             </View>
         </Modal>
@@ -52,43 +59,22 @@ const styles = StyleSheet.create({
     },
     modalContainer: {
         margin: 20,
-        width: 300,
-        height: 300,
+        width: S(250),
+        height: S(200),
         backgroundColor: COLORS.textSecondary,
         borderRadius: 10,
-        padding: 30,
+        padding: S(20),
         alignItems: 'center',
         elevation: 8,
     },
-    buttonOpen: {
-        backgroundColor: '#F194FF',
-    },
     closeButton: {
         alignSelf: 'flex-end',
-        marginBottom: 10,
-    },
-    modalText: {
-        marginBottom: 15,
-        textAlign: 'center',
     },
     input: {
         width: '100%',
         borderWidth: 0,
         marginVertical: 30,
-        padding: 10,
-        fontSize: 20,
+        padding: S(10),
+        fontSize: S(18),
     },
-    createButton: {
-        backgroundColor: COLORS.secondaryTransparent,
-        padding: 10,
-        borderRadius: 10,
-        marginBottom: 10,
-        width: '50%',
-    },
-    textStyle: {
-        color: COLORS.textSecondary,
-        fontSize: 24,
-        alignSelf: 'center',
-        fontWeight: 600,
-    }
 })

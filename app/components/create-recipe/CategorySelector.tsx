@@ -1,6 +1,7 @@
 import { useCategories } from "@/app/hooks";
 import { CategoriesProps } from "@/app/types";
-import { COLORS, globalStyles } from "@/styles";
+import { S, VS } from "@/app/utils";
+import { COLORS, globalStyles, sharedStyles } from "@/styles";
 import { View, Text, StyleSheet } from "react-native";
 import { MultiSelect } from 'react-native-element-dropdown';
 
@@ -16,9 +17,8 @@ const CategorySelector = ({ selectedCategories, setSelectedCategories }: Categor
         <View style={{ marginBottom: 20 }}>
             <Text style={globalStyles.text}>Kategorije</Text>
             <MultiSelect
-                style={styles.input}
+                style={sharedStyles.input}
                 selectedTextStyle={styles.selectedTextStyle}
-                iconStyle={styles.iconStyle}
                 data={categoryOptions}
                 labelField="label"
                 valueField="value"
@@ -36,29 +36,17 @@ const CategorySelector = ({ selectedCategories, setSelectedCategories }: Categor
 export default CategorySelector;
 
 const styles = StyleSheet.create({
-    input: {
-        borderWidth: 1,
-        borderColor: COLORS.surfaceMuted,
-        borderRadius: 10,
-        padding: 12,
-        fontSize: 16,
-        marginBottom: 10,
-    },
     dropdownContainer: {
-        marginTop: 10,
+        marginTop: VS(10),
         borderRadius: 10,
         color: COLORS.textSecondary,
     },
     selectedTextStyle: {
-        fontSize: 14,
+        fontSize: S(12),
         color: COLORS.textSecondary
     },
-    iconStyle: {
-        width: 20,
-        height: 20,
-    },
     selectedStyle: {
-        borderRadius: 12,
+        borderRadius: S(10),
         backgroundColor: COLORS.secondary,
 
     },

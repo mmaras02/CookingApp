@@ -2,6 +2,7 @@ import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons'
 import { COLORS, globalStyles } from '@/styles'
 import { useNavigation } from 'expo-router'
+import { MS, S, VS } from '@/app/utils';
 
 interface ProfileOptionProps {
     iconName: string,
@@ -13,7 +14,7 @@ const ProfileOption = ({ iconName, routeName, title }: ProfileOptionProps) => {
     const navigation = useNavigation();
 
     return (
-        <TouchableOpacity style={styles.profileHeader} onPress={() => navigation.navigate(routeName as never)}>
+        <TouchableOpacity style={styles.optionContainer} onPress={() => navigation.navigate(routeName as never)}>
             <Ionicons name={iconName as any} style={styles.icon} />
             <Text style={globalStyles.text}>{title}</Text>
         </TouchableOpacity>
@@ -23,19 +24,16 @@ const ProfileOption = ({ iconName, routeName, title }: ProfileOptionProps) => {
 export default ProfileOption
 
 const styles = StyleSheet.create({
-    profileHeader: {
+    optionContainer: {
         backgroundColor: COLORS.textSecondary,
         flexDirection: 'row',
         alignItems: 'center',
-        padding: 20,
-        marginVertical: 2,
+        padding: S(15),
+        marginVertical: VS(2),
     },
     icon: {
-        height: 25,
-        width: 25,
-        tintColor: COLORS.textPrimary,
+        fontSize: MS(24),
         color: COLORS.textPrimary,
-        fontSize: 28,
-        marginRight: 20,
+        marginRight: S(20),
     }
 })

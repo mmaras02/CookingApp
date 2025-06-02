@@ -6,6 +6,7 @@ import { useState } from "react";
 import { TouchableOpacity, View, Text, Image, StyleSheet, Alert } from "react-native"
 import { ImageInputProps } from "@/app/types";
 import { LoadingSpinner } from "../common";
+import { VS } from "@/app/utils";
 
 const ImageInput = ({ imageUrl, setImageUrl, bucketName, imageHeight = 200, imageWidth = 370 }: ImageInputProps) => {
     const { user } = useAuth();
@@ -60,7 +61,7 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         justifyContent: 'center',
         alignItems: 'center',
-        marginVertical: 15,
+        marginVertical: VS(15),
         overflow: 'hidden',
         alignSelf: 'center',
     },

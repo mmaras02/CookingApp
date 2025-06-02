@@ -1,3 +1,4 @@
+import { S, VS } from "@/app/utils";
 import { COLORS } from "@/styles"
 import { Text, StyleSheet, TouchableOpacity } from "react-native"
 
@@ -19,15 +20,15 @@ export default AuthButton;
 export const styles = StyleSheet.create({
     signupButton: {
         backgroundColor: COLORS.primary,
-        height: 50,
+        height: VS(40),
         borderRadius: 100,
         alignItems: "center",
         justifyContent: "center",
-        marginTop: 20,
+        marginTop: VS(18),
     },
     signupText: {
         color: COLORS.textSecondary,
-        fontSize: 22,
+        fontSize: S(20),
         fontWeight: 600,
     },
 });

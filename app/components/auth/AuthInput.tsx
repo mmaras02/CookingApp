@@ -1,3 +1,4 @@
+import { S, VS } from "@/app/utils";
 import { COLORS } from "@/styles"
 import { Ionicons } from "@expo/vector-icons"
 import { TextInput, View, StyleSheet } from "react-native"
@@ -36,9 +37,9 @@ export const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: COLORS.primary,
         borderRadius: 100,
-        paddingHorizontal: 20,
-        margin: 5,
-        height: 50,
+        paddingHorizontal: S(20),
+        margin: S(5),
+        height: VS(40),
     },
     input: {
         width: "90%",

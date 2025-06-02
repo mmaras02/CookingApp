@@ -3,6 +3,7 @@ import { Meal } from '@/app/types';
 import { Ionicons } from '@expo/vector-icons';
 import { COLORS, globalStyles } from '@/styles';
 import { useMealReviews } from '@/app/hooks';
+import { MS, S, VS } from '@/app/utils';
 
 const MealRating = ({ meal, isRating = false }: { meal: Meal, isRating?: boolean }) => {
     const { data: mealReviews } = useMealReviews(meal?.id ?? 0);
@@ -45,18 +46,18 @@ export default MealRating;
 
 const styles = StyleSheet.create({
     stars: {
-        marginBottom: 10,
+        marginBottom: VS(10),
     },
     text: {
-        marginLeft: 4,
-        marginBottom: 10,
-        fontSize: 14,
+        marginLeft: S(4),
+        marginBottom: VS(10),
+        fontSize: S(12),
         color: COLORS.textPrimary,
     },
     iconImage: {
         color: COLORS.secondary,
-        fontSize: 30,
-        marginRight: 5,
+        fontSize: S(24),
+        marginRight: MS(5),
     },
 
 })
